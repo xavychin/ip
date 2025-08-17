@@ -10,16 +10,13 @@ public class Messages {
     }
 
     public void Greetings(){
-        this.MessageBreak();
         System.out.println("Hello! I'm ");
         System.out.println(this.logo);
         System.out.println("What can I do for you?");
     }
 
     public void Goodbye(){
-        this.MessageBreak();
-        System.out.println("Bye. Hope to see you again soon!");
-        this.MessageBreak();
+        System.out.println("\tBye. Hope to see you again soon!");
     }
 
     public void MessageBreak(){
