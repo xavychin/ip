@@ -11,7 +11,7 @@ public class Leo {
         //Solution of using equalsIgnoreCase() suggested by IntelliJ code completion
         String CallFunction = "";
         while(!CallFunction.equalsIgnoreCase("bye")){
-            CallFunction = sc.nextLine().toLowerCase();
+            CallFunction = sc.nextLine();
             func.SearchFunctions(CallFunction);
             message.MessageBreak();
         }
