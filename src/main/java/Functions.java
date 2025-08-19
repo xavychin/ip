@@ -20,7 +20,7 @@ public class Functions {
                 this.unmark(Integer.parseInt(funcNameList[1]));
                 break;
             case "todo":
-                this.todo(funcNameList);
+                this.todo(funcName);
                 break;
             case "deadline":
                 this.deadline(funcName);
@@ -55,12 +55,10 @@ public class Functions {
         System.out.println("\t" + task.toString());
     }
 
-    public void todo(String[] funcNameList){
-        StringBuilder funcDesc = new StringBuilder();
-        for(int i=1; i<funcNameList.length; i++){
-            funcDesc.append(funcNameList[i]).append(" ");
-        }
-        ToDo ToDoTask = new ToDo(funcDesc.toString());
+    public void todo(String funcName){
+        String[] funcNameList = funcName.split("todo");
+        String funcDesc = funcNameList[1].trim();
+        ToDo ToDoTask = new ToDo(funcDesc);
         listItems.add(ToDoTask);
         message.addTask();
         System.out.println("\t" + ToDoTask.toString());

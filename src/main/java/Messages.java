@@ -10,7 +10,7 @@ public class Messages {
     }
 
     public void Greetings(){
-        System.out.println("Hello! I'm ");
+        System.out.println("Hello! I'm");
         System.out.println(this.logo);
         System.out.println("What can I do for you?");
     }
@@ -32,6 +32,6 @@ public class Messages {
     }
 
     public void addTask(){
-        System.out.println("Got it. I've added this task: ");
+        System.out.println("Got it. I've added this task:");
     }
 }
