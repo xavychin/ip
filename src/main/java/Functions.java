@@ -24,6 +24,7 @@ public class Functions {
     }
 
     public void list(){
+        System.out.println("Here are the tasks in your list:");
         for(int i=0; i<listItems.size(); i++){
             System.out.println("\t" + (i+1) + ". " + listItems.get(i));
         }
