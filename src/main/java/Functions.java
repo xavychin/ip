@@ -19,10 +19,17 @@ public class Functions {
             case "unmark":
                 this.unmark(Integer.parseInt(funcNameList[1]));
                 break;
+            case "todo":
+                this.todo(funcNameList);
+                break;
+            case "deadline":
+                this.deadline(funcName);
+                break;
+            case "event":
+                this.event(funcName);
+                break;
             default:
                 //System.out.println("\tI don't know how to do this...");
-                System.out.println("\tadded: " + funcName);
-                listItems.add(new Task(funcName));
                 break;
         }
     }
@@ -46,5 +53,40 @@ public class Functions {
         task.unmark();
         System.out.println("Ok! I've marked this task as not done yet:");
         System.out.println("\t" + task.toString());
+    }
+
+    public void todo(String[] funcNameList){
+        StringBuilder funcDesc = new StringBuilder();
+        for(int i=1; i<funcNameList.length; i++){
+            funcDesc.append(funcNameList[i]).append(" ");
+        }
+        ToDo ToDoTask = new ToDo(funcDesc.toString());
+        listItems.add(ToDoTask);
+        message.addTask();
+        System.out.println("\t" + ToDoTask.toString());
+        message.TaskCount(listItems.size());
+    }
+
+    public void deadline(String funcName){
+        String[] funcNameList = funcName.split("deadline | /by");
+        String funcDesc = funcNameList[1].trim();
+        String deadline = funcNameList[2].trim();
+        Deadline DeadlineTask = new Deadline(funcDesc, deadline);
+        listItems.add(DeadlineTask);
+        message.addTask();
+        System.out.println("\t" + DeadlineTask.toString());
+        message.TaskCount(listItems.size());
+    }
+
+    public void event(String funcName){
+        String[] funcNameList = funcName.split("event | /from | /to");
+        String funcDesc = funcNameList[1].trim();
+        String startDate = funcNameList[2].trim();
+        String endDate = funcNameList[3].trim();
+        Event EventTask = new Event(funcDesc, startDate, endDate);
+        listItems.add(EventTask);
+        message.addTask();
+        System.out.println("\t" + EventTask.toString());
+        message.TaskCount(listItems.size());
     }
 }
