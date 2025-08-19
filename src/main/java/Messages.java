@@ -26,4 +26,12 @@ public class Messages {
         }
         System.out.println(MsgBreak.toString());
     }
+
+    public void TaskCount(int count){
+        System.out.println("Now you have " + count + " task(s) in the list.");
+    }
+
+    public void addTask(){
+        System.out.println("Got it. I've added this task: ");
+    }
 }
