@@ -29,6 +29,9 @@ public class Functions {
             case "event":
                 this.event(funcName);
                 break;
+            case "delete":
+                this.deleteTask(Integer.parseInt(funcNameList[1]));
+                break;
             default:
                 System.out.println("\tI don't know how to do this...");
                 break;
@@ -113,6 +116,14 @@ public class Functions {
         listItems.add(EventTask);
         message.addTask();
         System.out.println("\t" + EventTask.toString());
+        message.TaskCount(listItems.size());
+    }
+
+    public void deleteTask(int indexToDel){
+        Task taskToDel = listItems.get(indexToDel-1);
+        listItems.remove(taskToDel);
+        System.out.println("Understood, I've removed the task:");
+        System.out.println("\t" + taskToDel.toString());
         message.TaskCount(listItems.size());
     }
 }
