@@ -5,7 +5,7 @@ public class Functions {
     ArrayList<Task> listItems = new ArrayList<>();
 
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
-    public void SearchFunctions(String funcName) throws ArrayIndexOutOfBoundsException, ZeroLengthException, IndexOutOfBoundsException{
+    public void SearchFunctions(String funcName) throws ZeroLengthException, IndexOutOfBoundsException{
         String[] funcNameList = funcName.split(" ");
         switch(funcNameList[0]){
             case "list":
@@ -15,10 +15,18 @@ public class Functions {
                 message.Goodbye();
                 break;
             case "mark":
-                this.markAsDone(Integer.parseInt(funcNameList[1]));
+                try{
+                    this.markAsDone(Integer.parseInt(funcNameList[1]));
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    throw new ArrayIndexOutOfBoundsException("Missing list number of task to mark.");
+                }
                 break;
             case "unmark":
-                this.unmark(Integer.parseInt(funcNameList[1]));
+                try{
+                    this.unmark(Integer.parseInt(funcNameList[1]));
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    throw new ArrayIndexOutOfBoundsException("Missing list number of task to unmark.");
+                }
                 break;
             case "todo":
                 this.todo(funcName);
@@ -30,7 +38,11 @@ public class Functions {
                 this.event(funcName);
                 break;
             case "delete":
-                this.deleteTask(Integer.parseInt(funcNameList[1]));
+                try{
+                    this.deleteTask(Integer.parseInt(funcNameList[1]));
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    throw new ArrayIndexOutOfBoundsException("Missing list number of task to delete.");
+                }
                 break;
             default:
                 System.out.println("\tI don't know how to do this...");
@@ -54,18 +66,28 @@ public class Functions {
 
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
     public void markAsDone(int num) throws IndexOutOfBoundsException{
-        Task task = listItems.get(num-1);
-        task.markAsDone();
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println("\t" + task.toString());
+        try{
+            Task task = listItems.get(num-1);
+            task.markAsDone();
+            System.out.println("Nice! I've marked this task as done:");
+            System.out.println("\t" + task.toString());
+        }
+        catch (IndexOutOfBoundsException e){
+            throw new IndexOutOfBoundsException("Task to mark is out of the list length.");
+        }
     }
 
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
-    public void unmark(int num){
-        Task task = listItems.get(num-1);
-        task.unmark();
-        System.out.println("Ok! I've marked this task as not done yet:");
-        System.out.println("\t" + task.toString());
+    public void unmark(int num) throws IndexOutOfBoundsException{
+        try{
+            Task task = listItems.get(num-1);
+            task.unmark();
+            System.out.println("Ok! I've marked this task as not done yet:");
+            System.out.println("\t" + task.toString());
+        }
+        catch (IndexOutOfBoundsException e){
+            throw new IndexOutOfBoundsException("Task to unmark is out of the list length.");
+        }
     }
 
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
@@ -119,11 +141,16 @@ public class Functions {
         message.TaskCount(listItems.size());
     }
 
-    public void deleteTask(int indexToDel){
-        Task taskToDel = listItems.get(indexToDel-1);
-        listItems.remove(taskToDel);
-        System.out.println("Understood, I've removed the task:");
-        System.out.println("\t" + taskToDel.toString());
-        message.TaskCount(listItems.size());
+    public void deleteTask(int indexToDel) throws IndexOutOfBoundsException{
+        try{
+            Task taskToDel = listItems.get(indexToDel-1);
+            listItems.remove(taskToDel);
+            System.out.println("Understood, I've removed the task:");
+            System.out.println("\t" + taskToDel.toString());
+            message.TaskCount(listItems.size());
+        }
+        catch(IndexOutOfBoundsException e){
+            throw new IndexOutOfBoundsException("Task to delete is out of the list length.");
+        }
     }
 }

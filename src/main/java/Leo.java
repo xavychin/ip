@@ -16,11 +16,8 @@ public class Leo {
             try{
                 func.SearchFunctions(CallFunction);
             }
-            catch (ArrayIndexOutOfBoundsException | ZeroLengthException e){
+            catch (ZeroLengthException | IndexOutOfBoundsException e){
                 System.out.println("\t" + e.getMessage());
-            }
-            catch (IndexOutOfBoundsException e){
-                System.out.println("\tTask to mark/unmark is out of the list length.");
             }
             message.MessageBreak();
         }
