@@ -12,7 +12,16 @@ public class Leo {
         String CallFunction = "";
         while(!CallFunction.equalsIgnoreCase("bye")){
             CallFunction = sc.nextLine();
-            func.SearchFunctions(CallFunction);
+            //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
+            try{
+                func.SearchFunctions(CallFunction);
+            }
+            catch (ArrayIndexOutOfBoundsException | ZeroLengthException e){
+                System.out.println("\t" + e.getMessage());
+            }
+            catch (IndexOutOfBoundsException e){
+                System.out.println("\tTask to mark/unmark is out of the list length.");
+            }
             message.MessageBreak();
         }
     }
