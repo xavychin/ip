@@ -1,11 +1,12 @@
 import java.io.IOException;
+import java.time.DateTimeException;
 
 public class Functions {
     Messages message = new Messages();
     TaskList listItems = new TaskList();
 
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
-    public void SearchFunctions(String funcName) throws ZeroLengthException, IndexOutOfBoundsException, IOException{
+    public void SearchFunctions(String funcName) throws ZeroLengthException, IndexOutOfBoundsException, IOException, DateTimeException{
         String[] funcNameList = funcName.split(" ");
         switch(funcNameList[0]){
             case "list":
@@ -109,12 +110,12 @@ public class Functions {
     }
 
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
-    public void deadline(String funcName) throws ArrayIndexOutOfBoundsException, IOException{
+    public void deadline(String funcName) throws ArrayIndexOutOfBoundsException, IOException, DateTimeException {
         String[] funcNameList = funcName.split("deadline | /by");
         if(funcNameList.length < 3){
             throw new ArrayIndexOutOfBoundsException("The description or deadline of the task is missing!" +
                     "\n\tMake sure it is in this format:" +
-                    "\n\t\tdeadline <task description> /by <deadline>");
+                    "\n\t\tdeadline <task description> /by <dd/MM/yyyy HHmm>");
         }
         String funcDesc = funcNameList[1].trim();
         String deadline = funcNameList[2].trim();
@@ -126,12 +127,12 @@ public class Functions {
     }
 
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
-    public void event(String funcName) throws ArrayIndexOutOfBoundsException, IOException{
+    public void event(String funcName) throws ArrayIndexOutOfBoundsException, IOException, DateTimeException{
         String[] funcNameList = funcName.split("event | /from | /to");
         if(funcNameList.length < 4){
             throw new ArrayIndexOutOfBoundsException("The description or timing of the task is missing!" +
                     "\n\tMake sure it is in this format:" +
-                    "\n\t\tevent <task description> /from <start timing> /to <end timing>");
+                    "\n\t\tevent <task description> /from <dd/MM/yyyy HHmm> /to <dd/MM/yyyy HHmm>");
         }
         String funcDesc = funcNameList[1].trim();
         String startDate = funcNameList[2].trim();
