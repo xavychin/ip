@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.time.DateTimeException;
 import java.util.Scanner;
 
 public class Leo {
@@ -17,7 +18,7 @@ public class Leo {
             try{
                 func.SearchFunctions(CallFunction);
             }
-            catch (ZeroLengthException | IndexOutOfBoundsException | IOException e){
+            catch (ZeroLengthException | IndexOutOfBoundsException | IOException | DateTimeException e){
                 System.out.println("\t" + e.getMessage());
             }
             message.MessageBreak();
