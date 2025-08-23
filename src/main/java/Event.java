@@ -1,11 +1,25 @@
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Event extends Task{
     private String startDate;
     private String endDate;
 
-    public Event(String description, String startDate, String endDate){
+    public Event(String description, String startDate, String endDate) throws DateTimeException{
         super(description);
-        this.startDate = startDate;
-        this.endDate = endDate;
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+            LocalDateTime startDateTime = LocalDateTime.parse(startDate, formatter);
+            LocalDateTime endDateTime = LocalDateTime.parse(endDate, formatter);
+
+            DateTimeFormatter newFormat = DateTimeFormatter.ofPattern("MMM dd yyyy, HHmm");
+            this.startDate = startDateTime.format(newFormat);
+            this.endDate = endDateTime.format(newFormat);
+        } catch (DateTimeException e) {
+            throw new DateTimeException("Incorrect date ot time format for /from or /to..." +
+                    "\n\tIt should be <dd/MM/yyyy HHmm>");
+        }
     }
 
     @Override
