@@ -1,6 +1,8 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -67,16 +69,24 @@ public class FileHandler {
             String[] taskDescriptionList = lineFromFile.split("\\|");
             String taskDescription = taskDescriptionList[2].trim();
 
+            //Solution adapted from https://www.perplexity.ai/search/can-localdatetime-parse-days-o-Ub7ZJIDuRtifbzHjhcOC9Q
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy, HHmm");
+            DateTimeFormatter newFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+
             switch(taskDescriptionList[0].trim()){
                 case "ToDo":
                     task = new ToDo(taskDescription);
                     break;
                 case "Event":
                     String[] eventDates = taskDescriptionList[3].split("-");
-                    task = new Event(taskDescription, eventDates[0].trim(), eventDates[1].trim());
+                    LocalDateTime startDateTime = LocalDateTime.parse(eventDates[0].trim(), formatter);
+                    LocalDateTime endDateTime = LocalDateTime.parse(eventDates[1].trim(), formatter);
+                    task = new Event(taskDescription, startDateTime.format(newFormat), endDateTime.format(newFormat));
                     break;
                 case "Deadline":
-                    task = new Deadline(taskDescription, taskDescriptionList[3].trim());
+                    //Solution adapted from https://www.perplexity.ai/search/can-localdatetime-parse-days-o-Ub7ZJIDuRtifbzHjhcOC9Q
+                    LocalDateTime dateTime = LocalDateTime.parse(taskDescriptionList[3].trim(), formatter);
+                    task = new Deadline(taskDescription, dateTime.format(newFormat));
                     break;
             }
 
