@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Leo {
@@ -16,10 +17,12 @@ public class Leo {
             try{
                 func.SearchFunctions(CallFunction);
             }
-            catch (ZeroLengthException | IndexOutOfBoundsException e){
+            catch (ZeroLengthException | IndexOutOfBoundsException | IOException e){
                 System.out.println("\t" + e.getMessage());
             }
             message.MessageBreak();
         }
+
+        sc.close();
     }
 }
