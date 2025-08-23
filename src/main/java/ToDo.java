@@ -4,6 +4,11 @@ public class ToDo extends Task{
     }
 
     @Override
+    public String appendToFile() {
+        return String.format("ToDo | " + this.getStatusIcon() + " | " + this.description);
+    }
+
+    @Override
     public String toString(){
         return String.format("[T][" + this.getStatusIcon() + "] " + this.description);
     }
