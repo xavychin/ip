@@ -19,6 +19,14 @@ public class Task {
         this.isDone = false;
     }
 
+    public String getDescription(){
+        return this.description;
+    }
+
+    public String appendToFile(){
+        return "";
+    }
+
     @Override
     public String toString(){
         return String.format("[" + this.getStatusIcon() + "] " + this.description);

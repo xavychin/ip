@@ -9,6 +9,11 @@ public class Event extends Task{
     }
 
     @Override
+    public String appendToFile() {
+        return String.format("Event | " + this.getStatusIcon() + " | " + this.description + " | " + this.startDate + "-" + this.endDate);
+    }
+
+    @Override
     public String toString(){
         return String.format("[E]["
                 + this.getStatusIcon()
