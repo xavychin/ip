@@ -1,3 +1,9 @@
+package Leo;
+
+import Leo.Display.UI;
+import Leo.Functions.Functions;
+import Leo.Functions.Task.TaskList;
+
 import java.io.IOException;
 
 public class Leo {
@@ -22,6 +28,6 @@ public class Leo {
     }
 
     public static void main(String[] args) {
-        new Leo("../.data/Leo.txt").run();
+        new Leo(".data/Leo.txt").run();
     }
 }

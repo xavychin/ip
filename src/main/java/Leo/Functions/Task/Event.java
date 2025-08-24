@@ -1,4 +1,8 @@
-public class Event extends Task{
+package Leo.Functions.Task;
+
+import Leo.DateTimeParser;
+
+public class Event extends Task {
     private String startDate;
     private String endDate;
 
@@ -12,7 +16,7 @@ public class Event extends Task{
 
     @Override
     public String appendToFile() {
-        return String.format("Event | "
+        return String.format("Leo.Functions.Task.Event | "
                 + this.getStatusIcon()
                 + " | "
                 + this.description
