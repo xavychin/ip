@@ -1,25 +1,30 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FileHandler {
-    Messages message = new Messages();
-    private final String FILEPATH = ".data/Leo.txt";
+    private File file;
 
-    public void checkFileExists() throws IOException{
-        File file = new File(this.FILEPATH);
-        file.createNewFile();
+    public FileHandler(String filePath) {
+        this.file = new File(filePath);
+    }
+
+    public FileHandler loadFile() throws IOException {
+        if (this.file.exists()) {
+            if (this.file.createNewFile()) {
+                System.out.print("File Created: " + this.file.getName());
+            }
+        }
+
+        return this;
     }
 
     public void appendToFile(String textToAdd) throws IOException{
-        FileWriter writer = new FileWriter(this.FILEPATH, true);
-        File file = new File(this.FILEPATH);
+        FileWriter writer = new FileWriter(this.file, true);
 
-        if(file.length() > 0){
+        if(this.file.length() > 0){
             //Solution adapted from https://www.perplexity.ai/search/add-new-line-infront-of-text-i-zPpF4r0fTCSRDpGFnPRUxg
             writer.write(System.lineSeparator() + textToAdd);
         } else {
@@ -31,7 +36,7 @@ public class FileHandler {
 
     //Solution adapted from https://www.perplexity.ai/search/delete-text-from-file-in-java-8_mCJnSyQZmnkscaHNiuUw
     public void deleteFromFile(ArrayList<Task> listItems) throws IOException {
-        FileWriter writer = new FileWriter(this.FILEPATH, false);
+        FileWriter writer = new FileWriter(this.file, false);
 
         for (int i=0; i<listItems.size(); i++) {
             if (i == 0) {
@@ -44,9 +49,9 @@ public class FileHandler {
     }
 
     public ArrayList<Task> retrieveTasksFromFile() throws IOException{
-        File file = new File(this.FILEPATH);
-        Scanner scanner = new Scanner(file);
+        Scanner scanner = new Scanner(this.file);
         ArrayList<Task> listItems = new ArrayList<>();
+
         while(scanner.hasNext()){
             String nextLine = scanner.nextLine();
             if (!nextLine.isEmpty()) {
@@ -69,9 +74,7 @@ public class FileHandler {
             String[] taskDescriptionList = lineFromFile.split("\\|");
             String taskDescription = taskDescriptionList[2].trim();
 
-            //Solution adapted from https://www.perplexity.ai/search/can-localdatetime-parse-days-o-Ub7ZJIDuRtifbzHjhcOC9Q
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy, HHmm");
-            DateTimeFormatter newFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+            DateTimeParser dateTimeParser = new DateTimeParser();
 
             switch(taskDescriptionList[0].trim()){
                 case "ToDo":
@@ -79,14 +82,14 @@ public class FileHandler {
                     break;
                 case "Event":
                     String[] eventDates = taskDescriptionList[3].split("-");
-                    LocalDateTime startDateTime = LocalDateTime.parse(eventDates[0].trim(), formatter);
-                    LocalDateTime endDateTime = LocalDateTime.parse(eventDates[1].trim(), formatter);
-                    task = new Event(taskDescription, startDateTime.format(newFormat), endDateTime.format(newFormat));
+                    String startDateTime = dateTimeParser.formatDateTimeFromFile(eventDates[0].trim());
+                    String endDateTime = dateTimeParser.formatDateTimeFromFile(eventDates[1].trim());
+                    task = new Event(taskDescription, startDateTime, endDateTime);
                     break;
                 case "Deadline":
                     //Solution adapted from https://www.perplexity.ai/search/can-localdatetime-parse-days-o-Ub7ZJIDuRtifbzHjhcOC9Q
-                    LocalDateTime dateTime = LocalDateTime.parse(taskDescriptionList[3].trim(), formatter);
-                    task = new Deadline(taskDescription, dateTime.format(newFormat));
+                    String dateTime = dateTimeParser.formatDateTimeFromFile(taskDescriptionList[3].trim());
+                    task = new Deadline(taskDescription, dateTime);
                     break;
             }
 
@@ -96,9 +99,11 @@ public class FileHandler {
 
 
         } catch (ArrayIndexOutOfBoundsException e) {
-            message.MessageBreak();
-            System.out.println("Failed to load the task (" + lineFromFile + ") due to invalid format.");
-            message.MessageBreak();
+            Messages.MessageBreak();
+            System.out.println("Failed to load the task ("
+                    + lineFromFile
+                    + ") due to invalid format.");
+            Messages.MessageBreak();
         }
 
         return task;
