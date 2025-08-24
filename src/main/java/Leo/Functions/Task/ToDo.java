@@ -1,4 +1,4 @@
-package Functions.Task;
+package Leo.Functions.Task;
 
 public class ToDo extends Task {
     public ToDo(String description){
@@ -7,7 +7,7 @@ public class ToDo extends Task {
 
     @Override
     public String appendToFile() {
-        return String.format("Functions.Task.ToDo | " + this.getStatusIcon() + " | " + this.description);
+        return String.format("Leo.Functions.Task.ToDo | " + this.getStatusIcon() + " | " + this.description);
     }
 
     @Override

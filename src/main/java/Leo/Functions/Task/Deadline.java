@@ -1,4 +1,6 @@
-package Functions.Task;
+package Leo.Functions.Task;
+
+import Leo.DateTimeParser;
 
 public class Deadline extends Task {
     private String deadline;
@@ -12,7 +14,7 @@ public class Deadline extends Task {
 
     @Override
     public String appendToFile() {
-        return String.format("Functions.Task.Deadline | "
+        return String.format("Leo.Functions.Task.Deadline | "
                 + this.getStatusIcon()
                 + " | "
                 + this.description
