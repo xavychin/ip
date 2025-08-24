@@ -1,7 +1,9 @@
+package Functions.Commands;
+
 import java.io.IOException;
 import java.time.DateTimeException;
 
-public class AddTaskCommand implements Command{
+public class AddTaskCommand implements Command {
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
     public static void todo(String funcName, TaskList listItems) throws ArrayIndexOutOfBoundsException, IOException {
         String[] funcNameList = funcName.split("todo");

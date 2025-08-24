@@ -1,4 +1,6 @@
-public class Event extends Task{
+package Functions.Task;
+
+public class Event extends Task {
     private String startDate;
     private String endDate;
 
@@ -12,7 +14,7 @@ public class Event extends Task{
 
     @Override
     public String appendToFile() {
-        return String.format("Event | "
+        return String.format("Functions.Task.Event | "
                 + this.getStatusIcon()
                 + " | "
                 + this.description

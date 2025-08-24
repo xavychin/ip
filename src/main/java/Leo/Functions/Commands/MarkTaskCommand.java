@@ -1,3 +1,5 @@
+package Functions.Commands;
+
 import java.io.IOException;
 
 public class MarkTaskCommand implements Command {
@@ -11,7 +13,7 @@ public class MarkTaskCommand implements Command {
             System.out.println("\t" + task);
         }
         catch (IndexOutOfBoundsException e){
-            throw new IndexOutOfBoundsException("Task to mark is out of the list length.");
+            throw new IndexOutOfBoundsException("Functions.Task.Task to mark is out of the list length.");
         }
     }
 
@@ -25,7 +27,7 @@ public class MarkTaskCommand implements Command {
             System.out.println("\t" + task);
         }
         catch (IndexOutOfBoundsException e){
-            throw new IndexOutOfBoundsException("Task to unmark is out of the list length.");
+            throw new IndexOutOfBoundsException("Functions.Task.Task to unmark is out of the list length.");
         }
     }
 }

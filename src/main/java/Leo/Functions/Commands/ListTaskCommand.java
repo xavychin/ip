@@ -1,3 +1,5 @@
+package Functions.Commands;
+
 public class ListTaskCommand implements Command {
     //Solution adapted from https://www.perplexity.ai/search/how-to-create-a-custom-excepti-Y_RyDVATSjKGxzSDx1HUeg
     public static void list(TaskList listItems) throws ZeroLengthException {

@@ -1,11 +1,13 @@
-public class ToDo extends Task{
+package Functions.Task;
+
+public class ToDo extends Task {
     public ToDo(String description){
         super(description);
     }
 
     @Override
     public String appendToFile() {
-        return String.format("ToDo | " + this.getStatusIcon() + " | " + this.description);
+        return String.format("Functions.Task.ToDo | " + this.getStatusIcon() + " | " + this.description);
     }
 
     @Override
