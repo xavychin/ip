@@ -15,7 +15,7 @@ public class DateTimeParser {
             DateTimeFormatter newFormat = DateTimeFormatter.ofPattern("MMM dd yyyy, HHmm");
             return dateTime.format(newFormat);
         } catch (DateTimeException e) {
-            throw new DateTimeException("Incorrect date ot time format for /from or /to..." +
+            throw new DateTimeException("Incorrect date or time format for /from or /to..." +
                     "\n\tIt should be <dd/MM/yyyy HHmm>");
         }
     }
