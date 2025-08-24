@@ -1,4 +1,6 @@
-public class Deadline extends Task{
+package Functions.Task;
+
+public class Deadline extends Task {
     private String deadline;
 
     public Deadline(String description, String deadline){
@@ -10,7 +12,7 @@ public class Deadline extends Task{
 
     @Override
     public String appendToFile() {
-        return String.format("Deadline | "
+        return String.format("Functions.Task.Deadline | "
                 + this.getStatusIcon()
                 + " | "
                 + this.description
