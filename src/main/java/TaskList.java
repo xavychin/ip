@@ -2,12 +2,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class TaskList {
-    private FileHandler fileHandler = new FileHandler();
-    ArrayList<Task> listItems;
+    private FileHandler fileHandler;
+    private ArrayList<Task> listItems;
 
-    public TaskList(){
+    public TaskList(FileHandler fileHandler){
+        this.fileHandler = fileHandler;
         try {
-            fileHandler.checkFileExists();
             this.listItems = fileHandler.retrieveTasksFromFile();
         } catch (IOException e) {
             System.out.println("An I/O error occurred: " + e.getMessage());
