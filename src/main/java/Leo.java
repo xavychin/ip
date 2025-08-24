@@ -1,29 +1,27 @@
 import java.io.IOException;
-import java.time.DateTimeException;
-import java.util.Scanner;
 
 public class Leo {
-    public static void main(String[] args) {
-        Messages message = new Messages();
-        message.Greetings();
+    private FileHandler fileHandler;
+    private UI ui;
+    private TaskList tasks;
+    private Functions functions;
 
-        //Solution below adapted from https://www.perplexity.ai/search/how-to-obtain-user-input-in-cl-KvQBaeNySBqYFdBIYZJrjw
-        Scanner sc = new Scanner(System.in);
-        Functions func = new Functions();
-        //Solution of using equalsIgnoreCase() suggested by IntelliJ code completion
-        String CallFunction = "";
-        while(!CallFunction.equalsIgnoreCase("bye")){
-            CallFunction = sc.nextLine();
-            //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
-            try{
-                func.SearchFunctions(CallFunction);
-            }
-            catch (ZeroLengthException | IndexOutOfBoundsException | IOException | DateTimeException e){
-                System.out.println("\t" + e.getMessage());
-            }
-            message.MessageBreak();
+    public Leo(String filePath) {
+        this.ui = new UI();
+        this.fileHandler = new FileHandler(filePath);
+        try {
+            this.tasks = new TaskList(fileHandler.loadFile());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
+    }
 
-        sc.close();
+    public void run() {
+        this.functions = new Functions(this.tasks);
+        this.ui.getUserInput(this.functions);
+    }
+
+    public static void main(String[] args) {
+        new Leo("../.data/Leo.txt").run();
     }
 }
