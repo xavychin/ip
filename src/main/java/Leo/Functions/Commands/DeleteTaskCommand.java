@@ -1,4 +1,8 @@
-package Functions.Commands;
+package Leo.Functions.Commands;
+
+import Leo.Display.Messages;
+import Leo.Functions.Task.Task;
+import Leo.Functions.Task.TaskList;
 
 import java.io.IOException;
 
@@ -12,7 +16,7 @@ public class DeleteTaskCommand implements Command {
             Messages.TaskCount(listItems.getSize());
         }
         catch(IndexOutOfBoundsException e){
-            throw new IndexOutOfBoundsException("Functions.Task.Task to delete is out of the list length.");
+            throw new IndexOutOfBoundsException("Leo.Functions.Task.Task to delete is out of the list length.");
         }
     }
 }

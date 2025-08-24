@@ -1,4 +1,4 @@
-package Functions.Commands;
+package Leo.Functions.Commands;
 
 public interface Command {
 }
