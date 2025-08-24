@@ -1,3 +1,5 @@
+package Leo.Display;
+
 public class Messages {
     private static String name = "Leo";
     private static String logo = " __\n"

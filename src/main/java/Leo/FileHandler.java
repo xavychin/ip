@@ -1,3 +1,11 @@
+package Leo;
+
+import Leo.Display.Messages;
+import Leo.Functions.Task.Deadline;
+import Leo.Functions.Task.Event;
+import Leo.Functions.Task.Task;
+import Leo.Functions.Task.ToDo;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -77,16 +85,16 @@ public class FileHandler {
             DateTimeParser dateTimeParser = new DateTimeParser();
 
             switch(taskDescriptionList[0].trim()){
-                case "ToDo":
+                case "Leo.Functions.Task.ToDo":
                     task = new ToDo(taskDescription);
                     break;
-                case "Event":
+                case "Leo.Functions.Task.Event":
                     String[] eventDates = taskDescriptionList[3].split("-");
                     String startDateTime = dateTimeParser.formatDateTimeFromFile(eventDates[0].trim());
                     String endDateTime = dateTimeParser.formatDateTimeFromFile(eventDates[1].trim());
                     task = new Event(taskDescription, startDateTime, endDateTime);
                     break;
-                case "Deadline":
+                case "Leo.Functions.Task.Deadline":
                     //Solution adapted from https://www.perplexity.ai/search/can-localdatetime-parse-days-o-Ub7ZJIDuRtifbzHjhcOC9Q
                     String dateTime = dateTimeParser.formatDateTimeFromFile(taskDescriptionList[3].trim());
                     task = new Deadline(taskDescription, dateTime);
