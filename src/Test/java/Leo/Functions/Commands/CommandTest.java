@@ -35,7 +35,7 @@ public class CommandTest {
             cleanFile.write("");
             cleanFile.close();
 
-            assertEquals("Leo.Functions.Task.ToDo |   | read book", task);
+            assertEquals("ToDo |   | read book", task);
         } catch (IOException e) {
             System.out.println("Testing failed");
         }
@@ -83,7 +83,7 @@ public class CommandTest {
             cleanFile.write("");
             cleanFile.close();
 
-            assertEquals("Leo.Functions.Task.Deadline |   | return book | Jan 12 2025, 2000", task);
+            assertEquals("Deadline |   | return book | Jan 12 2025, 2000", task);
         } catch (IOException e) {
             System.out.println("Testing failed");
         }
@@ -131,7 +131,7 @@ public class CommandTest {
             cleanFile.write("");
             cleanFile.close();
 
-            assertEquals("Leo.Functions.Task.Event |   | project meeting | Mar 02 2024, 1000-Mar 02 2024, 1030", task);
+            assertEquals("Event |   | project meeting | Mar 02 2024, 1000-Mar 02 2024, 1030", task);
         } catch (IOException e) {
             System.out.println("Testing failed");
         }
@@ -189,8 +189,8 @@ public class CommandTest {
             cleanFile.close();
 
             assertEquals(
-                    ("Leo.Functions.Task.ToDo |   | return book"
-                            + "Leo.Functions.Task.Deadline |   | return book | Jan 12 2025, 2000"),
+                    ("ToDo |   | return book"
+                            + "Deadline |   | return book | Jan 12 2025, 2000"),
                     actual.toString()
             );
         } catch (IOException e) {
@@ -205,9 +205,9 @@ public class CommandTest {
             FileHandler fhTemp = new FileHandler(".dataTest/temp.txt");
             TaskList taskList = new TaskList(fhTemp);
             FileWriter writer = new FileWriter(tempFile, false);
-            writer.write("Leo.Functions.Task.ToDo |   | return book"
-                    + "Leo.Functions.Task.Deadline |   | return book | Jan 12 2025, 2000"
-                    + "Leo.Functions.Task.Event |   | project meeting | Mar 02 2024, 1000-Mar 02 2024, 1030"
+            writer.write("ToDo |   | return book"
+                    + "Deadline |   | return book | Jan 12 2025, 2000"
+                    + "Event |   | project meeting | Mar 02 2024, 1000-Mar 02 2024, 1030"
             );
             writer.close();
 
@@ -220,7 +220,7 @@ public class CommandTest {
             cleanFile.write("");
             cleanFile.close();
 
-            String error = "Leo.Functions.Task.Task to delete is out of the list length.";
+            String error = "Task to delete is out of the list length.";
 
             assertEquals(error, exception.getMessage());
         } catch (IOException e) {
@@ -306,7 +306,7 @@ public class CommandTest {
             TaskList taskList = new TaskList(fhTemp);
 
             taskList.addTask(new ToDo("return book"));
-            MarkTaskCommand.markAsDone(1, taskList);
+            MarkTaskCommand.markTask(1, taskList);
 
             StringBuilder actual = new StringBuilder();
 
@@ -319,7 +319,7 @@ public class CommandTest {
             cleanFile.write("");
             cleanFile.close();
 
-            String expected = "Leo.Functions.Task.ToDo | X | return book";
+            String expected = "ToDo | X | return book";
 
             assertEquals(expected, actual.toString());
         } catch (IOException e) {
@@ -338,14 +338,14 @@ public class CommandTest {
 
             //Solution adapted from https://www.perplexity.ai/search/how-to-assertequal-a-thrown-er-mtR92GBxS9OyDApnjrM04A#5
             Exception exception = assertThrows(IndexOutOfBoundsException.class, () -> {
-                MarkTaskCommand.markAsDone(2, taskList);
+                MarkTaskCommand.markTask(2, taskList);
             });
 
             FileWriter cleanFile = new FileWriter(tempFile, false);
             cleanFile.write("");
             cleanFile.close();
 
-            String error = "Leo.Functions.Task.Task to mark is out of the list length.";
+            String error = "Task to mark is out of the list length.";
 
             assertEquals(error, exception.getMessage());
         } catch (IOException e) {
@@ -354,15 +354,15 @@ public class CommandTest {
     }
 
     @Test
-    public void command_unmarkTaskCommand_success(){
+    public void command_unmarkTaskTaskCommand_success(){
         try {
             File tempFile = new File(".dataTest/temp.txt");
             FileHandler fhTemp = new FileHandler(".dataTest/temp.txt");
             TaskList taskList = new TaskList(fhTemp);
 
             taskList.addTask(new ToDo("return book"));
-            MarkTaskCommand.markAsDone(1, taskList);
-            MarkTaskCommand.unmark(1, taskList);
+            MarkTaskCommand.markTask(1, taskList);
+            MarkTaskCommand.unmarkTask(1, taskList);
 
             StringBuilder actual = new StringBuilder();
 
@@ -375,7 +375,7 @@ public class CommandTest {
             cleanFile.write("");
             cleanFile.close();
 
-            String expected = "Leo.Functions.Task.ToDo |   | return book";
+            String expected = "ToDo |   | return book";
 
             assertEquals(expected, actual.toString());
         } catch (IOException e) {
@@ -384,25 +384,25 @@ public class CommandTest {
     }
 
     @Test
-    public void command_unmarkTaskCommandIndexOutOfBounds_exceptionThrown(){
+    public void command_unmarkTaskTaskCommandIndexOutOfBounds_exceptionThrown(){
         try {
             File tempFile = new File(".dataTest/temp.txt");
             FileHandler fhTemp = new FileHandler(".dataTest/temp.txt");
             TaskList taskList = new TaskList(fhTemp);
 
             taskList.addTask(new ToDo("return book"));
-            MarkTaskCommand.markAsDone(1, taskList);
+            MarkTaskCommand.markTask(1, taskList);
 
             //Solution adapted from https://www.perplexity.ai/search/how-to-assertequal-a-thrown-er-mtR92GBxS9OyDApnjrM04A#5
             Exception exception = assertThrows(IndexOutOfBoundsException.class, () -> {
-                MarkTaskCommand.unmark(2, taskList);
+                MarkTaskCommand.unmarkTask(2, taskList);
             });
 
             FileWriter cleanFile = new FileWriter(tempFile, false);
             cleanFile.write("");
             cleanFile.close();
 
-            String error = "Leo.Functions.Task.Task to unmark is out of the list length.";
+            String error = "Task to unmark is out of the list length.";
 
             assertEquals(error, exception.getMessage());
         } catch (IOException e) {
