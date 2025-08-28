@@ -9,7 +9,7 @@ public class ToDo extends Task {
      *
      * @param description The description of a ToDo task.
      */
-    public ToDo(String description){
+    public ToDo(String description) {
         super(description);
     }
 
@@ -20,7 +20,11 @@ public class ToDo extends Task {
      */
     @Override
     public String appendToFile() {
-        return String.format("Leo.Functions.Task.ToDo | " + this.getStatusIcon() + " | " + this.description);
+        return String.format(
+                "ToDo | "
+                + this.getStatusIcon()
+                + " | " + this.description
+        );
     }
 
     /**
@@ -29,7 +33,11 @@ public class ToDo extends Task {
      * @return A formatted string of the task.
      */
     @Override
-    public String toString(){
-        return String.format("[T][" + this.getStatusIcon() + "] " + this.description);
+    public String toString() {
+        return String.format(
+                "[T]["
+                + this.getStatusIcon()
+                + "] " + this.description
+        );
     }
 }

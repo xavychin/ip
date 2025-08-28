@@ -13,7 +13,7 @@ public class DateTimeParserTest {
     @Test
     public void dateTimeParser_correctStringFormatFromUser_success(){
         assertEquals("Dec 12 2025, 1200",
-                dateTimeParser.dateTimeFormatter("12/12/2025 1200"));
+                dateTimeParser.formatDateTimeFromInput("12/12/2025 1200"));
     }
 
     @Test
@@ -29,7 +29,7 @@ public class DateTimeParserTest {
 
         //Solution adapted from https://www.perplexity.ai/search/how-to-assertequal-a-thrown-er-mtR92GBxS9OyDApnjrM04A#5
         Exception exception = assertThrows(DateTimeException.class, () -> {
-            dateTimeParser.dateTimeFormatter("12-1-2025 1200");
+            dateTimeParser.formatDateTimeFromInput("12-1-2025 1200");
         });
         assertEquals(error, exception.getMessage());
     }
@@ -66,7 +66,7 @@ public class DateTimeParserTest {
 
         //Solution adapted from https://www.perplexity.ai/search/how-to-assertequal-a-thrown-er-mtR92GBxS9OyDApnjrM04A#5
         Exception exception = assertThrows(DateTimeException.class, () -> {
-            dateTimeParser.dateTimeFormatter("12-1-2025 12:00");
+            dateTimeParser.formatDateTimeFromInput("12-1-2025 12:00");
         });
         assertEquals(error, exception.getMessage());
     }

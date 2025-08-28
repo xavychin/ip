@@ -78,7 +78,7 @@ public class TaskList {
      *
      * @throws IOException If file is in the wrong format or cannot be accessed.
      */
-    public void markAsDone() throws IOException {
+    public void markTask() throws IOException {
         fileHandler.deleteFromFile(this.listItems);
     }
 
@@ -87,7 +87,7 @@ public class TaskList {
      *
      * @throws IOException If file is in the wrong format or cannot be accessed.
      */
-    public void unmark() throws IOException {
+    public void unmarkTask() throws IOException {
         fileHandler.deleteFromFile(this.listItems);
     }
 }

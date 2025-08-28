@@ -105,7 +105,7 @@ public class FileHandler {
         try {
             Scanner scanner = new Scanner(this.file);
 
-            while(scanner.hasNext()){
+            while(scanner.hasNext()) {
                 String nextLine = scanner.nextLine();
                 if (!nextLine.isEmpty()) {
                     Task task = getTaskFromFile(nextLine);
@@ -127,30 +127,30 @@ public class FileHandler {
     /**
      * Returns a task from the file.
      *
-     * @param lineFromFile Text information of task stored in the file.
+     * @param taskFromFile Text information of task stored in the file.
      * @return Task object.
      * @throws ArrayIndexOutOfBoundsException If task details are in the incorrect format.
      */
-    private Task getTaskFromFile(String lineFromFile) throws ArrayIndexOutOfBoundsException {
+    private Task getTaskFromFile(String taskFromFile) throws ArrayIndexOutOfBoundsException {
         Task task = null;
         try {
             //Solution adapted from https://www.perplexity.ai/search/split-string-by-in-java-U7_N33gYS4651R96jeoK8Q
-            String[] taskDescriptionList = lineFromFile.split("\\|");
+            String[] taskDescriptionList = taskFromFile.split("\\|");
             String taskDescription = taskDescriptionList[2].trim();
 
             DateTimeParser dateTimeParser = new DateTimeParser();
 
             switch(taskDescriptionList[0].trim()){
-                case "Leo.Functions.Task.ToDo":
+                case "ToDo":
                     task = new ToDo(taskDescription);
                     break;
-                case "Leo.Functions.Task.Event":
+                case "Event":
                     String[] eventDates = taskDescriptionList[3].split("-");
                     String startDateTime = dateTimeParser.formatDateTimeFromFile(eventDates[0].trim());
                     String endDateTime = dateTimeParser.formatDateTimeFromFile(eventDates[1].trim());
                     task = new Event(taskDescription, startDateTime, endDateTime);
                     break;
-                case "Leo.Functions.Task.Deadline":
+                case "Deadline":
                     //Solution adapted from https://www.perplexity.ai/search/can-localdatetime-parse-days-o-Ub7ZJIDuRtifbzHjhcOC9Q
                     String dateTime = dateTimeParser.formatDateTimeFromFile(taskDescriptionList[3].trim());
                     task = new Deadline(taskDescription, dateTime);
@@ -158,14 +158,16 @@ public class FileHandler {
             }
 
             if(task != null && taskDescriptionList[1].trim().equals("X")) {
-                task.markAsDone();
+                task.markTask();
             }
 
 
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new ArrayIndexOutOfBoundsException("Failed to load the task ("
-                    + lineFromFile
-                    + ") due to invalid format.");
+            throw new ArrayIndexOutOfBoundsException(
+                    "Failed to load the task ("
+                    + taskFromFile
+                    + ") due to invalid format."
+            );
         }
 
         return task;
