@@ -21,11 +21,16 @@ public class DateTimeParser {
     }
 
     public String formatDateTimeFromFile(String dateTimeToFormat) throws DateTimeException{
-        //Solution adapted from https://www.perplexity.ai/search/can-localdatetime-parse-days-o-Ub7ZJIDuRtifbzHjhcOC9Q
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy, HHmm");
-        LocalDateTime dateTime = LocalDateTime.parse(dateTimeToFormat, formatter);
+        try{
+            //Solution adapted from https://www.perplexity.ai/search/can-localdatetime-parse-days-o-Ub7ZJIDuRtifbzHjhcOC9Q
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy, HHmm");
+            LocalDateTime dateTime = LocalDateTime.parse(dateTimeToFormat, formatter);
 
-        DateTimeFormatter newFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
-        return dateTime.format(newFormat);
+            DateTimeFormatter newFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+            return dateTime.format(newFormat);
+        } catch (DateTimeException e){
+            throw new DateTimeException("Incorrect date or time format for /from or /to..." +
+                    "\n\tIt should be <dd/MM/yyyy HHmm>");
+        }
     }
 }
