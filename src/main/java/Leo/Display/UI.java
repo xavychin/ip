@@ -7,11 +7,20 @@ import java.io.IOException;
 import java.time.DateTimeException;
 import java.util.Scanner;
 
+/**
+ * The UI class manages the interaction between the user and the chatbot,
+ * outputting messages to the user interface and receiving input from the user.
+ */
 public class UI {
     //Solution below adapted from https://www.perplexity.ai/search/how-to-obtain-user-input-in-cl-KvQBaeNySBqYFdBIYZJrjw
     Scanner scanner = new Scanner(System.in);
     Functions func;
 
+    /**
+     * Takes in user input from the command line.
+     *
+     * @param functions An object that contains the possible functions of the chatbot.
+     */
     public void getUserInput(Functions functions) {
         this.func = functions;
         Messages.Greetings();

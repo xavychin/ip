@@ -9,7 +9,18 @@ import Leo.Functions.Task.ToDo;
 import java.io.IOException;
 import java.time.DateTimeException;
 
+/**
+ * Represents the function that is called when the user wants to add a task.
+ */
 public class AddTaskCommand implements Command {
+    /**
+     * Adds a ToDo task object to the list.
+     *
+     * @param funcName String containing the user input.
+     * @param listItems List of tasks.
+     * @throws ArrayIndexOutOfBoundsException If the user input is in the wrong format.
+     * @throws IOException If the file storing data cannot be found.
+     */
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
     public static void todo(String funcName, TaskList listItems) throws ArrayIndexOutOfBoundsException, IOException {
         String[] funcNameList = funcName.split("todo");
@@ -26,6 +37,15 @@ public class AddTaskCommand implements Command {
         Messages.TaskCount(listItems.getSize());
     }
 
+    /**
+     * Adds a Deadline task object to the list.
+     *
+     * @param funcName String containing the user input.
+     * @param listItems List of tasks.
+     * @throws ArrayIndexOutOfBoundsException If the user input is in the wrong format.
+     * @throws IOException If the file storing data cannot be found.
+     * @throws DateTimeException If the date or time is given in the wrong format.
+     */
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
     public static void deadline(String funcName, TaskList listItems) throws ArrayIndexOutOfBoundsException, IOException, DateTimeException {
         String[] funcNameList = funcName.split("deadline | /by");
@@ -43,6 +63,15 @@ public class AddTaskCommand implements Command {
         Messages.TaskCount(listItems.getSize());
     }
 
+    /**
+     * Adds an Event task object to the list.
+     *
+     * @param funcName String containing the user input.
+     * @param listItems List of tasks.
+     * @throws ArrayIndexOutOfBoundsException If the user input is in the wrong format.
+     * @throws IOException If the file storing data cannot be found.
+     * @throws DateTimeException If the date or time is given in the wrong format.
+     */
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
     public static void event(String funcName, TaskList listItems) throws ArrayIndexOutOfBoundsException, IOException, DateTimeException{
         String[] funcNameList = funcName.split("event | /from | /to");

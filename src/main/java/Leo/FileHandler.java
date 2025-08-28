@@ -12,13 +12,32 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * The FileHandler class provides utility methods to manage file operations
+ * such as:
+ * - loading data from files
+ * - writing data to files
+ * - deleting data from files
+ * - retrieving data from files
+ */
 public class FileHandler {
     private File file;
 
+    /**
+     * Instantiates the FileHandler object.
+     *
+     * @param filePath The file path used for carrying out file operations.
+     */
     public FileHandler(String filePath) {
         this.file = new File(filePath);
     }
 
+    /**
+     * Loads the file used to carry out file operations.
+     *
+     * @return The FileHandler object.
+     * @throws IOException If file fails to create due to input errors.
+     */
     public FileHandler loadFile() throws IOException {
         if (!this.file.exists()) {
             this.file.createNewFile();
@@ -27,6 +46,12 @@ public class FileHandler {
         return this;
     }
 
+    /**
+     * Writes data to the file.
+     *
+     * @param textToAdd Text to be written to the file.
+     * @throws IOException If file is in the wrong format or cannot be accessed.
+     */
     public void appendToFile(String textToAdd) throws IOException{
         try{
             FileWriter writer = new FileWriter(this.file, true);
@@ -44,6 +69,12 @@ public class FileHandler {
         }
     }
 
+    /**
+     * Deletes data from the file.
+     *
+     * @param listItems Remaining list of tasks after deleting.
+     * @throws IOException If file is in the wrong format or cannot be accessed.
+     */
     //Solution adapted from https://www.perplexity.ai/search/delete-text-from-file-in-java-8_mCJnSyQZmnkscaHNiuUw
     public void deleteFromFile(ArrayList<Task> listItems) throws IOException {
         try {
@@ -62,6 +93,13 @@ public class FileHandler {
         }
     }
 
+    /**
+     * Retrieves and returns the list of tasks from the file.
+     *
+     * @return List of tasks.
+     * @throws FileNotFoundException If file is in the wrong format or cannot be accessed.
+     * @throws ArrayIndexOutOfBoundsException If task details are in the incorrect format.
+     */
     public ArrayList<Task> retrieveTasksFromFile() throws FileNotFoundException, ArrayIndexOutOfBoundsException {
         ArrayList<Task> listItems = new ArrayList<>();
         try {
@@ -86,6 +124,13 @@ public class FileHandler {
         return listItems;
     }
 
+    /**
+     * Returns a task from the file.
+     *
+     * @param lineFromFile Text information of task stored in the file.
+     * @return Task object.
+     * @throws ArrayIndexOutOfBoundsException If task details are in the incorrect format.
+     */
     private Task getTaskFromFile(String lineFromFile) throws ArrayIndexOutOfBoundsException {
         Task task = null;
         try {
