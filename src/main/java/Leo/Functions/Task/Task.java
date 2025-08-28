@@ -22,7 +22,10 @@ public class Task {
     }
 
     public String appendToFile(){
-        return "";
+        return String.format("Leo.Functions.Task | "
+                + this.getStatusIcon()
+                + " | "
+                + this.description);
     }
 
     @Override

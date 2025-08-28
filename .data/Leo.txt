@@ -1,2 +1,0 @@
-Deadline |   | return book | Sunday
-Event | X | project meeting | Mon 2pm-4pm
