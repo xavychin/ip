@@ -12,13 +12,30 @@ import Leo.ZeroLengthException;
 import java.io.IOException;
 import java.time.DateTimeException;
 
+/**
+ * The Functions class calls the list operation based on the user input given.
+ */
 public class Functions {
     TaskList listItems;
 
+    /**
+     * Instantiates the Functions object.
+     *
+     * @param listItems List of tasks.
+     */
     public Functions(TaskList listItems) {
         this.listItems = listItems;
     }
 
+    /**
+     * The method calls the function based on the user input.
+     *
+     * @param funcName User input.
+     * @throws ZeroLengthException If the list is empty.
+     * @throws IndexOutOfBoundsException If index given is more than the list length.
+     * @throws IOException If the file storing data cannot be found.
+     * @throws DateTimeException If the date or time is given in the wrong format.
+     */
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
     public void SearchFunctions(String funcName) throws ZeroLengthException, IndexOutOfBoundsException, IOException, DateTimeException{
         String[] funcNameList = funcName.split(" ");
