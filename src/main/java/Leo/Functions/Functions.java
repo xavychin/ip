@@ -30,16 +30,16 @@ public class Functions {
     /**
      * The method calls the function based on the user input.
      *
-     * @param funcName User input.
+     * @param userInput User input.
      * @throws ZeroLengthException If the list is empty.
      * @throws IndexOutOfBoundsException If index given is more than the list length.
      * @throws IOException If the file storing data cannot be found.
      * @throws DateTimeException If the date or time is given in the wrong format.
      */
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
-    public void SearchFunctions(String funcName) throws ZeroLengthException, IndexOutOfBoundsException, IOException, DateTimeException{
-        String[] funcNameList = funcName.split(" ");
-        switch(funcNameList[0]){
+    public void SearchFunctions(String userInput) throws ZeroLengthException, IndexOutOfBoundsException, IOException, DateTimeException{
+        String[] userInputList = userInput.split(" ");
+        switch(userInputList[0]) {
             case "list":
                 ListTaskCommand.list(listItems);
                 break;
@@ -47,31 +47,31 @@ public class Functions {
                 Messages.Goodbye();
                 break;
             case "mark":
-                try{
-                    MarkTaskCommand.markAsDone(Integer.parseInt(funcNameList[1]), listItems);
+                try {
+                    MarkTaskCommand.markTask(Integer.parseInt(userInputList[1]), listItems);
                 } catch (ArrayIndexOutOfBoundsException e) {
                     throw new ArrayIndexOutOfBoundsException("Missing list number of task to mark.");
                 }
                 break;
             case "unmark":
-                try{
-                    MarkTaskCommand.unmark(Integer.parseInt(funcNameList[1]), listItems);
+                try {
+                    MarkTaskCommand.unmarkTask(Integer.parseInt(userInputList[1]), listItems);
                 } catch (ArrayIndexOutOfBoundsException e) {
                     throw new ArrayIndexOutOfBoundsException("Missing list number of task to unmark.");
                 }
                 break;
             case "todo":
-                AddTaskCommand.todo(funcName, listItems);
+                AddTaskCommand.todo(userInput, listItems);
                 break;
             case "deadline":
-                AddTaskCommand.deadline(funcName, listItems);
+                AddTaskCommand.deadline(userInput, listItems);
                 break;
             case "event":
-                AddTaskCommand.event(funcName, listItems);
+                AddTaskCommand.event(userInput, listItems);
                 break;
             case "delete":
-                try{
-                    DeleteTaskCommand.deleteTask(Integer.parseInt(funcNameList[1]), listItems);
+                try {
+                    DeleteTaskCommand.deleteTask(Integer.parseInt(userInputList[1]), listItems);
                 } catch (ArrayIndexOutOfBoundsException e) {
                     throw new ArrayIndexOutOfBoundsException("Missing list number of task to delete.");
                 }

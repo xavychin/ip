@@ -87,9 +87,9 @@ public class FileHandlerTest {
         cleanFile.write("");
         cleanFile.close();
 
-        assertEquals(("Leo.Functions.Task |   | borrow books" +
-                        "Leo.Functions.Task |   | return books" +
-                        "Leo.Functions.Task |   | buy bandages"),
+        assertEquals(("Task |   | borrow books" +
+                        "Task |   | return books" +
+                        "Task |   | buy bandages"),
                 temp.toString());
     }
 
@@ -115,7 +115,7 @@ public class FileHandlerTest {
         try {
             File tempFile = new File(".dataTest/temp.txt");
             FileWriter writer = new FileWriter(tempFile, false);
-            writer.write("Leo.Functions.Task.ToDo |   | return book");
+            writer.write("ToDo |   | return book");
             writer.close();
 
             FileHandler fhTemp = new FileHandler("testFile.txt");
@@ -124,7 +124,7 @@ public class FileHandlerTest {
             Method privateMethod = clazz.getDeclaredMethod("getTaskFromFile", String.class);
 
             privateMethod.setAccessible(true);
-            Object returnValue = privateMethod.invoke(fhTemp, "Leo.Functions.Task.ToDo |   | return book");
+            Object returnValue = privateMethod.invoke(fhTemp, "ToDo |   | return book");
             Task actualTask = (Task)returnValue;
 
             Task expectedTask = new ToDo("return book");
@@ -144,7 +144,7 @@ public class FileHandlerTest {
         try {
             File tempFile = new File(".dataTest/temp.txt");
             FileWriter writer = new FileWriter(tempFile, false);
-            writer.write("Leo.Functions.Task.Deadline |   | return book | Jan 12 2025, 2000");
+            writer.write("Deadline |   | return book | Jan 12 2025, 2000");
             writer.close();
 
             FileHandler fhTemp = new FileHandler("testFile.txt");
@@ -153,7 +153,7 @@ public class FileHandlerTest {
             Method privateMethod = clazz.getDeclaredMethod("getTaskFromFile", String.class);
 
             privateMethod.setAccessible(true);
-            Object returnValue = privateMethod.invoke(fhTemp, "Leo.Functions.Task.Deadline |   | return book | Jan 12 2025, 2000");
+            Object returnValue = privateMethod.invoke(fhTemp, "Deadline |   | return book | Jan 12 2025, 2000");
             Task actualTask = (Task)returnValue;
 
             Task expectedTask = new Deadline("return book", "12/01/2025 2000");
@@ -173,7 +173,7 @@ public class FileHandlerTest {
         try {
             File tempFile = new File(".dataTest/temp.txt");
             FileWriter writer = new FileWriter(tempFile, false);
-            writer.write("Leo.Functions.Task.Event |   | project meeting | Mar 02 2024, 1000-Mar 02 2024, 1030");
+            writer.write("Event |   | project meeting | Mar 02 2024, 1000-Mar 02 2024, 1030");
             writer.close();
 
             FileHandler fhTemp = new FileHandler("testFile.txt");
@@ -182,11 +182,11 @@ public class FileHandlerTest {
             Method privateMethod = clazz.getDeclaredMethod("getTaskFromFile", String.class);
 
             privateMethod.setAccessible(true);
-            Object returnValue = privateMethod.invoke(fhTemp, "Leo.Functions.Task.Event | X | project meeting | Mar 02 2024, 1000-Mar 02 2024, 1030");
+            Object returnValue = privateMethod.invoke(fhTemp, "Event | X | project meeting | Mar 02 2024, 1000-Mar 02 2024, 1030");
             Task actualTask = (Task)returnValue;
 
             Task expectedTask = new Event("project meeting", "02/03/2024 1000", "02/03/2024 1030");
-            expectedTask.markAsDone();
+            expectedTask.markTask();
 
             FileWriter cleanFile = new FileWriter(tempFile, false);
             cleanFile.write("");
@@ -234,7 +234,7 @@ public class FileHandlerTest {
     public void fileHandler_getEventTaskFromFileWithInvalidFormat_exceptionThrown() throws IOException, NoSuchMethodException {
         File tempFile = new File(".dataTest/temp.txt");
         FileWriter writer = new FileWriter(tempFile, false);
-        writer.write("Leo.Functions.Task.Event |   | project meeting");
+        writer.write("Event |   | project meeting");
         writer.close();
 
         FileHandler fhTemp = new FileHandler("testFile.txt");
@@ -245,13 +245,13 @@ public class FileHandlerTest {
         privateMethod.setAccessible(true);
 
         String error = "Failed to load the task (" +
-                "Leo.Functions.Task.Event |   | project meeting" +
+                "Event |   | project meeting" +
                 ") due to invalid format.";
 
         Throwable cause = null;
         //Solution adpated from https://www.perplexity.ai/search/how-to-assert-equals-a-private-7_Vt5uKlTo6ZrIhZbrIY7A#3
         try {
-            privateMethod.invoke(fhTemp, "Leo.Functions.Task.Event |   | project meeting");
+            privateMethod.invoke(fhTemp, "Event |   | project meeting");
         } catch (InvocationTargetException | IllegalAccessException e) {
             cause = e.getCause();
         }
@@ -300,9 +300,9 @@ public class FileHandlerTest {
         try {
             File tempFile = new File(".dataTest/temp.txt");
             FileWriter writer = new FileWriter(tempFile, false);
-            writer.write("Leo.Functions.Task.ToDo |   | return book\n"
-                    + "Leo.Functions.Task.Deadline |   | return book | Jan 12 2025, 2000\n"
-                    + "Leo.Functions.Task.Event |   | project meeting | Mar 02 2024, 1000-Mar 02 2024, 1030"
+            writer.write("ToDo |   | return book\n"
+                    + "Deadline |   | return book | Jan 12 2025, 2000\n"
+                    + "Event |   | project meeting | Mar 02 2024, 1000-Mar 02 2024, 1030"
             );
             writer.close();
 

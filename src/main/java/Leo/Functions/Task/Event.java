@@ -16,12 +16,12 @@ public class Event extends Task {
      * @param startDate The start date and time of the task.
      * @param endDate The end date and time of the task.
      */
-    public Event(String description, String startDate, String endDate){
+    public Event(String description, String startDate, String endDate) {
         super(description);
 
         DateTimeParser dateTimeParser = new DateTimeParser();
-        this.startDate = dateTimeParser.dateTimeFormatter(startDate);
-        this.endDate = dateTimeParser.dateTimeFormatter(endDate);
+        this.startDate = dateTimeParser.formatDateTimeFromInput(startDate);
+        this.endDate = dateTimeParser.formatDateTimeFromInput(endDate);
     }
 
     /**
@@ -31,14 +31,16 @@ public class Event extends Task {
      */
     @Override
     public String appendToFile() {
-        return String.format("Leo.Functions.Task.Event | "
+        return String.format(
+                "Event | "
                 + this.getStatusIcon()
                 + " | "
                 + this.description
                 + " | "
                 + this.startDate
                 + "-"
-                + this.endDate);
+                + this.endDate
+        );
     }
 
     /**
@@ -48,7 +50,8 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[E]["
+        return String.format(
+                "[E]["
                 + this.getStatusIcon()
                 + "] "
                 + this.description
@@ -56,6 +59,7 @@ public class Event extends Task {
                 + this.startDate
                 + " to: "
                 + this.endDate
-                + ")");
+                + ")"
+        );
     }
 }
