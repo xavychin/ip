@@ -1,6 +1,9 @@
 package Leo.Functions.Task;
 
+import Leo.Display.Messages;
 import Leo.FileHandler;
+
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -8,13 +11,9 @@ public class TaskList {
     private FileHandler fileHandler;
     private ArrayList<Task> listItems;
 
-    public TaskList(FileHandler fileHandler){
+    public TaskList(FileHandler fileHandler) throws FileNotFoundException, ArrayIndexOutOfBoundsException{
         this.fileHandler = fileHandler;
-        try {
-            this.listItems = fileHandler.retrieveTasksFromFile();
-        } catch (IOException e) {
-            System.out.println("An I/O error occurred: " + e.getMessage());
-        }
+        this.listItems = fileHandler.retrieveTasksFromFile();
     }
 
     public void addTask(Task task) throws IOException {

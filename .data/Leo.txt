@@ -1,2 +1,3 @@
-Deadline |   | return book | Sunday
-Event | X | project meeting | Mon 2pm-4pm
+Leo.Functions.Task.ToDo | X | return book
+Leo.Functions.Task.Deadline |   | return book | Jan 12 2025, 2000
+Leo.Functions.Task.Event |   | project meeting | Mar 02 2024, 1000-Mar 02 2024, 1030

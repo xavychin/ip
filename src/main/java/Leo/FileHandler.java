@@ -1,12 +1,12 @@
 package Leo;
 
-import Leo.Display.Messages;
 import Leo.Functions.Task.Deadline;
 import Leo.Functions.Task.Event;
 import Leo.Functions.Task.Task;
 import Leo.Functions.Task.ToDo;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,62 +20,73 @@ public class FileHandler {
     }
 
     public FileHandler loadFile() throws IOException {
-        if (this.file.exists()) {
-            if (this.file.createNewFile()) {
-                System.out.print("File Created: " + this.file.getName());
-            }
+        if (!this.file.exists()) {
+            this.file.createNewFile();
         }
 
         return this;
     }
 
     public void appendToFile(String textToAdd) throws IOException{
-        FileWriter writer = new FileWriter(this.file, true);
+        try{
+            FileWriter writer = new FileWriter(this.file, true);
 
-        if(this.file.length() > 0){
-            //Solution adapted from https://www.perplexity.ai/search/add-new-line-infront-of-text-i-zPpF4r0fTCSRDpGFnPRUxg
-            writer.write(System.lineSeparator() + textToAdd);
-        } else {
-            writer.write(textToAdd);
+            if(this.file.length() > 0){
+                //Solution adapted from https://www.perplexity.ai/search/add-new-line-infront-of-text-i-zPpF4r0fTCSRDpGFnPRUxg
+                writer.write(System.lineSeparator() + textToAdd);
+            } else {
+                writer.write(textToAdd);
+            }
+
+            writer.close();
+        } catch (IOException e) {
+            throw new IOException("Invalid file path given");
         }
-
-        writer.close();
     }
 
     //Solution adapted from https://www.perplexity.ai/search/delete-text-from-file-in-java-8_mCJnSyQZmnkscaHNiuUw
     public void deleteFromFile(ArrayList<Task> listItems) throws IOException {
-        FileWriter writer = new FileWriter(this.file, false);
+        try {
+            FileWriter writer = new FileWriter(this.file, false);
 
-        for (int i=0; i<listItems.size(); i++) {
-            if (i == 0) {
-                writer.write(listItems.get(i).appendToFile());
-            } else {
-                writer.write(System.lineSeparator() + listItems.get(i).appendToFile());
-            }
-        }
-        writer.close();
-    }
-
-    public ArrayList<Task> retrieveTasksFromFile() throws IOException{
-        Scanner scanner = new Scanner(this.file);
-        ArrayList<Task> listItems = new ArrayList<>();
-
-        while(scanner.hasNext()){
-            String nextLine = scanner.nextLine();
-            if (!nextLine.isEmpty()) {
-                Task task = getTaskFromFile(nextLine);
-
-                if (task != null) {
-                    listItems.add(task);
+            for (int i=0; i<listItems.size(); i++) {
+                if (i == 0) {
+                    writer.write(listItems.get(i).appendToFile());
+                } else {
+                    writer.write(System.lineSeparator() + listItems.get(i).appendToFile());
                 }
             }
+            writer.close();
+        } catch (IOException e) {
+            throw new IOException("Invalid file path given");
+        }
+    }
+
+    public ArrayList<Task> retrieveTasksFromFile() throws FileNotFoundException, ArrayIndexOutOfBoundsException {
+        ArrayList<Task> listItems = new ArrayList<>();
+        try {
+            Scanner scanner = new Scanner(this.file);
+
+            while(scanner.hasNext()){
+                String nextLine = scanner.nextLine();
+                if (!nextLine.isEmpty()) {
+                    Task task = getTaskFromFile(nextLine);
+
+                    if (task != null) {
+                        listItems.add(task);
+                    }
+                }
+            }
+
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            throw new FileNotFoundException("Invalid file path given");
         }
 
-        scanner.close();
         return listItems;
     }
 
-    private Task getTaskFromFile(String lineFromFile) {
+    private Task getTaskFromFile(String lineFromFile) throws ArrayIndexOutOfBoundsException {
         Task task = null;
         try {
             //Solution adapted from https://www.perplexity.ai/search/split-string-by-in-java-U7_N33gYS4651R96jeoK8Q
@@ -107,11 +118,9 @@ public class FileHandler {
 
 
         } catch (ArrayIndexOutOfBoundsException e) {
-            Messages.MessageBreak();
-            System.out.println("Failed to load the task ("
+            throw new ArrayIndexOutOfBoundsException("Failed to load the task ("
                     + lineFromFile
                     + ") due to invalid format.");
-            Messages.MessageBreak();
         }
 
         return task;
