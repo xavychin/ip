@@ -15,7 +15,7 @@ public class DateTimeParser {
      * @return Readable date and time text.
      * @throws DateTimeException If incorrect date and time format was given.
      */
-    public String dateTimeFormatter(String dateTimeToFormat) throws DateTimeException{
+    public String formatDateTimeFromInput(String dateTimeToFormat) throws DateTimeException{
         try {
             //Solution adapted from https://www.perplexity.ai/search/can-localdatetime-parse-days-o-Ub7ZJIDuRtifbzHjhcOC9Q
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
@@ -24,8 +24,10 @@ public class DateTimeParser {
             DateTimeFormatter newFormat = DateTimeFormatter.ofPattern("MMM dd yyyy, HHmm");
             return dateTime.format(newFormat);
         } catch (DateTimeException e) {
-            throw new DateTimeException("Incorrect date or time format for /from or /to..." +
-                    "\n\tIt should be <dd/MM/yyyy HHmm>");
+            throw new DateTimeException(
+                    "Incorrect date or time format for /from or /to..." +
+                    "\n\tIt should be <dd/MM/yyyy HHmm>"
+            );
         }
     }
 
@@ -45,8 +47,10 @@ public class DateTimeParser {
             DateTimeFormatter newFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
             return dateTime.format(newFormat);
         } catch (DateTimeException e){
-            throw new DateTimeException("Incorrect date or time format for /from or /to..." +
-                    "\n\tIt should be <dd/MM/yyyy HHmm>");
+            throw new DateTimeException(
+                    "Incorrect date or time format for /from or /to..." +
+                    "\n\tIt should be <dd/MM/yyyy HHmm>"
+            );
         }
     }
 }

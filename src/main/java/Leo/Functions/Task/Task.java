@@ -12,7 +12,7 @@ public class Task {
      *
      * @param description The description of the task.
      */
-    public Task(String description){
+    public Task(String description) {
         this.description = description;
         this.isDone = false;
     }
@@ -22,21 +22,21 @@ public class Task {
      *
      * @return The completion status of the task.
      */
-    public String getStatusIcon(){
+    public String getStatusIcon() {
         return (isDone ? "X" : " ");
     }
 
     /**
      * Mark the task as completed.
      */
-    public void markAsDone(){
+    public void markTask() {
         this.isDone = true;
     }
 
     /**
      * Mark the task as not completed.
      */
-    public void unmark(){
+    public void unmarkTask() {
         this.isDone = false;
     }
 
@@ -45,11 +45,13 @@ public class Task {
      *
      * @return A formatted string of the task.
      */
-    public String appendToFile(){
-        return String.format("Leo.Functions.Task | "
+    public String appendToFile() {
+        return String.format(
+                "Task | "
                 + this.getStatusIcon()
                 + " | "
-                + this.description);
+                + this.description
+        );
     }
 
     /**
@@ -58,7 +60,11 @@ public class Task {
      * @return A formatted string of the task.
      */
     @Override
-    public String toString(){
-        return String.format("[" + this.getStatusIcon() + "] " + this.description);
+    public String toString() {
+        return String.format(
+                "["
+                + this.getStatusIcon()
+                + "] " + this.description
+        );
     }
 }

@@ -14,11 +14,11 @@ public class Deadline extends Task {
      * @param description The description of the Deadline task.
      * @param deadline The deadline of the task.
      */
-    public Deadline(String description, String deadline){
+    public Deadline(String description, String deadline) {
         super(description);
 
         DateTimeParser dateTimeParser = new DateTimeParser();
-        this.deadline = dateTimeParser.dateTimeFormatter(deadline);
+        this.deadline = dateTimeParser.formatDateTimeFromInput(deadline);
     }
 
     /**
@@ -28,12 +28,14 @@ public class Deadline extends Task {
      */
     @Override
     public String appendToFile() {
-        return String.format("Leo.Functions.Task.Deadline | "
+        return String.format(
+                "Deadline | "
                 + this.getStatusIcon()
                 + " | "
                 + this.description
                 + " | "
-                + this.deadline);
+                + this.deadline
+        );
     }
 
     /**
@@ -43,12 +45,14 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[D]["
+        return String.format(
+                "[D]["
                 + this.getStatusIcon()
                 + "] "
                 + this.description
                 + " (by: "
                 + this.deadline
-                + ")");
+                + ")"
+        );
     }
 }

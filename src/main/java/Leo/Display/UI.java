@@ -27,18 +27,21 @@ public class UI {
 
         //Solution of using equalsIgnoreCase() suggested by IntelliJ code completion
         String callFunction = "";
-        while(!callFunction.equalsIgnoreCase("bye")){
+        while(!callFunction.equalsIgnoreCase("bye")) {
             callFunction = scanner.nextLine();
             //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
-            try{
+            try {
                 func.SearchFunctions(callFunction);
             }
             catch (ZeroLengthException |
                    IndexOutOfBoundsException |
                    IOException |
-                   DateTimeException e){
-                System.out.println("\t"
-                        + e.getMessage());
+                   DateTimeException
+                    e){
+                System.out.println(
+                        "\t"
+                        + e.getMessage()
+                );
             }
             Messages.MessageBreak();
         }
