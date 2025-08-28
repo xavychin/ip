@@ -22,8 +22,8 @@ public class CommandTest {
     @Test
     public void command_addToDoTaskCommand_success(){
         try {
-            File tempFile = new File(".data/temp.txt");
-            FileHandler fhTemp = new FileHandler(".data/temp.txt");
+            File tempFile = new File(".dataTest/temp.txt");
+            FileHandler fhTemp = new FileHandler(".dataTest/temp.txt");
             TaskList taskList = new TaskList(fhTemp);
             AddTaskCommand.todo("todo read book", taskList);
 
@@ -44,8 +44,8 @@ public class CommandTest {
     @Test
     public void command_addToDoTaskCommandInvalidFormat_exceptionThrown(){
         try {
-            File tempFile = new File(".data/temp.txt");
-            FileHandler fhTemp = new FileHandler(".data/temp.txt");
+            File tempFile = new File(".dataTest/temp.txt");
+            FileHandler fhTemp = new FileHandler(".dataTest/temp.txt");
             TaskList taskList = new TaskList(fhTemp);
 
             //Solution adapted from https://www.perplexity.ai/search/how-to-assertequal-a-thrown-er-mtR92GBxS9OyDApnjrM04A#5
@@ -70,8 +70,8 @@ public class CommandTest {
     @Test
     public void command_addDeadlineTaskCommand_success(){
         try {
-            File tempFile = new File(".data/temp.txt");
-            FileHandler fhTemp = new FileHandler(".data/temp.txt");
+            File tempFile = new File(".dataTest/temp.txt");
+            FileHandler fhTemp = new FileHandler(".dataTest/temp.txt");
             TaskList taskList = new TaskList(fhTemp);
             AddTaskCommand.deadline("deadline return book /by 12/01/2025 2000", taskList);
 
@@ -92,8 +92,8 @@ public class CommandTest {
     @Test
     public void command_addDeadlineTaskCommandInvalidFormat_exceptionThrown(){
         try {
-            File tempFile = new File(".data/temp.txt");
-            FileHandler fhTemp = new FileHandler(".data/temp.txt");
+            File tempFile = new File(".dataTest/temp.txt");
+            FileHandler fhTemp = new FileHandler(".dataTest/temp.txt");
             TaskList taskList = new TaskList(fhTemp);
 
             //Solution adapted from https://www.perplexity.ai/search/how-to-assertequal-a-thrown-er-mtR92GBxS9OyDApnjrM04A#5
@@ -118,8 +118,8 @@ public class CommandTest {
     @Test
     public void command_addEventTaskCommand_success(){
         try {
-            File tempFile = new File(".data/temp.txt");
-            FileHandler fhTemp = new FileHandler(".data/temp.txt");
+            File tempFile = new File(".dataTest/temp.txt");
+            FileHandler fhTemp = new FileHandler(".dataTest/temp.txt");
             TaskList taskList = new TaskList(fhTemp);
             AddTaskCommand.event("event project meeting /from 02/03/2024 1000 /to 02/03/2024 1030", taskList);
 
@@ -140,8 +140,8 @@ public class CommandTest {
     @Test
     public void command_addEventTaskCommandInvalidFormat_exceptionThrown(){
         try {
-            File tempFile = new File(".data/temp.txt");
-            FileHandler fhTemp = new FileHandler(".data/temp.txt");
+            File tempFile = new File(".dataTest/temp.txt");
+            FileHandler fhTemp = new FileHandler(".dataTest/temp.txt");
             TaskList taskList = new TaskList(fhTemp);
 
             //Solution adapted from https://www.perplexity.ai/search/how-to-assertequal-a-thrown-er-mtR92GBxS9OyDApnjrM04A#5
@@ -166,8 +166,8 @@ public class CommandTest {
     @Test
     public void command_deleteTaskCommand_success(){
         try {
-            File tempFile = new File(".data/temp.txt");
-            FileHandler fhTemp = new FileHandler(".data/temp.txt");
+            File tempFile = new File(".dataTest/temp.txt");
+            FileHandler fhTemp = new FileHandler(".dataTest/temp.txt");
             TaskList taskList = new TaskList(fhTemp);
 
             taskList.addTask(new ToDo("return book"));
@@ -201,8 +201,8 @@ public class CommandTest {
     @Test
     public void command_deleteTaskCommandIndexOutOfBounds_exceptionThrown(){
         try {
-            File tempFile = new File(".data/temp.txt");
-            FileHandler fhTemp = new FileHandler(".data/temp.txt");
+            File tempFile = new File(".dataTest/temp.txt");
+            FileHandler fhTemp = new FileHandler(".dataTest/temp.txt");
             TaskList taskList = new TaskList(fhTemp);
             FileWriter writer = new FileWriter(tempFile, false);
             writer.write("Leo.Functions.Task.ToDo |   | return book"
@@ -236,8 +236,8 @@ public class CommandTest {
         System.setOut(new PrintStream(outputStream));
 
         try {
-            File tempFile = new File(".data/temp.txt");
-            FileHandler fhTemp = new FileHandler(".data/temp.txt");
+            File tempFile = new File(".dataTest/temp.txt");
+            FileHandler fhTemp = new FileHandler(".dataTest/temp.txt");
             TaskList taskList = new TaskList(fhTemp);
 
             taskList.addTask(new ToDo("return book"));
@@ -274,8 +274,8 @@ public class CommandTest {
     @Test
     public void command_listTaskCommandZeroLengthList_exceptionThrown(){
         try {
-            File tempFile = new File(".data/temp.txt");
-            FileHandler fhTemp = new FileHandler(".data/temp.txt");
+            File tempFile = new File(".dataTest/temp.txt");
+            FileHandler fhTemp = new FileHandler(".dataTest/temp.txt");
             TaskList taskList = new TaskList(fhTemp);
 
             FileWriter cleanFile = new FileWriter(tempFile, false);
@@ -301,8 +301,8 @@ public class CommandTest {
     @Test
     public void command_markTaskCommand_success(){
         try {
-            File tempFile = new File(".data/temp.txt");
-            FileHandler fhTemp = new FileHandler(".data/temp.txt");
+            File tempFile = new File(".dataTest/temp.txt");
+            FileHandler fhTemp = new FileHandler(".dataTest/temp.txt");
             TaskList taskList = new TaskList(fhTemp);
 
             taskList.addTask(new ToDo("return book"));
@@ -330,8 +330,8 @@ public class CommandTest {
     @Test
     public void command_markTaskCommandIndexOutOfBounds_exceptionThrown(){
         try {
-            File tempFile = new File(".data/temp.txt");
-            FileHandler fhTemp = new FileHandler(".data/temp.txt");
+            File tempFile = new File(".dataTest/temp.txt");
+            FileHandler fhTemp = new FileHandler(".dataTest/temp.txt");
             TaskList taskList = new TaskList(fhTemp);
 
             taskList.addTask(new ToDo("return book"));
@@ -356,8 +356,8 @@ public class CommandTest {
     @Test
     public void command_unmarkTaskCommand_success(){
         try {
-            File tempFile = new File(".data/temp.txt");
-            FileHandler fhTemp = new FileHandler(".data/temp.txt");
+            File tempFile = new File(".dataTest/temp.txt");
+            FileHandler fhTemp = new FileHandler(".dataTest/temp.txt");
             TaskList taskList = new TaskList(fhTemp);
 
             taskList.addTask(new ToDo("return book"));
@@ -386,8 +386,8 @@ public class CommandTest {
     @Test
     public void command_unmarkTaskCommandIndexOutOfBounds_exceptionThrown(){
         try {
-            File tempFile = new File(".data/temp.txt");
-            FileHandler fhTemp = new FileHandler(".data/temp.txt");
+            File tempFile = new File(".dataTest/temp.txt");
+            FileHandler fhTemp = new FileHandler(".dataTest/temp.txt");
             TaskList taskList = new TaskList(fhTemp);
 
             taskList.addTask(new ToDo("return book"));

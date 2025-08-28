@@ -18,21 +18,21 @@ public class FileHandlerTest {
     //Test loading the list file
     @Test
     public void fileHandler_fileExists_success() throws IOException {
-        FileHandler fh = new FileHandler(".data/temp.txt");
+        FileHandler fh = new FileHandler(".dataTest/temp.txt");
         assertEquals(fh, fh.loadFile());
     }
 
     @Test
     public void fileHandler_fileCreation_success() throws IOException {
         //Solution adapted from https://www.perplexity.ai/search/how-to-assert-equal-for-such-i-6HsiIA11RLadybjjfSz1Fw#2
-        FileHandler fhTemp = new FileHandler(".data/temp.txt");
+        FileHandler fhTemp = new FileHandler(".dataTest/temp.txt");
         assertEquals(fhTemp, fhTemp.loadFile());
     }
 
     @Test
     public void fileHandler_appendTextToFile_success() throws IOException {
-        File tempFile = new File(".data/temp.txt");
-        FileHandler fhTemp = new FileHandler(".data/temp.txt");
+        File tempFile = new File(".dataTest/temp.txt");
+        FileHandler fhTemp = new FileHandler(".dataTest/temp.txt");
         fhTemp.appendToFile("Hello World!");
 
         StringBuilder temp = new StringBuilder();
@@ -64,13 +64,13 @@ public class FileHandlerTest {
 
     @Test
     public void fileHandler_deleteFromFile_success() throws IOException {
-        File tempFile = new File(".data/temp.txt");
+        File tempFile = new File(".dataTest/temp.txt");
         ArrayList<Task> tempListItems = new ArrayList<>();
         tempListItems.add(new Task("borrow books"));
         tempListItems.add(new Task("return books"));
         tempListItems.add(new Task("buy bandages"));
 
-        FileHandler fhTemp = new FileHandler(".data/temp.txt");
+        FileHandler fhTemp = new FileHandler(".dataTest/temp.txt");
 
         fhTemp.deleteFromFile(tempListItems);
 
@@ -113,7 +113,7 @@ public class FileHandlerTest {
     @Test
     public void fileHandler_getToDoTaskFromFile_success() {
         try {
-            File tempFile = new File(".data/temp.txt");
+            File tempFile = new File(".dataTest/temp.txt");
             FileWriter writer = new FileWriter(tempFile, false);
             writer.write("Leo.Functions.Task.ToDo |   | return book");
             writer.close();
@@ -142,7 +142,7 @@ public class FileHandlerTest {
     @Test
     public void fileHandler_getDeadlineTaskFromFile_success() {
         try {
-            File tempFile = new File(".data/temp.txt");
+            File tempFile = new File(".dataTest/temp.txt");
             FileWriter writer = new FileWriter(tempFile, false);
             writer.write("Leo.Functions.Task.Deadline |   | return book | Jan 12 2025, 2000");
             writer.close();
@@ -171,7 +171,7 @@ public class FileHandlerTest {
     @Test
     public void fileHandler_getEventTaskFromFile_success() {
         try {
-            File tempFile = new File(".data/temp.txt");
+            File tempFile = new File(".dataTest/temp.txt");
             FileWriter writer = new FileWriter(tempFile, false);
             writer.write("Leo.Functions.Task.Event |   | project meeting | Mar 02 2024, 1000-Mar 02 2024, 1030");
             writer.close();
@@ -200,7 +200,7 @@ public class FileHandlerTest {
 
     @Test
     public void fileHandler_getNullTaskFromFile_success() throws IOException, NoSuchMethodException {
-        File tempFile = new File(".data/temp.txt");
+        File tempFile = new File(".dataTest/temp.txt");
         FileWriter writer = new FileWriter(tempFile, false);
         writer.write("   ");
         writer.close();
@@ -232,7 +232,7 @@ public class FileHandlerTest {
 
     @Test
     public void fileHandler_getEventTaskFromFileWithInvalidFormat_exceptionThrown() throws IOException, NoSuchMethodException {
-        File tempFile = new File(".data/temp.txt");
+        File tempFile = new File(".dataTest/temp.txt");
         FileWriter writer = new FileWriter(tempFile, false);
         writer.write("Leo.Functions.Task.Event |   | project meeting");
         writer.close();
@@ -265,7 +265,7 @@ public class FileHandlerTest {
 
     @Test
     public void fileHandler_getTaskFromFileWithInvalidFormat_exceptionThrown() throws IOException, NoSuchMethodException {
-        File tempFile = new File(".data/temp.txt");
+        File tempFile = new File(".dataTest/temp.txt");
         FileWriter writer = new FileWriter(tempFile, false);
         writer.write("   ");
         writer.close();
@@ -298,7 +298,7 @@ public class FileHandlerTest {
     @Test
     public void fileHandler_retrieveTasksFromFile_success() {
         try {
-            File tempFile = new File(".data/temp.txt");
+            File tempFile = new File(".dataTest/temp.txt");
             FileWriter writer = new FileWriter(tempFile, false);
             writer.write("Leo.Functions.Task.ToDo |   | return book\n"
                     + "Leo.Functions.Task.Deadline |   | return book | Jan 12 2025, 2000\n"
@@ -306,7 +306,7 @@ public class FileHandlerTest {
             );
             writer.close();
 
-            FileHandler fhTemp = new FileHandler(".data/temp.txt");
+            FileHandler fhTemp = new FileHandler(".dataTest/temp.txt");
             ArrayList<Task> actualListItems = fhTemp.retrieveTasksFromFile();
 
             ArrayList<Task> expectedListItems = new ArrayList<>();
