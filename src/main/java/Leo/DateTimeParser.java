@@ -4,8 +4,17 @@ import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * The DateTimeParser class formats the date and time.
+ */
 public class DateTimeParser {
-
+    /**
+     * Return a string containing the date and time formatted to an easier to read format.
+     *
+     * @param dateTimeToFormat The date and time to be formatted.
+     * @return Readable date and time text.
+     * @throws DateTimeException If incorrect date and time format was given.
+     */
     public String dateTimeFormatter(String dateTimeToFormat) throws DateTimeException{
         try {
             //Solution adapted from https://www.perplexity.ai/search/can-localdatetime-parse-days-o-Ub7ZJIDuRtifbzHjhcOC9Q
@@ -20,6 +29,13 @@ public class DateTimeParser {
         }
     }
 
+    /**
+     * Return a string containing the date and time formatted for file storage.
+     *
+     * @param dateTimeToFormat The date and time to be formatted.
+     * @return Readable date and time text.
+     * @throws DateTimeException If incorrect date and time format was given.
+     */
     public String formatDateTimeFromFile(String dateTimeToFormat) throws DateTimeException{
         try{
             //Solution adapted from https://www.perplexity.ai/search/can-localdatetime-parse-days-o-Ub7ZJIDuRtifbzHjhcOC9Q
