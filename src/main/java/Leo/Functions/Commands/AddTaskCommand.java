@@ -25,12 +25,14 @@ public class AddTaskCommand implements Command {
     public static void todo(String userInput, TaskList listItems) throws ArrayIndexOutOfBoundsException, IOException {
         String[] userInputList = userInput.split("todo");
         if(userInputList.length < 2) {
-            throw new ArrayIndexOutOfBoundsException("The description of the task is missing!" +
-                    "\n\tMake sure it is in this format:" +
-                    "\n\t\ttodo <task description>");
+            throw new ArrayIndexOutOfBoundsException(
+                    "The description of the task is missing!"
+                    + "\n\tMake sure it is in this format:"
+                    + "\n\t\ttodo <task description>"
+            );
         }
-        String funcDesc = userInputList[1].trim();
-        ToDo ToDoTask = new ToDo(funcDesc);
+        String taskDesc = userInputList[1].trim();
+        ToDo ToDoTask = new ToDo(taskDesc);
 
         listItems.addTask(ToDoTask);
         Messages.addTask();
@@ -58,9 +60,9 @@ public class AddTaskCommand implements Command {
                     + "\n\t\tdeadline <task description> /by <dd/MM/yyyy HHmm>"
             );
         }
-        String funcDesc = userInputList[1].trim();
+        String taskDesc = userInputList[1].trim();
         String deadline = userInputList[2].trim();
-        Deadline DeadlineTask = new Deadline(funcDesc, deadline);
+        Deadline DeadlineTask = new Deadline(taskDesc, deadline);
 
         listItems.addTask(DeadlineTask);
         Messages.addTask();
@@ -88,10 +90,10 @@ public class AddTaskCommand implements Command {
                     + "\n\t\tevent <task description> /from <dd/MM/yyyy HHmm> /to <dd/MM/yyyy HHmm>"
             );
         }
-        String funcDesc = userInputList[1].trim();
+        String taskDesc = userInputList[1].trim();
         String startDate = userInputList[2].trim();
         String endDate = userInputList[3].trim();
-        Event EventTask = new Event(funcDesc, startDate, endDate);
+        Event EventTask = new Event(taskDesc, startDate, endDate);
 
         listItems.addTask(EventTask);
         Messages.addTask();
