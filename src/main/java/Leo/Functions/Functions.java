@@ -5,6 +5,7 @@ import Leo.Functions.Commands.AddTaskCommand;
 import Leo.Functions.Commands.DeleteTaskCommand;
 import Leo.Functions.Commands.ListTaskCommand;
 import Leo.Functions.Commands.MarkTaskCommand;
+import Leo.Functions.Search.Find;
 import Leo.Functions.Task.TaskList;
 import Leo.ZeroLengthException;
 
@@ -39,7 +40,7 @@ public class Functions {
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
     public void SearchFunctions(String userInput) throws ZeroLengthException, IndexOutOfBoundsException, IOException, DateTimeException{
         String[] userInputList = userInput.split(" ");
-        switch(userInputList[0]) {
+        switch(userInputList[0].trim()) {
             case "list":
                 ListTaskCommand.list(listItems);
                 break;
@@ -75,6 +76,9 @@ public class Functions {
                 } catch (ArrayIndexOutOfBoundsException e) {
                     throw new ArrayIndexOutOfBoundsException("Missing list number of task to delete.");
                 }
+                break;
+            case "find":
+                Find.find(userInput, listItems);
                 break;
             default:
                 System.out.println("\tI don't know how to do this...");
