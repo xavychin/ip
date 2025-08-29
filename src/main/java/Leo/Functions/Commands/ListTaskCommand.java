@@ -21,7 +21,12 @@ public class ListTaskCommand implements Command {
         } else {
             System.out.println("Here are the tasks in your list:");
             for(int i = 0; i < listItemsLength; i++){
-                System.out.println("\t" + (i + 1) + ". " + listItems.getItemAtIndex(i).toString());
+                System.out.println(
+                        "\t"
+                        + (i + 1)
+                        + ". "
+                        + listItems.getItemAtIndex(i).toString()
+                );
             }
         }
     }
