@@ -68,9 +68,7 @@ public class UI {
                  | DateTimeException
                  | NumberFormatException
                 e) {
-            System.out.println("\t"
-                            + e.getMessage()
-            );
+            return e.getMessage();
         }
 
         return returnString;

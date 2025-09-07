@@ -179,7 +179,7 @@ public class Functions {
             returnString = Find.findReturnOutput(userInput, listItems);
             break;
         default:
-            returnString = "\tI don't know how to do this...";
+            returnString = "I don't know how to do this...";
             break;
         }
 
