@@ -52,7 +52,7 @@ application {
 }
 
 shadowJar {
-    archiveBaseName = "Leo"
+    archiveBaseName = "leo"
     archiveClassifier = null
     archiveFileName = 'Leo.jar'
 }

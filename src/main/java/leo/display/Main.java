@@ -15,7 +15,6 @@ import leo.Leo;
  * render the GUI foe the application.
  */
 public class Main extends Application {
-
     private Leo leo;
 
     /**
@@ -31,7 +30,7 @@ public class Main extends Application {
             Scene scene = new Scene(ap);
             stage.setScene(scene);
             // inject the Leo instance
-            this.leo = new Leo("src/main/resources/.data/Leo.txt");
+            this.leo = new Leo("src/main/resources/data/Leo.txt");
             fxmlLoader.<MainWindow>getController().setLeo(leo);
             stage.show();
         } catch (IOException e) {
