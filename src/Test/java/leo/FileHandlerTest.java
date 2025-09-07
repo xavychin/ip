@@ -19,24 +19,26 @@ import leo.functions.task.Task;
 import leo.functions.task.ToDo;
 
 public class FileHandlerTest {
+    private String testFilePath = "src/main/resources/.dataTest/temp.txt";
+
     //Test loading the list file
     @Test
     public void fileHandler_fileExists_success() throws IOException {
-        FileHandler fh = new FileHandler(".dataTest/temp.txt");
+        FileHandler fh = new FileHandler(testFilePath);
         assertEquals(fh, fh.loadFile());
     }
 
     @Test
     public void fileHandler_fileCreation_success() throws IOException {
         //Solution adapted from https://www.perplexity.ai/search/how-to-assert-equal-for-such-i-6HsiIA11RLadybjjfSz1Fw#2
-        FileHandler fhTemp = new FileHandler(".dataTest/temp.txt");
+        FileHandler fhTemp = new FileHandler(testFilePath);
         assertEquals(fhTemp, fhTemp.loadFile());
     }
 
     @Test
     public void fileHandler_appendTextToFile_success() throws IOException {
-        File tempFile = new File(".dataTest/temp.txt");
-        FileHandler fhTemp = new FileHandler(".dataTest/temp.txt");
+        File tempFile = new File(testFilePath);
+        FileHandler fhTemp = new FileHandler(testFilePath);
         fhTemp.appendToFile("Hello World!");
 
         StringBuilder temp = new StringBuilder();
@@ -57,7 +59,7 @@ public class FileHandlerTest {
 
     @Test
     public void fileHandler_appendTextToFileWrongInput_exceptionThrown() throws IOException {
-        FileHandler fhTemp = new FileHandler(".data");
+        FileHandler fhTemp = new FileHandler("src/main/resources/.dataTest");
 
         //Solution adapted from https://www.perplexity.ai/search/how-to-assertequal-a-thrown-er-mtR92GBxS9OyDApnjrM04A#5
         Exception exception = assertThrows(IOException.class, () -> {
@@ -68,13 +70,13 @@ public class FileHandlerTest {
 
     @Test
     public void fileHandler_deleteFromFile_success() throws IOException {
-        File tempFile = new File(".dataTest/temp.txt");
+        File tempFile = new File(testFilePath);
         ArrayList<Task> tempListItems = new ArrayList<>();
         tempListItems.add(new Task("borrow books"));
         tempListItems.add(new Task("return books"));
         tempListItems.add(new Task("buy bandages"));
 
-        FileHandler fhTemp = new FileHandler(".dataTest/temp.txt");
+        FileHandler fhTemp = new FileHandler(testFilePath);
 
         fhTemp.deleteFromFile(tempListItems);
 
@@ -104,7 +106,7 @@ public class FileHandlerTest {
         tempListItems.add(new Task("return books"));
         tempListItems.add(new Task("buy bandages"));
 
-        FileHandler fhTemp = new FileHandler(".data");
+        FileHandler fhTemp = new FileHandler("src/main/java/resources/.dataTest");
 
         //Solution adapted from https://www.perplexity.ai/search/how-to-assertequal-a-thrown-er-mtR92GBxS9OyDApnjrM04A#5
         Exception exception = assertThrows(IOException.class, () -> {
@@ -117,7 +119,7 @@ public class FileHandlerTest {
     @Test
     public void fileHandler_getToDoTaskFromFile_success() {
         try {
-            File tempFile = new File(".dataTest/temp.txt");
+            File tempFile = new File(testFilePath);
             FileWriter writer = new FileWriter(tempFile, false);
             writer.write("ToDo |   | return book");
             writer.close();
@@ -147,7 +149,7 @@ public class FileHandlerTest {
     @Test
     public void fileHandler_getDeadlineTaskFromFile_success() {
         try {
-            File tempFile = new File(".dataTest/temp.txt");
+            File tempFile = new File(testFilePath);
             FileWriter writer = new FileWriter(tempFile, false);
             writer.write("Deadline |   | return book | Jan 12 2025, 2000");
             writer.close();
@@ -177,7 +179,7 @@ public class FileHandlerTest {
     @Test
     public void fileHandler_getEventTaskFromFile_success() {
         try {
-            File tempFile = new File(".dataTest/temp.txt");
+            File tempFile = new File(testFilePath);
             FileWriter writer = new FileWriter(tempFile, false);
             writer.write("Event |   | project meeting | Mar 02 2024, 1000-Mar 02 2024, 1030");
             writer.close();
@@ -209,7 +211,7 @@ public class FileHandlerTest {
 
     @Test
     public void fileHandler_getNullTaskFromFile_success() throws IOException, NoSuchMethodException {
-        File tempFile = new File(".dataTest/temp.txt");
+        File tempFile = new File(testFilePath);
         FileWriter writer = new FileWriter(tempFile, false);
         writer.write("   ");
         writer.close();
@@ -242,7 +244,7 @@ public class FileHandlerTest {
     @Test
     public void fileHandler_getEventTaskFromFileWithInvalidFormat_exceptionThrown()
             throws IOException, NoSuchMethodException {
-        File tempFile = new File(".dataTest/temp.txt");
+        File tempFile = new File(testFilePath);
         FileWriter writer = new FileWriter(tempFile, false);
         writer.write("Event |   | project meeting");
         writer.close();
@@ -276,7 +278,7 @@ public class FileHandlerTest {
     @Test
     public void fileHandler_getTaskFromFileWithInvalidFormat_exceptionThrown()
             throws IOException, NoSuchMethodException {
-        File tempFile = new File(".dataTest/temp.txt");
+        File tempFile = new File(testFilePath);
         FileWriter writer = new FileWriter(tempFile, false);
         writer.write("   ");
         writer.close();
@@ -309,7 +311,7 @@ public class FileHandlerTest {
     @Test
     public void fileHandler_retrieveTasksFromFile_success() {
         try {
-            File tempFile = new File(".dataTest/temp.txt");
+            File tempFile = new File(testFilePath);
             FileWriter writer = new FileWriter(tempFile, false);
             writer.write("ToDo |   | return book\n"
                     + "Deadline |   | return book | Jan 12 2025, 2000\n"
@@ -317,7 +319,7 @@ public class FileHandlerTest {
             );
             writer.close();
 
-            FileHandler fhTemp = new FileHandler(".dataTest/temp.txt");
+            FileHandler fhTemp = new FileHandler(testFilePath);
             ArrayList<Task> actualListItems = fhTemp.retrieveTasksFromFile();
 
             ArrayList<Task> expectedListItems = new ArrayList<>();
@@ -337,7 +339,7 @@ public class FileHandlerTest {
 
     @Test
     public void fileHandler_retrieveTasksFromFileInvalidFormat_exceptionThrown() {
-        FileHandler fhTemp = new FileHandler(".data");
+        FileHandler fhTemp = new FileHandler("src/main/resources/.dataTest");
 
         //Solution adapted from https://www.perplexity.ai/search/how-to-assertequal-a-thrown-er-mtR92GBxS9OyDApnjrM04A#5
         Exception exception = assertThrows(IOException.class, () -> {

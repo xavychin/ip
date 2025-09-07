@@ -65,6 +65,6 @@ public class Leo {
      * @throws IOException If file fails to load
      */
     public static void main(String[] args) throws IOException {
-        new Leo(".data/Leo.txt").run();
+        new Leo("src/main/java/.data/Leo.txt").run();
     }
 }

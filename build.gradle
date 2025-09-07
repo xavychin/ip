@@ -55,9 +55,6 @@ shadowJar {
     archiveBaseName = "Leo"
     archiveClassifier = null
     archiveFileName = 'Leo.jar'
-    from('.data'){
-        into '.data'
-    }
 }
 
 run{

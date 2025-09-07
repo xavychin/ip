@@ -1,10 +1,6 @@
 package leo.display;
 
 import java.io.IOException;
-import java.net.URL;
-
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 
 /**
  * The Messages class contains generic messages to be used across the application.

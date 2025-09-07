@@ -31,7 +31,7 @@ public class Main extends Application {
             Scene scene = new Scene(ap);
             stage.setScene(scene);
             // inject the Leo instance
-            this.leo = new Leo(".data/Leo.txt");
+            this.leo = new Leo("src/main/java/.data/Leo.txt");
             fxmlLoader.<MainWindow>getController().setLeo(leo);
             stage.show();
         } catch (IOException e) {
