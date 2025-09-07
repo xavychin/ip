@@ -4,7 +4,7 @@ REM create bin directory if it doesn't exist
 if not exist ..\bin mkdir ..\bin
 
 REM clear leo.txt before testing to avoid errors
-echo.> ..\src\main\java\.data\Leo.txt
+echo.> ..\src\main\resources\.data\Leo.txt
 
 REM Solution adapted from https://www.perplexity.ai/search/change-branch-name-in-local-an-Fkk8ZHiwSyOZ4IElmJrh_g#11
 REM create list of all .java files recursively
