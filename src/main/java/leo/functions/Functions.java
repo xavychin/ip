@@ -173,6 +173,12 @@ public class Functions {
                 returnString = DeleteTaskCommand.deleteTaskReturnOutput(Integer.parseInt(userInputList[1]), listItems);
             } catch (ArrayIndexOutOfBoundsException e) {
                 throw new ArrayIndexOutOfBoundsException("Missing list number of task to delete.");
+            } catch (NumberFormatException e) {
+                throw new NumberFormatException(
+                        "Incorrect format provided."
+                                + "\n\tMake sure it is in this format:"
+                                + "\n\t\tdelete <task index>"
+                );
             }
             break;
         case "find":
