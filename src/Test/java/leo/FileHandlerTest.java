@@ -19,7 +19,7 @@ import leo.functions.task.Task;
 import leo.functions.task.ToDo;
 
 public class FileHandlerTest {
-    private String testFilePath = "src/main/resources/.dataTest/temp.txt";
+    private String testFilePath = ".dataTest/temp.txt";
 
     //Test loading the list file
     @Test
@@ -59,7 +59,7 @@ public class FileHandlerTest {
 
     @Test
     public void fileHandler_appendTextToFileWrongInput_exceptionThrown() throws IOException {
-        FileHandler fhTemp = new FileHandler("src/main/resources/.dataTest");
+        FileHandler fhTemp = new FileHandler(".dataTest");
 
         //Solution adapted from https://www.perplexity.ai/search/how-to-assertequal-a-thrown-er-mtR92GBxS9OyDApnjrM04A#5
         Exception exception = assertThrows(IOException.class, () -> {
@@ -339,7 +339,7 @@ public class FileHandlerTest {
 
     @Test
     public void fileHandler_retrieveTasksFromFileInvalidFormat_exceptionThrown() {
-        FileHandler fhTemp = new FileHandler("src/main/resources/.dataTest");
+        FileHandler fhTemp = new FileHandler(".dataTest");
 
         //Solution adapted from https://www.perplexity.ai/search/how-to-assertequal-a-thrown-er-mtR92GBxS9OyDApnjrM04A#5
         Exception exception = assertThrows(IOException.class, () -> {

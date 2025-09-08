@@ -20,7 +20,7 @@ import leo.functions.task.TaskList;
 import leo.functions.task.ToDo;
 
 public class CommandTest {
-    private String testFilePath = "src/main/resources/.dataTest/temp.txt";
+    private String testFilePath = ".dataTest/temp.txt";
 
     @Test
     public void command_addToDoTaskCommand_success() {

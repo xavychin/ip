@@ -39,6 +39,11 @@ public class FileHandler {
      * @throws IOException If file fails to create due to input errors.
      */
     public FileHandler loadFile() throws IOException {
+        //Solution adapted from https://www.perplexity.ai/search/jar-file-not-working-BkZmiAErSv6Q80JHsA1TMw#16
+        File parentDirectory = file.getParentFile();
+        if (parentDirectory != null && !parentDirectory.exists()) {
+            parentDirectory.mkdirs();
+        }
         if (!this.file.exists()) {
             this.file.createNewFile();
         }
