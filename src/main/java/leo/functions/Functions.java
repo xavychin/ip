@@ -121,6 +121,7 @@ public class Functions {
             IndexOutOfBoundsException,
             IOException,
             DateTimeException {
+        assert !userInput.isEmpty() : "Input should not be empty";
         String[] userInputList = userInput.split(" ");
         String returnString = "";
 

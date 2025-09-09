@@ -41,12 +41,21 @@ public class FileHandler {
     public FileHandler loadFile() throws IOException {
         //Solution adapted from https://www.perplexity.ai/search/jar-file-not-working-BkZmiAErSv6Q80JHsA1TMw#16
         File parentDirectory = file.getParentFile();
+        boolean createDirectory = false;
+        boolean createFile = false;
         if (parentDirectory != null && !parentDirectory.exists()) {
-            parentDirectory.mkdirs();
+            createDirectory = parentDirectory.mkdirs();
+        } else {
+            createDirectory = true;
         }
         if (!this.file.exists()) {
-            this.file.createNewFile();
+            createFile = this.file.createNewFile();
+        } else {
+            createFile = true;
         }
+
+        assert createDirectory : "Directory should be created";
+        assert createFile : "File should be created";
 
         return this;
     }
@@ -143,7 +152,6 @@ public class FileHandler {
             //Solution adapted from https://www.perplexity.ai/search/split-string-by-in-java-U7_N33gYS4651R96jeoK8Q
             String[] taskDescriptionList = taskFromFile.split("\\|");
             String taskDescription = taskDescriptionList[2].trim();
-
             DateTimeParser dateTimeParser = new DateTimeParser();
 
             switch(taskDescriptionList[0].trim()) {

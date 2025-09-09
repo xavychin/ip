@@ -29,6 +29,7 @@ public class TaskList {
      */
     public TaskList(FileHandler fileHandler) throws FileNotFoundException, ArrayIndexOutOfBoundsException {
         this.fileHandler = fileHandler;
+        assert fileHandler != null : "Objet to handle files is empty";
         this.listItems = fileHandler.retrieveTasksFromFile();
     }
 

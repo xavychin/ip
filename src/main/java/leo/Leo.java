@@ -54,6 +54,9 @@ public class Leo {
      * @return String containing the response from the chatbot.
      */
     public String getResponse(String userInput) {
+        if (userInput.isEmpty()) {
+            return "Please enter a command for me to carry out.";
+        }
         this.functions = new Functions(this.tasks);
         return this.ui.getLeoResponse(this.functions, userInput);
     }
