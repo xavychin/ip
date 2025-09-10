@@ -76,13 +76,13 @@ public class FileHandler {
     }
 
     /**
-     * Deletes data from the file.
+     * Overwrite data in the file with an updated list of tasks.
      *
-     * @param listItems Remaining list of tasks after deleting.
+     * @param listItems Remaining list of tasks after update.
      * @throws IOException If file is in the wrong format or cannot be accessed.
      */
     //Solution adapted from https://www.perplexity.ai/search/delete-text-from-file-in-java-8_mCJnSyQZmnkscaHNiuUw
-    public void deleteFromFile(ArrayList<Task> listItems) throws IOException {
+    public void overwriteFile(ArrayList<Task> listItems) throws IOException {
         try {
             FileWriter writer = new FileWriter(this.file, false);
 

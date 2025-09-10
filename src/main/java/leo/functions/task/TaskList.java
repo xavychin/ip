@@ -70,7 +70,7 @@ public class TaskList {
      */
     public void deleteItemAtIndex(int index) throws IOException {
         this.listItems.remove(index);
-        fileHandler.deleteFromFile(this.listItems);
+        fileHandler.overwriteFile(this.listItems);
     }
 
     /**
@@ -79,7 +79,7 @@ public class TaskList {
      * @throws IOException If file is in the wrong format or cannot be accessed.
      */
     public void markTask() throws IOException {
-        fileHandler.deleteFromFile(this.listItems);
+        fileHandler.overwriteFile(this.listItems);
     }
 
     /**
@@ -88,6 +88,6 @@ public class TaskList {
      * @throws IOException If file is in the wrong format or cannot be accessed.
      */
     public void unmarkTask() throws IOException {
-        fileHandler.deleteFromFile(this.listItems);
+        fileHandler.overwriteFile(this.listItems);
     }
 }

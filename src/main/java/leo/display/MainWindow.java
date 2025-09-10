@@ -39,8 +39,8 @@ public class MainWindow extends AnchorPane {
     }
 
     /** Injects the Leo instance */
-    public void setLeo(Leo l) {
-        this.leo = l;
+    public void setLeo(Leo leo) {
+        this.leo = leo;
         leoGreetings(Messages.greetingsReturnOutput());
     }
 
