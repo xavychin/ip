@@ -1,4 +1,4 @@
-package leo.display;
+package leo;
 
 import javafx.application.Application;
 

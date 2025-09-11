@@ -1,4 +1,4 @@
-package leo.display;
+package leo;
 
 import java.io.IOException;
 
@@ -7,7 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import leo.Leo;
+import leo.display.MainWindow;
 
 /**
  * The Main class extends the Application class in JavaFX.
@@ -29,9 +29,11 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
+            MainWindow controller = fxmlLoader.getController();
+
             // inject the Leo instance
-            this.leo = new Leo("data/Leo.txt");
-            fxmlLoader.<MainWindow>getController().setLeo(leo);
+            this.leo = new Leo("data/Leo.txt", controller);
+            controller.setLeo(leo);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

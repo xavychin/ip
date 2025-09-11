@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.time.DateTimeException;
 import java.util.Scanner;
 
-import leo.ZeroLengthException;
+import leo.exceptions.ZeroLengthException;
 import leo.functions.Functions;
 
 /**

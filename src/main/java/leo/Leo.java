@@ -2,10 +2,13 @@ package leo;
 
 import java.io.IOException;
 
+import leo.display.MainWindow;
 import leo.display.Messages;
 import leo.display.UI;
 import leo.functions.Functions;
+import leo.functions.commands.ReminderCommand;
 import leo.functions.task.TaskList;
+import leo.util.FileHandler;
 
 /**
  * Represents the chatbot application Leo.
@@ -15,6 +18,7 @@ public class Leo {
     private UI ui;
     private TaskList tasks;
     private Functions functions;
+    private MainWindow controller;
 
     /**
      * Instantiates the chatbot Leo.
@@ -23,13 +27,15 @@ public class Leo {
      * @throws IOException If file path is incorrect and a new file cannot be created
      *      due to input errors.
      */
-    public Leo(String filePath) throws IOException {
+    public Leo(String filePath, MainWindow controller) throws IOException {
         this.ui = new UI();
+        this.controller = controller;
         this.fileHandler = new FileHandler(filePath);
 
         try {
-            Messages.greetings();
             this.tasks = new TaskList(fileHandler.loadFile());
+            controller.leoMessage(Messages.greetingsReturnOutput());
+            controller.leoMessage(ReminderCommand.remindCommand("", this.tasks));
         } catch (IOException e) {
             throw new IOException("File not found and failed to create.");
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -65,6 +71,6 @@ public class Leo {
      * @throws IOException If file fails to load
      */
     public static void main(String[] args) throws IOException {
-        new Leo("data/Leo.txt").run();
+        new Leo("data/Leo.txt", null).run();
     }
 }

@@ -41,7 +41,6 @@ public class MainWindow extends AnchorPane {
     /** Injects the Leo instance */
     public void setLeo(Leo l) {
         this.leo = l;
-        leoGreetings(Messages.greetingsReturnOutput());
     }
 
     /**
@@ -49,7 +48,7 @@ public class MainWindow extends AnchorPane {
      * the dialog container. Clears the user input after processing.
      */
     @FXML
-    private void handleUserInput() throws InterruptedException {
+    private void handleUserInput() {
         String input = userInput.getText();
         String response = leo.getResponse(input);
         dialogContainer.getChildren().addAll(
@@ -67,14 +66,14 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * Creates a dialog box that greets the user when the application is started.
+     * Creates a dialog box that displays a message to the user from Leo.
      *
-     * @param greeting The initial message to prompt the user for input.
+     * @param msg The message displayed to the user.
      */
     @FXML
-    public void leoGreetings(String greeting) {
+    public void leoMessage(String msg) {
         dialogContainer.getChildren().addAll(
-                DialogBox.getLeoDialog(greeting, leoImage)
+                DialogBox.getLeoDialog(msg, leoImage)
         );
     }
 }
