@@ -6,7 +6,7 @@ import leo.functions.task.TaskList;
  * Represents the function that is called when the user prompts
  * the chatbot to search the related tasks based on a keyword.
  */
-public class Find {
+public class FindCommand {
     /**
      * Searches for the tasks that contain the specified keyword.
      *
@@ -87,12 +87,9 @@ public class Find {
             String taskInfo = listItems.getItemAtIndex(i).toString();
             if (taskInfo.contains(keyword)) {
                 if (outputListIndex == 1) {
-                    returnString.append("Here's the tasks with the word '" + keyword + "':");
+                    returnString.append("Here's the tasks with the word '").append(keyword).append("':");
                 }
-                returnString.append("\n\t"
-                        + outputListIndex
-                        + ". "
-                        + taskInfo);
+                returnString.append("\n\t").append(outputListIndex).append(". ").append(taskInfo);
                 outputListIndex++;
             }
         }

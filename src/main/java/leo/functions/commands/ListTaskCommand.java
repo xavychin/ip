@@ -1,6 +1,6 @@
 package leo.functions.commands;
 
-import leo.ZeroLengthException;
+import leo.exceptions.ZeroLengthException;
 import leo.functions.task.TaskList;
 
 /**
@@ -49,10 +49,7 @@ public class ListTaskCommand implements Command {
             sb.append("Here are the tasks in your list:");
 
             for (int i = 0; i < listItemsLength; i++) {
-                sb.append("\n\t"
-                        + (i + 1)
-                        + ". "
-                        + listItems.getItemAtIndex(i).toString());
+                sb.append("\n\t").append(i + 1).append(". ").append(listItems.getItemAtIndex(i).toString());
             }
         }
 
