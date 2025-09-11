@@ -1,4 +1,4 @@
-package leo;
+package leo.util;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -144,22 +144,20 @@ public class FileHandler {
             String[] taskDescriptionList = taskFromFile.split("\\|");
             String taskDescription = taskDescriptionList[2].trim();
 
-            DateTimeParser dateTimeParser = new DateTimeParser();
-
             switch(taskDescriptionList[0].trim()) {
             case "ToDo":
                 task = new ToDo(taskDescription);
                 break;
             case "Event":
                 String[] eventDates = taskDescriptionList[3].split("-");
-                String startDateTime = dateTimeParser.formatDateTimeFromFile(eventDates[0].trim());
-                String endDateTime = dateTimeParser.formatDateTimeFromFile(eventDates[1].trim());
+                String startDateTime = DateTimeParser.formatDateTimeFromFile(eventDates[0].trim());
+                String endDateTime = DateTimeParser.formatDateTimeFromFile(eventDates[1].trim());
                 task = new Event(taskDescription, startDateTime, endDateTime);
                 break;
             case "Deadline":
                 //Solution adapted from
                 // https://www.perplexity.ai/search/can-localdatetime-parse-days-o-Ub7ZJIDuRtifbzHjhcOC9Q
-                String dateTime = dateTimeParser.formatDateTimeFromFile(taskDescriptionList[3].trim());
+                String dateTime = DateTimeParser.formatDateTimeFromFile(taskDescriptionList[3].trim());
                 task = new Deadline(taskDescription, dateTime);
                 break;
             default:

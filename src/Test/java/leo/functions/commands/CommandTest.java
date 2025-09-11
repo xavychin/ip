@@ -12,8 +12,8 @@ import java.util.Scanner;
 
 import org.junit.jupiter.api.Test;
 
-import leo.FileHandler;
-import leo.ZeroLengthException;
+import leo.util.FileHandler;
+import leo.exceptions.ZeroLengthException;
 import leo.functions.task.Deadline;
 import leo.functions.task.Event;
 import leo.functions.task.TaskList;

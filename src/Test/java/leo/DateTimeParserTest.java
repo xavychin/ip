@@ -5,21 +5,20 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.DateTimeException;
 
+import leo.util.DateTimeParser;
 import org.junit.jupiter.api.Test;
 
 public class DateTimeParserTest {
-    private DateTimeParser dateTimeParser = new DateTimeParser();
-
     @Test
     public void dateTimeParser_correctStringFormatFromUser_success() {
         assertEquals("Dec 12 2025, 1200",
-                dateTimeParser.formatDateTimeFromInput("12/12/2025 1200"));
+                DateTimeParser.formatDateTimeFromInput("12/12/2025 1200"));
     }
 
     @Test
     public void dateTimeParser_correctStringFormatFromFile_success() {
         assertEquals("12/12/2025 1200",
-                dateTimeParser.formatDateTimeFromFile("Dec 12 2025, 1200"));
+                DateTimeParser.formatDateTimeFromFile("Dec 12 2025, 1200"));
     }
 
     @Test
@@ -29,7 +28,7 @@ public class DateTimeParserTest {
 
         //Solution adapted from https://www.perplexity.ai/search/how-to-assertequal-a-thrown-er-mtR92GBxS9OyDApnjrM04A#5
         Exception exception = assertThrows(DateTimeException.class, () -> {
-            dateTimeParser.formatDateTimeFromInput("12-1-2025 1200");
+            DateTimeParser.formatDateTimeFromInput("12-1-2025 1200");
         });
         assertEquals(error, exception.getMessage());
     }
@@ -41,7 +40,7 @@ public class DateTimeParserTest {
 
         //Solution adapted from https://www.perplexity.ai/search/how-to-assertequal-a-thrown-er-mtR92GBxS9OyDApnjrM04A#5
         Exception exception = assertThrows(DateTimeException.class, () -> {
-            dateTimeParser.formatDateTimeFromFile("DEC 12 2025, 1200");
+            DateTimeParser.formatDateTimeFromFile("DEC 12 2025, 1200");
         });
         assertEquals(error, exception.getMessage());
     }
@@ -53,7 +52,7 @@ public class DateTimeParserTest {
 
         //Solution adapted from https://www.perplexity.ai/search/how-to-assertequal-a-thrown-er-mtR92GBxS9OyDApnjrM04A#5
         Exception exception = assertThrows(DateTimeException.class, () -> {
-            dateTimeParser.formatDateTimeFromFile("Dec 12 2025 1200");
+            DateTimeParser.formatDateTimeFromFile("Dec 12 2025 1200");
         });
         assertEquals(error, exception.getMessage());
     }
@@ -66,7 +65,7 @@ public class DateTimeParserTest {
 
         //Solution adapted from https://www.perplexity.ai/search/how-to-assertequal-a-thrown-er-mtR92GBxS9OyDApnjrM04A#5
         Exception exception = assertThrows(DateTimeException.class, () -> {
-            dateTimeParser.formatDateTimeFromInput("12-1-2025 12:00");
+            DateTimeParser.formatDateTimeFromInput("12-1-2025 12:00");
         });
         assertEquals(error, exception.getMessage());
     }
@@ -78,7 +77,7 @@ public class DateTimeParserTest {
 
         //Solution adapted from https://www.perplexity.ai/search/how-to-assertequal-a-thrown-er-mtR92GBxS9OyDApnjrM04A#5
         Exception exception = assertThrows(DateTimeException.class, () -> {
-            dateTimeParser.formatDateTimeFromFile("Dec 12 2025, 12");
+            DateTimeParser.formatDateTimeFromFile("Dec 12 2025, 12");
         });
         assertEquals(error, exception.getMessage());
     }
