@@ -1,4 +1,4 @@
-package leo;
+package leo.exceptions;
 
 /**
  * The ZeroLengthException class provides a custom exception
