@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import leo.FileHandler;
+import leo.util.FileHandler;
 
 /**
  * The TaskList class provides utility methods to manage list management operations
@@ -60,6 +60,15 @@ public class TaskList {
      */
     public Task getItemAtIndex(int index) {
         return this.listItems.get(index);
+    }
+
+    /**
+     * Get the list of tasks.
+     *
+     * @return List of tasks.
+     */
+    public ArrayList<Task> getTasks() {
+        return this.listItems;
     }
 
     /**

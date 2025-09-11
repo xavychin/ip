@@ -1,4 +1,4 @@
-package leo;
+package leo.util;
 
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
@@ -15,7 +15,7 @@ public class DateTimeParser {
      * @return Readable date and time text.
      * @throws DateTimeException If incorrect date and time format was given.
      */
-    public String formatDateTimeFromInput(String dateTimeToFormat) throws DateTimeException {
+    public static String formatDateTimeFromInput(String dateTimeToFormat) throws DateTimeException {
         try {
             //Solution adapted from
             // https://www.perplexity.ai/search/can-localdatetime-parse-days-o-Ub7ZJIDuRtifbzHjhcOC9Q
@@ -39,7 +39,7 @@ public class DateTimeParser {
      * @return Readable date and time text.
      * @throws DateTimeException If incorrect date and time format was given.
      */
-    public String formatDateTimeFromFile(String dateTimeToFormat) throws DateTimeException {
+    public static String formatDateTimeFromFile(String dateTimeToFormat) throws DateTimeException {
         try {
             //Solution adapted from
             // https://www.perplexity.ai/search/can-localdatetime-parse-days-o-Ub7ZJIDuRtifbzHjhcOC9Q
@@ -52,6 +52,32 @@ public class DateTimeParser {
             throw new DateTimeException(
                     "Incorrect date or time format for /from or /to..."
                             + "\n\tIt should be <dd/MM/yyyy HHmm>"
+            );
+        }
+    }
+
+    /**
+     * Get the current date and time.
+     *
+     * @return DateTime object of the current date and time
+     */
+    public static LocalDateTime getCurrentDateTime() {
+        return LocalDateTime.now();
+    }
+
+    /**
+     * Convert the date and time from string to a DateTime object.
+     *
+     * @param stringDateTime String containing the date and time.
+     * @return DateTime object of the input string.
+     */
+    public static LocalDateTime stringToDateTime(String stringDateTime) {
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy, HHmm");
+            return LocalDateTime.parse(stringDateTime, formatter);
+        } catch (DateTimeException e) {
+            throw new DateTimeException(
+                    "Incorrect date or time format in storage file."
             );
         }
     }
