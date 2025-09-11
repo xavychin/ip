@@ -19,6 +19,10 @@ public class Event extends Task {
     public Event(String description, String startDate, String endDate) {
         super(description);
 
+        assert description != null && !description.isEmpty() : "Description must not be null or empty";
+        assert startDate != null && !startDate.isEmpty() : "Start date must not be null or empty";
+        assert endDate != null && !endDate.isEmpty() : "End date must not be null or empty";
+
         DateTimeParser dateTimeParser = new DateTimeParser();
         this.startDate = dateTimeParser.formatDateTimeFromInput(startDate);
         this.endDate = dateTimeParser.formatDateTimeFromInput(endDate);
@@ -31,6 +35,10 @@ public class Event extends Task {
      */
     @Override
     public String appendToFile() {
+        assert description != null && !description.isEmpty() : "Description must not be null or empty";
+        assert startDate != null && !startDate.isEmpty() : "Start date must not be null or empty";
+        assert endDate != null && !endDate.isEmpty() : "End date must not be null or empty";
+
         return String.format(
                 "Event | "
                 + this.getStatusIcon()
@@ -50,6 +58,10 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
+        assert description != null && !description.isEmpty() : "Description must not be null or empty";
+        assert startDate != null && !startDate.isEmpty() : "Start date must not be null or empty";
+        assert endDate != null && !endDate.isEmpty() : "End date must not be null or empty";
+
         return String.format(
                 "[E]["
                 + this.getStatusIcon()

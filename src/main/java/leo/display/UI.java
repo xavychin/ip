@@ -22,6 +22,7 @@ public class UI {
      * @param functions An object that contains the possible functions of the chatbot.
      */
     public void getUserInput(Functions functions) {
+        assert functions != null : "Functions object must not be null";
         this.func = functions;
 
         //Solution of using equalsIgnoreCase() suggested by IntelliJ code completion
@@ -57,6 +58,9 @@ public class UI {
      * @return Output string of the selected function.
      */
     public String getLeoResponse(Functions functions, String userInput) {
+        assert functions != null : "Functions object must not be null";
+        assert userInput != null : "User input must not be null";
+
         this.func = functions;
         String returnString = "";
 

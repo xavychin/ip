@@ -19,6 +19,10 @@ public class DeleteTaskCommand implements Command {
      * @throws IOException If the file storing data cannot be found.
      */
     public static void deleteTask(int indexToDel, TaskList listItems) throws IndexOutOfBoundsException, IOException {
+        assert indexToDel > 0 : "Index to delete must be greater than zero";
+        assert listItems != null : "TaskList must not be null";
+
+
         try {
             Task taskToDel = listItems.getItemAtIndex(indexToDel - 1);
             listItems.deleteItemAtIndex(indexToDel - 1);
@@ -41,6 +45,9 @@ public class DeleteTaskCommand implements Command {
      */
     public static String deleteTaskReturnOutput(int indexToDel, TaskList listItems)
             throws IndexOutOfBoundsException, IOException {
+        assert indexToDel > 0 : "Index to delete must be greater than zero";
+        assert listItems != null : "TaskList must not be null";
+
         try {
             Task taskToDel = listItems.getItemAtIndex(indexToDel - 1);
             listItems.deleteItemAtIndex(indexToDel - 1);

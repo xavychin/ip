@@ -15,6 +15,8 @@ public class ListTaskCommand implements Command {
      */
     //Solution adapted from https://www.perplexity.ai/search/how-to-create-a-custom-excepti-Y_RyDVATSjKGxzSDx1HUeg
     public static void list(TaskList listItems) throws ZeroLengthException {
+        assert listItems != null : "TaskList must not be null";
+
         int listItemsLength = listItems.getSize();
         if (listItemsLength == 0) {
             throw new ZeroLengthException("The list is empty.");
@@ -40,6 +42,8 @@ public class ListTaskCommand implements Command {
      */
     //Solution adapted from https://www.perplexity.ai/search/how-to-create-a-custom-excepti-Y_RyDVATSjKGxzSDx1HUeg
     public static String listReturnOutput(TaskList listItems) throws ZeroLengthException {
+        assert listItems != null : "TaskList must not be null";
+
         StringBuilder sb = new StringBuilder();
         int listItemsLength = listItems.getSize();
 

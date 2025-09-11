@@ -15,6 +15,9 @@ public class Find {
      * @throws ArrayIndexOutOfBoundsException If the user input is in the wrong format.
      */
     public static void find(String userInput, TaskList listItems) throws ArrayIndexOutOfBoundsException {
+        assert userInput != null && !userInput.isEmpty() : "User input must not be null or empty";
+        assert listItems != null : "TaskList must not be null";
+
         String[] userInputList = userInput.split("find");
         if (userInputList.length < 2) {
             throw new ArrayIndexOutOfBoundsException(
@@ -61,6 +64,9 @@ public class Find {
      * @throws ArrayIndexOutOfBoundsException If the user input is in the wrong format.
      */
     public static String findReturnOutput(String userInput, TaskList listItems) throws ArrayIndexOutOfBoundsException {
+        assert userInput != null && !userInput.isEmpty() : "User input must not be null or empty";
+        assert listItems != null : "TaskList must not be null";
+
         StringBuilder returnString = new StringBuilder();
         String[] userInputList = userInput.split("find");
 

@@ -29,6 +29,7 @@ public class FileHandler {
      * @param filePath The file path used for carrying out file operations.
      */
     public FileHandler(String filePath) {
+        assert filePath != null && !filePath.isEmpty() : "File path must not be null or empty";
         this.file = new File(filePath);
     }
 
@@ -67,6 +68,8 @@ public class FileHandler {
      * @throws IOException If file is in the wrong format or cannot be accessed.
      */
     public void appendToFile(String textToAdd) throws IOException {
+        assert textToAdd != null : "Text to add must not be null";
+
         try {
             FileWriter writer = new FileWriter(this.file, true);
 
@@ -92,6 +95,8 @@ public class FileHandler {
      */
     //Solution adapted from https://www.perplexity.ai/search/delete-text-from-file-in-java-8_mCJnSyQZmnkscaHNiuUw
     public void deleteFromFile(ArrayList<Task> listItems) throws IOException {
+        assert listItems != null : "List of tasks must not be null";
+
         try {
             FileWriter writer = new FileWriter(this.file, false);
 
@@ -117,6 +122,7 @@ public class FileHandler {
      */
     public ArrayList<Task> retrieveTasksFromFile() throws FileNotFoundException, ArrayIndexOutOfBoundsException {
         ArrayList<Task> listItems = new ArrayList<>();
+        assert this.file != null : "File must not be null";
         try {
             Scanner scanner = new Scanner(this.file);
 
@@ -147,6 +153,7 @@ public class FileHandler {
      * @throws ArrayIndexOutOfBoundsException If task details are in the incorrect format.
      */
     private Task getTaskFromFile(String taskFromFile) throws ArrayIndexOutOfBoundsException {
+        assert taskFromFile != null && !taskFromFile.isEmpty() : "Task from file must not be null or empty";
         Task task = null;
         try {
             //Solution adapted from https://www.perplexity.ai/search/split-string-by-in-java-U7_N33gYS4651R96jeoK8Q

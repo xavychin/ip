@@ -24,6 +24,7 @@ public class Functions {
      * @param listItems List of tasks.
      */
     public Functions(TaskList listItems) {
+        assert listItems != null : "TaskList must not be null";
         this.listItems = listItems;
     }
 
@@ -44,6 +45,7 @@ public class Functions {
             IndexOutOfBoundsException,
             IOException,
             DateTimeException {
+        assert userInput != null && !userInput.isEmpty() : "User input must not be null or empty";
         String[] userInputList = userInput.split(" ");
         switch(userInputList[0].trim()) {
         case "list":
@@ -121,7 +123,8 @@ public class Functions {
             IndexOutOfBoundsException,
             IOException,
             DateTimeException {
-        assert !userInput.isEmpty() : "Input should not be empty";
+        assert userInput != null && !userInput.isEmpty() : "User input must not be null or empty";
+
         String[] userInputList = userInput.split(" ");
         String returnString = "";
 
