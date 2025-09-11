@@ -1,11 +1,13 @@
 package leo.functions.task;
 
-import leo.DateTimeParser;
+import java.time.LocalDateTime;
+
+import leo.util.DateTimeParser;
 
 /**
  * Represents an Event task.
  */
-public class Event extends Task {
+public class Event extends DateTask {
     private String startDate;
     private String endDate;
 
@@ -17,11 +19,19 @@ public class Event extends Task {
      * @param endDate The end date and time of the task.
      */
     public Event(String description, String startDate, String endDate) {
-        super(description);
+        super(description, startDate);
 
-        DateTimeParser dateTimeParser = new DateTimeParser();
-        this.startDate = dateTimeParser.formatDateTimeFromInput(startDate);
-        this.endDate = dateTimeParser.formatDateTimeFromInput(endDate);
+        this.startDate = DateTimeParser.formatDateTimeFromInput(startDate);
+        this.endDate = DateTimeParser.formatDateTimeFromInput(endDate);
+    }
+
+    /**
+     * Get the start date of the task.
+     *
+     * @return DateTime object of the task's start date.
+     */
+    public LocalDateTime getDateTime() {
+        return DateTimeParser.stringToDateTime(this.startDate);
     }
 
     /**

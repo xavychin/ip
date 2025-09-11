@@ -1,4 +1,4 @@
-package leo.functions.search;
+package leo.functions.commands;
 
 import leo.functions.task.TaskList;
 
@@ -14,7 +14,7 @@ public class Find {
      * @param listItems List of tasks.
      * @throws ArrayIndexOutOfBoundsException If the user input is in the wrong format.
      */
-    public static void find(String userInput, TaskList listItems) throws ArrayIndexOutOfBoundsException {
+    public static void findCommand(String userInput, TaskList listItems) throws ArrayIndexOutOfBoundsException {
         String[] userInputList = userInput.split("find");
         if (userInputList.length < 2) {
             throw new ArrayIndexOutOfBoundsException(
@@ -60,7 +60,8 @@ public class Find {
      * @return String containing the output.
      * @throws ArrayIndexOutOfBoundsException If the user input is in the wrong format.
      */
-    public static String findReturnOutput(String userInput, TaskList listItems) throws ArrayIndexOutOfBoundsException {
+    public static String findCommandReturnOutput(String userInput, TaskList listItems)
+            throws ArrayIndexOutOfBoundsException {
         StringBuilder returnString = new StringBuilder();
         String[] userInputList = userInput.split("find");
 
