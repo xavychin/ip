@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import leo.FileHandler;
+import leo.exceptions.FileHandlerException;
 
 /**
  * The TaskList class provides utility methods to manage list management operations
@@ -27,7 +28,7 @@ public class TaskList {
      * @throws FileNotFoundException If file is in the wrong format or cannot be accessed.
      * @throws ArrayIndexOutOfBoundsException If task details are in the incorrect format.
      */
-    public TaskList(FileHandler fileHandler) throws FileNotFoundException, ArrayIndexOutOfBoundsException {
+    public TaskList(FileHandler fileHandler) throws FileNotFoundException, FileHandlerException {
         this.fileHandler = fileHandler;
         this.listItems = fileHandler.retrieveTasksFromFile();
     }
