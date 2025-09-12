@@ -30,6 +30,7 @@ public class FileHandler {
      * @param filePath The file path used for carrying out file operations.
      */
     public FileHandler(String filePath) {
+        assert filePath != null && !filePath.isEmpty() : "File path must not be null or empty";
         this.file = new File(filePath);
     }
 
@@ -42,12 +43,21 @@ public class FileHandler {
     public FileHandler loadFile() throws IOException {
         //Solution adapted from https://www.perplexity.ai/search/jar-file-not-working-BkZmiAErSv6Q80JHsA1TMw#16
         File parentDirectory = file.getParentFile();
+        boolean createDirectory = false;
+        boolean createFile = false;
         if (parentDirectory != null && !parentDirectory.exists()) {
-            parentDirectory.mkdirs();
+            createDirectory = parentDirectory.mkdirs();
+        } else {
+            createDirectory = true;
         }
         if (!this.file.exists()) {
-            this.file.createNewFile();
+            createFile = this.file.createNewFile();
+        } else {
+            createFile = true;
         }
+
+        assert createDirectory : "Directory should be created";
+        assert createFile : "File should be created";
 
         return this;
     }
@@ -59,6 +69,8 @@ public class FileHandler {
      * @throws IOException If file is in the wrong format or cannot be accessed.
      */
     public void appendToFile(String textToAdd) throws IOException {
+        assert textToAdd != null : "Text to add must not be null";
+
         try {
             FileWriter writer = new FileWriter(this.file, true);
 
@@ -84,6 +96,8 @@ public class FileHandler {
      */
     //Solution adapted from https://www.perplexity.ai/search/delete-text-from-file-in-java-8_mCJnSyQZmnkscaHNiuUw
     public void overwriteFile(ArrayList<Task> listItems) throws IOException {
+        assert listItems != null : "List of tasks must not be null";
+
         try {
             FileWriter writer = new FileWriter(this.file, false);
 
@@ -109,6 +123,7 @@ public class FileHandler {
      */
     public ArrayList<Task> retrieveTasksFromFile() throws FileNotFoundException, FileHandlerException {
         ArrayList<Task> listItems = new ArrayList<>();
+        assert this.file != null : "File must not be null";
         try {
             Scanner scanner = new Scanner(this.file);
 
@@ -139,12 +154,13 @@ public class FileHandler {
      * @throws FileHandlerException If task details are in the incorrect format.
      */
     private Task getTaskFromFile(String taskFromFile) throws FileHandlerException {
+        assert taskFromFile != null && !taskFromFile.isEmpty() : "Task from file must not be null or empty";
+
         Task task = null;
         try {
             //Solution adapted from https://www.perplexity.ai/search/split-string-by-in-java-U7_N33gYS4651R96jeoK8Q
             String[] taskDescriptionList = taskFromFile.split("\\|");
             String taskDescription = taskDescriptionList[2].trim();
-
             DateTimeParser dateTimeParser = new DateTimeParser();
 
             switch(taskDescriptionList[0].trim()) {

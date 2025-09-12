@@ -16,6 +16,8 @@ public class ListTaskCommand implements Command {
      */
     //Solution adapted from https://www.perplexity.ai/search/how-to-create-a-custom-excepti-Y_RyDVATSjKGxzSDx1HUeg
     public static String list(TaskList listItems) throws ZeroLengthException {
+        assert listItems != null : "TaskList must not be null";
+
         StringBuilder sb = new StringBuilder();
         int listItemsLength = listItems.getSize();
 

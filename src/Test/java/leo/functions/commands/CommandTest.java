@@ -218,19 +218,21 @@ public class CommandTest {
             );
             writer.close();
 
-            //Solution adapted from
-            // https://www.perplexity.ai/search/how-to-assertequal-a-thrown-er-mtR92GBxS9OyDApnjrM04A#5
-            Exception exception = assertThrows(IndexOutOfBoundsException.class, () -> {
+            String assertMessage = "";
+
+            try {
                 DeleteTaskCommand.deleteTask(4, taskList);
-            });
+            } catch (AssertionError e) {
+                assertMessage = e.getMessage();
+            }
 
             FileWriter cleanFile = new FileWriter(tempFile, false);
             cleanFile.write("");
             cleanFile.close();
 
-            String error = "Task to delete is out of the list length.";
+            String error = "Index is out of bounds";
 
-            assertEquals(error, exception.getMessage());
+            assertEquals(error, assertMessage);
         } catch (IOException e) {
             System.out.println("Testing failed");
         }
@@ -345,20 +347,21 @@ public class CommandTest {
             TaskList taskList = new TaskList(fhTemp);
 
             taskList.addTask(new ToDo("return book"));
+            String assertMessage = "";
 
-            //Solution adapted from
-            // https://www.perplexity.ai/search/how-to-assertequal-a-thrown-er-mtR92GBxS9OyDApnjrM04A#5
-            Exception exception = assertThrows(MarkTaskCommandException.class, () -> {
+            try {
                 MarkTaskCommand.markTask(2, taskList);
-            });
+            } catch (AssertionError e) {
+                assertMessage = e.getMessage();
+            }
 
             FileWriter cleanFile = new FileWriter(tempFile, false);
             cleanFile.write("");
             cleanFile.close();
 
-            String error = "Task to mark is out of the list length.";
+            String error = "Index is out of bounds";
 
-            assertEquals(error, exception.getMessage());
+            assertEquals(error, assertMessage);
         } catch (IOException e) {
             System.out.println("Testing failed");
         }
@@ -404,19 +407,21 @@ public class CommandTest {
             taskList.addTask(new ToDo("return book"));
             MarkTaskCommand.markTask(1, taskList);
 
-            //Solution adapted from
-            // https://www.perplexity.ai/search/how-to-assertequal-a-thrown-er-mtR92GBxS9OyDApnjrM04A#5
-            Exception exception = assertThrows(MarkTaskCommandException.class, () -> {
+            String assertMessage = "";
+
+            try {
                 MarkTaskCommand.unmarkTask(2, taskList);
-            });
+            } catch (AssertionError e) {
+                assertMessage = e.getMessage();
+            }
 
             FileWriter cleanFile = new FileWriter(tempFile, false);
             cleanFile.write("");
             cleanFile.close();
 
-            String error = "Task to unmark is out of the list length.";
+            String error = "Index is out of bounds";
 
-            assertEquals(error, exception.getMessage());
+            assertEquals(error, assertMessage);
         } catch (IOException e) {
             System.out.println("Testing failed");
         }

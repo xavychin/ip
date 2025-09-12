@@ -24,13 +24,20 @@ public class Main extends Application {
      */
     @Override
     public void start(Stage stage) {
+        assert stage != null : "Stage parameter must not be null";
+
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
+            assert ap != null : "Loaded AnchorPane must not be null";
+
             Scene scene = new Scene(ap);
             stage.setScene(scene);
+
             // inject the Leo instance
             this.leo = new Leo("data/Leo.txt");
+            assert leo != null : "Leo instance must be successfully created";
+
             fxmlLoader.<MainWindow>getController().setLeo(leo);
             stage.show();
         } catch (IOException e) {

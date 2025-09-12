@@ -231,8 +231,7 @@ public class FileHandlerTest {
             cause = e.getCause();
         }
 
-        String error = "Failed to load the task ("
-                + ") due to invalid format.";
+        String error = "Task from file must not be null or empty";
 
         FileWriter cleanFile = new FileWriter(tempFile, false);
         cleanFile.write("");
@@ -290,8 +289,7 @@ public class FileHandlerTest {
 
         privateMethod.setAccessible(true);
 
-        String error = "Failed to load the task ("
-                + ") due to invalid format.";
+        String error = "Task from file must not be null or empty";
 
         Throwable cause = null;
         //Solution adpated from https://www.perplexity.ai/search/how-to-assert-equals-a-private-7_Vt5uKlTo6ZrIhZbrIY7A#3

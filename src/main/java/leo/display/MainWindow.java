@@ -42,6 +42,7 @@ public class MainWindow extends AnchorPane {
 
     /** Injects the Leo instance */
     public void setLeo(Leo leo) throws IOException {
+        assert leo != null : "Leo instance must not be null";
         this.leo = leo;
         leoGreetings(Messages.greetings());
     }
@@ -52,6 +53,9 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     private void handleUserInput() throws InterruptedException {
+        assert userInput.getText() != null : "User input text must not be null";
+        assert leo != null : "Leo instance must be initialized";
+
         String input = userInput.getText();
         String response = leo.getResponse(input);
         dialogContainer.getChildren().addAll(
@@ -75,6 +79,8 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     public void leoGreetings(String greeting) {
+        assert greeting != null : "Greeting message must not be null";
+
         dialogContainer.getChildren().addAll(
                 DialogBox.getLeoDialog(greeting, leoImage)
         );

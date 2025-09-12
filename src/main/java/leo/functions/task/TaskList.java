@@ -30,7 +30,9 @@ public class TaskList {
      */
     public TaskList(FileHandler fileHandler) throws FileNotFoundException, FileHandlerException {
         this.fileHandler = fileHandler;
+        assert fileHandler != null : "Objet to handle files is empty";
         this.listItems = fileHandler.retrieveTasksFromFile();
+        assert listItems != null : "List of tasks should not be null after retrieval";
     }
 
     /**
@@ -40,6 +42,8 @@ public class TaskList {
      * @throws IOException If file is in the wrong format or cannot be accessed.
      */
     public void addTask(Task task) throws IOException {
+        assert task != null : "Task to add must not be null";
+
         fileHandler.appendToFile(task.appendToFile());
         listItems.add(task);
     }
@@ -60,6 +64,8 @@ public class TaskList {
      * @return The task at the specified index.
      */
     public Task getItemAtIndex(int index) {
+        assert index >= 0 && index < listItems.size() : "Index is out of bounds";
+
         return this.listItems.get(index);
     }
 
@@ -70,6 +76,8 @@ public class TaskList {
      * @throws IOException If file is in the wrong format or cannot be accessed.
      */
     public void deleteItemAtIndex(int index) throws IOException {
+        assert index >= 0 && index < listItems.size() : "Index is out of bounds";
+
         this.listItems.remove(index);
         fileHandler.overwriteFile(this.listItems);
     }
@@ -80,6 +88,7 @@ public class TaskList {
      * @throws IOException If file is in the wrong format or cannot be accessed.
      */
     public void markTask() throws IOException {
+        assert listItems != null : "List of tasks should not be null";
         fileHandler.overwriteFile(this.listItems);
     }
 
@@ -89,6 +98,7 @@ public class TaskList {
      * @throws IOException If file is in the wrong format or cannot be accessed.
      */
     public void unmarkTask() throws IOException {
+        assert listItems != null : "List of tasks should not be null";
         fileHandler.overwriteFile(this.listItems);
     }
 }

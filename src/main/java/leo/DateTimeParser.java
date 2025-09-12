@@ -23,6 +23,9 @@ public class DateTimeParser {
      * @throws DateTimeFormatException If incorrect date and time format was given.
      */
     public String formatDateTimeFromInput(String dateTimeToFormat) throws DateTimeFormatException {
+        assert dateTimeToFormat != null && !dateTimeToFormat.isEmpty()
+                : "Input dateTimeToFormat must not be null or empty";
+
         try {
             LocalDateTime dateTime = LocalDateTime.parse(dateTimeToFormat, inputFormat);
             return dateTime.format(fileFormat);
@@ -39,6 +42,9 @@ public class DateTimeParser {
      * @throws DateTimeFormatException If incorrect date and time format was given.
      */
     public String formatDateTimeFromFile(String dateTimeToFormat) throws DateTimeFormatException {
+        assert dateTimeToFormat != null && !dateTimeToFormat.isEmpty()
+                : "Input dateTimeToFormat must not be null or empty";
+
         try {
             LocalDateTime dateTime = LocalDateTime.parse(dateTimeToFormat, fileFormat);
             return dateTime.format(inputFormat);

@@ -28,6 +28,7 @@ public class Functions {
      * @param listItems List of tasks.
      */
     public Functions(TaskList listItems) {
+        assert listItems != null : "TaskList must not be null";
         this.listItems = listItems;
     }
 
@@ -54,6 +55,8 @@ public class Functions {
             MarkTaskCommandException,
             DeleteTaskException,
             AddTaskException {
+        assert userInput != null && !userInput.isEmpty() : "User input must not be null or empty";
+
         String[] userInputList = userInput.split(" ");
         String returnString = "";
 
