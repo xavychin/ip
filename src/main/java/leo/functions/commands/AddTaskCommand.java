@@ -1,9 +1,9 @@
 package leo.functions.commands;
 
 import java.io.IOException;
-import java.time.DateTimeException;
 
 import leo.display.Messages;
+import leo.exceptions.DateTimeFormatException;
 import leo.functions.task.Deadline;
 import leo.functions.task.Event;
 import leo.functions.task.TaskList;
@@ -79,11 +79,11 @@ public class AddTaskCommand implements Command {
      * @param listItems List of tasks.
      * @throws ArrayIndexOutOfBoundsException If the user input is in the wrong format.
      * @throws IOException If the file storing data cannot be found.
-     * @throws DateTimeException If the date or time is given in the wrong format.
+     * @throws DateTimeFormatException If the date or time is given in the wrong format.
      */
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
     public static void deadline(String userInput, TaskList listItems)
-            throws ArrayIndexOutOfBoundsException, IOException, DateTimeException {
+            throws ArrayIndexOutOfBoundsException, IOException, DateTimeFormatException {
         String[] userInputList = userInput.split("deadline | /by");
         if (userInputList.length < 3) {
             throw new ArrayIndexOutOfBoundsException(
@@ -111,11 +111,11 @@ public class AddTaskCommand implements Command {
      * @return Formatted string of the output.
      * @throws ArrayIndexOutOfBoundsException If the user input is in the wrong format.
      * @throws IOException If the file storing data cannot be found.
-     * @throws DateTimeException If the date or time is given in the wrong format.
+     * @throws DateTimeFormatException If the date or time is given in the wrong format.
      */
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
     public static String deadlineReturnOutput(String userInput, TaskList listItems)
-            throws ArrayIndexOutOfBoundsException, IOException, DateTimeException {
+            throws ArrayIndexOutOfBoundsException, IOException, DateTimeFormatException {
         String[] userInputList = userInput.split("deadline | /by");
         if (userInputList.length < 3) {
             throw new ArrayIndexOutOfBoundsException(
@@ -143,11 +143,11 @@ public class AddTaskCommand implements Command {
      * @param listItems List of tasks.
      * @throws ArrayIndexOutOfBoundsException If the user input is in the wrong format.
      * @throws IOException If the file storing data cannot be found.
-     * @throws DateTimeException If the date or time is given in the wrong format.
+     * @throws DateTimeFormatException If the date or time is given in the wrong format.
      */
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
     public static void event(String userInput, TaskList listItems)
-            throws ArrayIndexOutOfBoundsException, IOException, DateTimeException {
+            throws ArrayIndexOutOfBoundsException, IOException, DateTimeFormatException {
         String[] userInputList = userInput.split("event | /from | /to");
         if (userInputList.length < 4) {
             throw new ArrayIndexOutOfBoundsException(
@@ -176,11 +176,11 @@ public class AddTaskCommand implements Command {
      * @return Formatted string of the output.
      * @throws ArrayIndexOutOfBoundsException If the user input is in the wrong format.
      * @throws IOException If the file storing data cannot be found.
-     * @throws DateTimeException If the date or time is given in the wrong format.
+     * @throws DateTimeFormatException If the date or time is given in the wrong format.
      */
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
     public static String eventReturnOutput(String userInput, TaskList listItems)
-            throws ArrayIndexOutOfBoundsException, IOException, DateTimeException {
+            throws ArrayIndexOutOfBoundsException, IOException, DateTimeFormatException {
         String[] userInputList = userInput.split("event | /from | /to");
         if (userInputList.length < 4) {
             throw new ArrayIndexOutOfBoundsException(
