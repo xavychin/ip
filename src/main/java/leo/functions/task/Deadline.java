@@ -1,11 +1,13 @@
 package leo.functions.task;
 
-import leo.DateTimeParser;
+import java.time.LocalDateTime;
+
+import leo.util.DateTimeParser;
 
 /**
  * Represents a Deadline task.
  */
-public class Deadline extends Task {
+public class Deadline extends DateTask {
     private String deadline;
 
     /**
@@ -15,13 +17,20 @@ public class Deadline extends Task {
      * @param deadline The deadline of the task.
      */
     public Deadline(String description, String deadline) {
-        super(description);
-
+        super(description, deadline);
         assert description != null && !description.isEmpty() : "Description must not be null or empty";
         assert deadline != null && !deadline.isEmpty() : "Deadline must not be null or empty";
 
-        DateTimeParser dateTimeParser = new DateTimeParser();
-        this.deadline = dateTimeParser.formatDateTimeFromInput(deadline);
+        this.deadline = DateTimeParser.formatDateTimeFromInput(deadline);
+    }
+
+    /**
+     * Get the deadline of the task.
+     *
+     * @return DateTime object of the task's deadline.
+     */
+    public LocalDateTime getDateTime() {
+        return DateTimeParser.stringToDateTime(this.deadline);
     }
 
     /**

@@ -1,4 +1,4 @@
-package leo.functions.search;
+package leo.functions.commands;
 
 import leo.exceptions.FindCommandException;
 import leo.functions.task.TaskList;
@@ -7,7 +7,7 @@ import leo.functions.task.TaskList;
  * Represents the function that is called when the user prompts
  * the chatbot to search the related tasks based on a keyword.
  */
-public class Find {
+public class FindCommand {
     /**
      * Searches for the tasks that contain the specified keyword.
      *
@@ -16,6 +16,7 @@ public class Find {
      * @return String containing the output.
      * @throws FindCommandException If the user input is in the wrong format.
      */
+
     public static String find(String userInput, TaskList listItems) throws FindCommandException {
         assert userInput != null && !userInput.isEmpty() : "User input must not be null or empty";
         assert listItems != null : "TaskList must not be null";

@@ -11,9 +11,10 @@ import leo.exceptions.MarkTaskCommandException;
 import leo.exceptions.ZeroLengthException;
 import leo.functions.commands.AddTaskCommand;
 import leo.functions.commands.DeleteTaskCommand;
+import leo.functions.commands.FindCommand;
 import leo.functions.commands.ListTaskCommand;
 import leo.functions.commands.MarkTaskCommand;
-import leo.functions.search.Find;
+import leo.functions.commands.ReminderCommand;
 import leo.functions.task.TaskList;
 
 /**
@@ -100,7 +101,10 @@ public class Functions {
             }
             break;
         case "find":
-            returnString = Find.find(userInput, listItems);
+            returnString = FindCommand.find(userInput, listItems);
+            break;
+        case "remind":
+            returnString = ReminderCommand.remindCommand(userInput, listItems);
             break;
         default:
             returnString = "I don't know how to do this...";

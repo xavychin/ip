@@ -17,6 +17,7 @@ import leo.functions.task.Deadline;
 import leo.functions.task.Event;
 import leo.functions.task.Task;
 import leo.functions.task.ToDo;
+import leo.util.FileHandler;
 
 public class FileHandlerTest {
     private String testFilePath = ".dataTest/temp.txt";

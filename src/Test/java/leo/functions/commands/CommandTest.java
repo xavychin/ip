@@ -12,13 +12,13 @@ import java.util.Scanner;
 
 import org.junit.jupiter.api.Test;
 
-import leo.FileHandler;
 import leo.exceptions.AddTaskException;
 import leo.exceptions.ZeroLengthException;
 import leo.functions.task.Deadline;
 import leo.functions.task.Event;
 import leo.functions.task.TaskList;
 import leo.functions.task.ToDo;
+import leo.util.FileHandler;
 
 public class CommandTest {
     private String testFilePath = ".dataTest/temp.txt";

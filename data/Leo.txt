@@ -1,4 +1,7 @@
-ToDo | X | running
-ToDo |   | buy shoes
+ToDo | X | borrow book
 Deadline |   | return book | Jun 20 2025, 2100
 Event |   | team dinner | Jun 08 2025, 1800-Jun 08 2025, 2000
+Deadline |   | return book | Sep 15 2025, 2100
+Event |   | marathon | Sep 13 2025, 1600-Sep 13 2025, 1900
+Deadline |   | cook dinner | Sep 18 2025, 1200
+Deadline |   | visit house | Sep 19 2025, 1800

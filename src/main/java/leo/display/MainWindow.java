@@ -44,7 +44,6 @@ public class MainWindow extends AnchorPane {
     public void setLeo(Leo leo) throws IOException {
         assert leo != null : "Leo instance must not be null";
         this.leo = leo;
-        leoGreetings(Messages.greetings());
     }
 
     /**
@@ -73,16 +72,15 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * Creates a dialog box that greets the user when the application is started.
+     * Creates a dialog box that displays a message to the user from Leo.
      *
-     * @param greeting The initial message to prompt the user for input.
+     * @param msg The message displayed to the user.
      */
     @FXML
-    public void leoGreetings(String greeting) {
-        assert greeting != null : "Greeting message must not be null";
-
+    public void leoMessage(String msg) {
+        assert msg != null : "Message must not be null";
         dialogContainer.getChildren().addAll(
-                DialogBox.getLeoDialog(greeting, leoImage)
+                DialogBox.getLeoDialog(msg, leoImage)
         );
     }
 }
