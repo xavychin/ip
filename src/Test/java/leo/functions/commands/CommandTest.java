@@ -10,10 +10,12 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Scanner;
 
+import leo.exceptions.AddTaskException;
+import leo.exceptions.MarkTaskCommandException;
 import org.junit.jupiter.api.Test;
 
 import leo.FileHandler;
-import leo.ZeroLengthException;
+import leo.exceptions.ZeroLengthException;
 import leo.functions.task.Deadline;
 import leo.functions.task.Event;
 import leo.functions.task.TaskList;
@@ -53,7 +55,7 @@ public class CommandTest {
 
             //Solution adapted from
             // https://www.perplexity.ai/search/how-to-assertequal-a-thrown-er-mtR92GBxS9OyDApnjrM04A#5
-            Exception exception = assertThrows(ArrayIndexOutOfBoundsException.class, () -> {
+            Exception exception = assertThrows(AddTaskException.class, () -> {
                 AddTaskCommand.todo("todo", taskList);
             });
 
@@ -102,7 +104,7 @@ public class CommandTest {
 
             //Solution adapted from
             // https://www.perplexity.ai/search/how-to-assertequal-a-thrown-er-mtR92GBxS9OyDApnjrM04A#5
-            Exception exception = assertThrows(ArrayIndexOutOfBoundsException.class, () -> {
+            Exception exception = assertThrows(AddTaskException.class, () -> {
                 AddTaskCommand.deadline("deadline", taskList);
             });
 
@@ -151,7 +153,7 @@ public class CommandTest {
 
             //Solution adapted from
             // https://www.perplexity.ai/search/how-to-assertequal-a-thrown-er-mtR92GBxS9OyDApnjrM04A#5
-            Exception exception = assertThrows(ArrayIndexOutOfBoundsException.class, () -> {
+            Exception exception = assertThrows(AddTaskException.class, () -> {
                 AddTaskCommand.event("event", taskList);
             });
 
@@ -346,7 +348,7 @@ public class CommandTest {
 
             //Solution adapted from
             // https://www.perplexity.ai/search/how-to-assertequal-a-thrown-er-mtR92GBxS9OyDApnjrM04A#5
-            Exception exception = assertThrows(IndexOutOfBoundsException.class, () -> {
+            Exception exception = assertThrows(MarkTaskCommandException.class, () -> {
                 MarkTaskCommand.markTask(2, taskList);
             });
 
@@ -404,7 +406,7 @@ public class CommandTest {
 
             //Solution adapted from
             // https://www.perplexity.ai/search/how-to-assertequal-a-thrown-er-mtR92GBxS9OyDApnjrM04A#5
-            Exception exception = assertThrows(IndexOutOfBoundsException.class, () -> {
+            Exception exception = assertThrows(MarkTaskCommandException.class, () -> {
                 MarkTaskCommand.unmarkTask(2, taskList);
             });
 
