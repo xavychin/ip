@@ -1,5 +1,6 @@
 package leo.functions.search;
 
+import leo.exceptions.FindCommandException;
 import leo.functions.task.TaskList;
 
 /**
@@ -12,25 +13,17 @@ public class Find {
      *
      * @param userInput String containing the user input.
      * @param listItems List of tasks.
-     * @throws ArrayIndexOutOfBoundsException If the user input is in the wrong format.
+     * @throws FindCommandException If the user input is in the wrong format.
      */
-    public static void find(String userInput, TaskList listItems) throws ArrayIndexOutOfBoundsException {
+    public static void find(String userInput, TaskList listItems) throws FindCommandException {
         String[] userInputList = userInput.split("find");
         if (userInputList.length < 2) {
-            throw new ArrayIndexOutOfBoundsException(
-                    "The keyword to search for is missing!"
-                    + "\n\tMake sure it is in this format:"
-                    + "\n\t\tfind <keyword>"
-            );
+            throw new FindCommandException();
         }
 
         String keyword = userInputList[1].trim();
         if (keyword.isEmpty()) {
-            throw new ArrayIndexOutOfBoundsException(
-                    "The keyword to search for is missing!"
-                            + "\n\tMake sure it is in this format:"
-                            + "\n\t\tfind <keyword>"
-            );
+            throw new FindCommandException();
         }
 
         int outputListIndex = 1;
@@ -58,27 +51,19 @@ public class Find {
      * @param userInput String containing the user input.
      * @param listItems List of tasks.
      * @return String containing the output.
-     * @throws ArrayIndexOutOfBoundsException If the user input is in the wrong format.
+     * @throws FindCommandException If the user input is in the wrong format.
      */
-    public static String findReturnOutput(String userInput, TaskList listItems) throws ArrayIndexOutOfBoundsException {
+    public static String findReturnOutput(String userInput, TaskList listItems) throws FindCommandException {
         StringBuilder returnString = new StringBuilder();
         String[] userInputList = userInput.split("find");
 
         if (userInputList.length < 2) {
-            throw new ArrayIndexOutOfBoundsException(
-                    "The keyword to search for is missing!"
-                            + "\n\tMake sure it is in this format:"
-                            + "\n\t\tfind <keyword>"
-            );
+            throw new FindCommandException();
         }
 
         String keyword = userInputList[1].trim();
         if (keyword.isEmpty()) {
-            throw new ArrayIndexOutOfBoundsException(
-                    "The keyword to search for is missing!"
-                            + "\n\tMake sure it is in this format:"
-                            + "\n\t\tfind <keyword>"
-            );
+            throw new FindCommandException();
         }
 
         int outputListIndex = 1;
