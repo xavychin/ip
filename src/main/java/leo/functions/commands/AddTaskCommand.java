@@ -3,6 +3,7 @@ package leo.functions.commands;
 import java.io.IOException;
 
 import leo.display.Messages;
+import leo.exceptions.AddTaskException;
 import leo.exceptions.DateTimeFormatException;
 import leo.functions.task.Deadline;
 import leo.functions.task.Event;
@@ -18,18 +19,14 @@ public class AddTaskCommand implements Command {
      *
      * @param userInput String containing the user input.
      * @param listItems List of tasks.
-     * @throws ArrayIndexOutOfBoundsException If the user input is in the wrong format.
+     * @throws AddTaskException If the user input is in the wrong format.
      * @throws IOException If the file storing data cannot be found.
      */
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
-    public static void todo(String userInput, TaskList listItems) throws ArrayIndexOutOfBoundsException, IOException {
+    public static void todo(String userInput, TaskList listItems) throws AddTaskException, IOException {
         String[] userInputList = userInput.split("todo");
         if (userInputList.length < 2) {
-            throw new ArrayIndexOutOfBoundsException(
-                    "The description of the task is missing!"
-                    + "\n\tMake sure it is in this format:"
-                    + "\n\t\ttodo <task description>"
-            );
+            throw new AddTaskException("todo");
         }
         String taskDesc = userInputList[1].trim();
         ToDo toDoTask = new ToDo(taskDesc);
@@ -47,19 +44,15 @@ public class AddTaskCommand implements Command {
      * @param userInput String containing the user input.
      * @param listItems List of tasks.
      * @return Formatted string of the output.
-     * @throws ArrayIndexOutOfBoundsException If the user input is in the wrong format.
+     * @throws AddTaskException If the user input is in the wrong format.
      * @throws IOException If the file storing data cannot be found.
      */
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
     public static String todoReturnOutput(String userInput, TaskList listItems)
-            throws ArrayIndexOutOfBoundsException, IOException {
+            throws AddTaskException, IOException {
         String[] userInputList = userInput.split("todo");
         if (userInputList.length < 2) {
-            throw new ArrayIndexOutOfBoundsException(
-                    "The description of the task is missing!"
-                            + "\n\tMake sure it is in this format:"
-                            + "\n\t\ttodo <task description>"
-            );
+            throw new AddTaskException("todo");
         }
         String taskDesc = userInputList[1].trim();
         ToDo toDoTask = new ToDo(taskDesc);
@@ -77,20 +70,16 @@ public class AddTaskCommand implements Command {
      *
      * @param userInput String containing the user input.
      * @param listItems List of tasks.
-     * @throws ArrayIndexOutOfBoundsException If the user input is in the wrong format.
+     * @throws AddTaskException If the user input is in the wrong format.
      * @throws IOException If the file storing data cannot be found.
      * @throws DateTimeFormatException If the date or time is given in the wrong format.
      */
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
     public static void deadline(String userInput, TaskList listItems)
-            throws ArrayIndexOutOfBoundsException, IOException, DateTimeFormatException {
+            throws AddTaskException, IOException, DateTimeFormatException {
         String[] userInputList = userInput.split("deadline | /by");
         if (userInputList.length < 3) {
-            throw new ArrayIndexOutOfBoundsException(
-                    "The description or deadline of the task is missing!"
-                    + "\n\tMake sure it is in this format:"
-                    + "\n\t\tdeadline <task description> /by <dd/MM/yyyy HHmm>"
-            );
+            throw new AddTaskException("deadline");
         }
         String taskDesc = userInputList[1].trim();
         String deadline = userInputList[2].trim();
@@ -109,20 +98,16 @@ public class AddTaskCommand implements Command {
      * @param userInput String containing the user input.
      * @param listItems List of tasks.
      * @return Formatted string of the output.
-     * @throws ArrayIndexOutOfBoundsException If the user input is in the wrong format.
+     * @throws AddTaskException If the user input is in the wrong format.
      * @throws IOException If the file storing data cannot be found.
      * @throws DateTimeFormatException If the date or time is given in the wrong format.
      */
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
     public static String deadlineReturnOutput(String userInput, TaskList listItems)
-            throws ArrayIndexOutOfBoundsException, IOException, DateTimeFormatException {
+            throws AddTaskException, IOException, DateTimeFormatException {
         String[] userInputList = userInput.split("deadline | /by");
         if (userInputList.length < 3) {
-            throw new ArrayIndexOutOfBoundsException(
-                    "The description or deadline of the task is missing!"
-                            + "\n\tMake sure it is in this format:"
-                            + "\n\t\tdeadline <task description> /by <dd/MM/yyyy HHmm>"
-            );
+            throw new AddTaskException("deadline");
         }
         String taskDesc = userInputList[1].trim();
         String deadline = userInputList[2].trim();
@@ -141,20 +126,16 @@ public class AddTaskCommand implements Command {
      *
      * @param userInput String containing the user input.
      * @param listItems List of tasks.
-     * @throws ArrayIndexOutOfBoundsException If the user input is in the wrong format.
+     * @throws AddTaskException If the user input is in the wrong format.
      * @throws IOException If the file storing data cannot be found.
      * @throws DateTimeFormatException If the date or time is given in the wrong format.
      */
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
     public static void event(String userInput, TaskList listItems)
-            throws ArrayIndexOutOfBoundsException, IOException, DateTimeFormatException {
+            throws AddTaskException, IOException, DateTimeFormatException {
         String[] userInputList = userInput.split("event | /from | /to");
         if (userInputList.length < 4) {
-            throw new ArrayIndexOutOfBoundsException(
-                    "The description or timing of the task is missing!"
-                    + "\n\tMake sure it is in this format:"
-                    + "\n\t\tevent <task description> /from <dd/MM/yyyy HHmm> /to <dd/MM/yyyy HHmm>"
-            );
+            throw new AddTaskException("event");
         }
         String taskDesc = userInputList[1].trim();
         String startDate = userInputList[2].trim();
@@ -174,20 +155,16 @@ public class AddTaskCommand implements Command {
      * @param userInput String containing the user input.
      * @param listItems List of tasks.
      * @return Formatted string of the output.
-     * @throws ArrayIndexOutOfBoundsException If the user input is in the wrong format.
+     * @throws AddTaskException If the user input is in the wrong format.
      * @throws IOException If the file storing data cannot be found.
      * @throws DateTimeFormatException If the date or time is given in the wrong format.
      */
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
     public static String eventReturnOutput(String userInput, TaskList listItems)
-            throws ArrayIndexOutOfBoundsException, IOException, DateTimeFormatException {
+            throws AddTaskException, IOException, DateTimeFormatException {
         String[] userInputList = userInput.split("event | /from | /to");
         if (userInputList.length < 4) {
-            throw new ArrayIndexOutOfBoundsException(
-                    "The description or timing of the task is missing!"
-                            + "\n\tMake sure it is in this format:"
-                            + "\n\t\tevent <task description> /from <dd/MM/yyyy HHmm> /to <dd/MM/yyyy HHmm>"
-            );
+            throw new AddTaskException("event");
         }
         String taskDesc = userInputList[1].trim();
         String startDate = userInputList[2].trim();
