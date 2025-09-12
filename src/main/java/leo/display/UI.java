@@ -1,10 +1,9 @@
 package leo.display;
 
 import java.io.IOException;
-import java.time.DateTimeException;
 import java.util.Scanner;
 
-import leo.ZeroLengthException;
+import leo.exceptions.*;
 import leo.functions.Functions;
 
 /**
@@ -33,10 +32,12 @@ public class UI {
             try {
                 func.searchFunctions(callFunction);
             } catch (ZeroLengthException
-                   | IndexOutOfBoundsException
-                   | IOException
-                   | DateTimeException
-                   | NumberFormatException
+                     | FindCommandException
+                     | MarkTaskCommandException
+                     | DeleteTaskException
+                     | AddTaskException
+                     | IOException
+                     | DateTimeFormatException
                     e) {
                 System.out.println(
                         "\t"
@@ -63,10 +64,12 @@ public class UI {
         try {
             returnString = func.searchFunctionsReturnOutput(userInput);
         } catch (ZeroLengthException
-                 | IndexOutOfBoundsException
+                 | FindCommandException
+                 | MarkTaskCommandException
+                 | DeleteTaskException
+                 | AddTaskException
                  | IOException
-                 | DateTimeException
-                 | NumberFormatException
+                 | DateTimeFormatException
                 e) {
             return e.getMessage();
         }

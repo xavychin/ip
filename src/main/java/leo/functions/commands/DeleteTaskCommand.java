@@ -27,7 +27,7 @@ public class DeleteTaskCommand implements Command {
             System.out.println("\t" + taskToDel.toString());
             Messages.taskCount(listItems.getSize());
         } catch (IndexOutOfBoundsException e) {
-            throw new DeleteTaskException();
+            throw new DeleteTaskException("index");
         }
     }
 
@@ -52,7 +52,7 @@ public class DeleteTaskCommand implements Command {
                     + "\n\t"
                     + Messages.taskCountReturnOutput(listItems.getSize()));
         } catch (IndexOutOfBoundsException e) {
-            throw new DeleteTaskException();
+            throw new DeleteTaskException("index");
         }
     }
 }

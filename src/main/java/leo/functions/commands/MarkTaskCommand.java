@@ -27,7 +27,7 @@ public class MarkTaskCommand implements Command {
             System.out.println("Nice! I've marked this task as done:");
             System.out.println("\t" + task);
         } catch (IndexOutOfBoundsException e) {
-            throw new MarkTaskCommandException("mark");
+            throw new MarkTaskCommandException("index", "mark");
         }
     }
 
@@ -52,7 +52,7 @@ public class MarkTaskCommand implements Command {
                     + "\n\t"
                     + task);
         } catch (IndexOutOfBoundsException e) {
-            throw new MarkTaskCommandException("mark");
+            throw new MarkTaskCommandException("index", "mark");
         }
     }
 
@@ -73,7 +73,7 @@ public class MarkTaskCommand implements Command {
             System.out.println("Ok! I've marked this task as not done yet:");
             System.out.println("\t" + task);
         } catch (IndexOutOfBoundsException e) {
-            throw new MarkTaskCommandException("unmark");
+            throw new MarkTaskCommandException("index", "unmark");
         }
     }
 
@@ -98,7 +98,7 @@ public class MarkTaskCommand implements Command {
                     + "\n\t"
                     + task);
         } catch (IndexOutOfBoundsException e) {
-            throw new MarkTaskCommandException("unmark");
+            throw new MarkTaskCommandException("index", "unmark");
         }
     }
 }
