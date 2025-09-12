@@ -14,33 +14,17 @@ public class Messages {
             + "|______|\\_____| \\_____/\n";
 
     /**
-     * Outputs the initial message to the CLI to prompt for user input.
-     */
-    public static void greetings() throws IOException {
-        String greeting = "Hello! I'm\n"
-                + logo
-                + "\n"
-                + "What can I do for you?";
-        System.out.println(greeting);
-    }
-
-    /**
      * Outputs the initial message to the GUI to prompt for user input.
      *
      * @return The initial message to prompt for user input.
      */
-    public static String greetingsReturnOutput() {
-        return "Hello! I'm "
+    public static String greetings() throws IOException {
+        String greeting = "Hello! I'm "
                 + name
                 + "\n"
                 + "What can I do for you?";
-    }
-
-    /**
-     * Outputs the final message to the user before the application closes.
-     */
-    public static void goodbye() {
-        System.out.println("\tBye. Hope to see you again soon!");
+        System.out.println(greeting);
+        return greeting;
     }
 
     /**
@@ -48,8 +32,10 @@ public class Messages {
      *
      * @return The final message.
      */
-    public static String goodbyeReturnOutput() {
-        return "Bye. Hope to see you again soon!";
+    public static String goodbye() throws IOException {
+        String goodbyeMessage = "\tBye. Hope to see you again soon!";
+        System.out.println(goodbyeMessage);
+        return goodbyeMessage;
     }
 
     /**
@@ -69,33 +55,14 @@ public class Messages {
      * Outputs the current number of tasks stored in the list.
      *
      * @param count Number of tasks stored in the list.
+     * @return String containing count of task in list.
      */
-    public static void taskCount(int count) {
-        System.out.println(
-                "Now you have "
+    public static String taskCount(int count) {
+        String taskCountMessage = "Now you have "
                 + count
-                + " task(s) in the list."
-        );
-    }
-
-    /**
-     * Outputs the current number of tasks stored in the list.
-     *
-     * @param count Number of tasks stored in the list.
-     * @return A formatted string.
-     */
-    public static String taskCountReturnOutput(int count) {
-        return String.format("Now you have "
-                + count
-                + " task(s) in the list.");
-    }
-
-    /**
-     * Outputs a confirmation after a task was successfully
-     * added to the list.
-     */
-    public static void addTask() {
-        System.out.println("Got it. I've added this task:");
+                + " task(s) in the list.";
+        System.out.println(taskCountMessage);
+        return taskCountMessage;
     }
 
     /**
@@ -104,7 +71,9 @@ public class Messages {
      *
      * @return A confirmation message.
      */
-    public static String addTaskReturnOutput() {
-        return "Got it. I've added this task:";
+    public static String addTask() {
+        String addTaskMessage = "Got it. I've added this task:";
+        System.out.println(addTaskMessage);
+        return addTaskMessage;
     }
 }

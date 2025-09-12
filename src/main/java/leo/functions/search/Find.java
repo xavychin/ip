@@ -1,5 +1,6 @@
 package leo.functions.search;
 
+import leo.exceptions.FindCommandException;
 import leo.functions.task.TaskList;
 
 /**
@@ -12,58 +13,10 @@ public class Find {
      *
      * @param userInput String containing the user input.
      * @param listItems List of tasks.
-     * @throws ArrayIndexOutOfBoundsException If the user input is in the wrong format.
-     */
-    public static void find(String userInput, TaskList listItems) throws ArrayIndexOutOfBoundsException {
-        assert userInput != null && !userInput.isEmpty() : "User input must not be null or empty";
-        assert listItems != null : "TaskList must not be null";
-
-        String[] userInputList = userInput.split("find");
-        if (userInputList.length < 2) {
-            throw new ArrayIndexOutOfBoundsException(
-                    "The keyword to search for is missing!"
-                    + "\n\tMake sure it is in this format:"
-                    + "\n\t\tfind <keyword>"
-            );
-        }
-
-        String keyword = userInputList[1].trim();
-        if (keyword.isEmpty()) {
-            throw new ArrayIndexOutOfBoundsException(
-                    "The keyword to search for is missing!"
-                            + "\n\tMake sure it is in this format:"
-                            + "\n\t\tfind <keyword>"
-            );
-        }
-
-        int outputListIndex = 1;
-        for (int i = 0; i < listItems.getSize(); i++) {
-            String taskInfo = listItems.getItemAtIndex(i).toString();
-            if (taskInfo.contains(keyword)) {
-                System.out.println(
-                        "\t"
-                        + outputListIndex
-                        + ". "
-                        + taskInfo
-                );
-                outputListIndex++;
-            }
-        }
-
-        if (outputListIndex == 1) {
-            System.out.println("\tNo related task in the list.");
-        }
-    }
-
-    /**
-     * Searches for the tasks that contain the specified keyword.
-     *
-     * @param userInput String containing the user input.
-     * @param listItems List of tasks.
      * @return String containing the output.
-     * @throws ArrayIndexOutOfBoundsException If the user input is in the wrong format.
+     * @throws FindCommandException If the user input is in the wrong format.
      */
-    public static String findReturnOutput(String userInput, TaskList listItems) throws ArrayIndexOutOfBoundsException {
+    public static String find(String userInput, TaskList listItems) throws FindCommandException {
         assert userInput != null && !userInput.isEmpty() : "User input must not be null or empty";
         assert listItems != null : "TaskList must not be null";
 
@@ -71,20 +24,12 @@ public class Find {
         String[] userInputList = userInput.split("find");
 
         if (userInputList.length < 2) {
-            throw new ArrayIndexOutOfBoundsException(
-                    "The keyword to search for is missing!"
-                            + "\n\tMake sure it is in this format:"
-                            + "\n\t\tfind <keyword>"
-            );
+            throw new FindCommandException();
         }
 
         String keyword = userInputList[1].trim();
         if (keyword.isEmpty()) {
-            throw new ArrayIndexOutOfBoundsException(
-                    "The keyword to search for is missing!"
-                            + "\n\tMake sure it is in this format:"
-                            + "\n\t\tfind <keyword>"
-            );
+            throw new FindCommandException();
         }
 
         int outputListIndex = 1;
@@ -92,12 +37,9 @@ public class Find {
             String taskInfo = listItems.getItemAtIndex(i).toString();
             if (taskInfo.contains(keyword)) {
                 if (outputListIndex == 1) {
-                    returnString.append("Here's the tasks with the word '" + keyword + "':");
+                    returnString.append("Here's the tasks with the word '").append(keyword).append("':");
                 }
-                returnString.append("\n\t"
-                        + outputListIndex
-                        + ". "
-                        + taskInfo);
+                returnString.append("\n\t").append(outputListIndex).append(". ").append(taskInfo);
                 outputListIndex++;
             }
         }

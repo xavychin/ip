@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import leo.exceptions.FileHandlerException;
 import leo.functions.task.Deadline;
 import leo.functions.task.Event;
 import leo.functions.task.Task;
@@ -88,13 +89,13 @@ public class FileHandler {
     }
 
     /**
-     * Deletes data from the file.
+     * Overwrite data in the file with an updated list of tasks.
      *
-     * @param listItems Remaining list of tasks after deleting.
+     * @param listItems Remaining list of tasks after update.
      * @throws IOException If file is in the wrong format or cannot be accessed.
      */
     //Solution adapted from https://www.perplexity.ai/search/delete-text-from-file-in-java-8_mCJnSyQZmnkscaHNiuUw
-    public void deleteFromFile(ArrayList<Task> listItems) throws IOException {
+    public void overwriteFile(ArrayList<Task> listItems) throws IOException {
         assert listItems != null : "List of tasks must not be null";
 
         try {
@@ -118,9 +119,9 @@ public class FileHandler {
      *
      * @return List of tasks.
      * @throws FileNotFoundException If file is in the wrong format or cannot be accessed.
-     * @throws ArrayIndexOutOfBoundsException If task details are in the incorrect format.
+     * @throws FileHandlerException If task details are in the incorrect format.
      */
-    public ArrayList<Task> retrieveTasksFromFile() throws FileNotFoundException, ArrayIndexOutOfBoundsException {
+    public ArrayList<Task> retrieveTasksFromFile() throws FileNotFoundException, FileHandlerException {
         ArrayList<Task> listItems = new ArrayList<>();
         assert this.file != null : "File must not be null";
         try {
@@ -150,10 +151,11 @@ public class FileHandler {
      *
      * @param taskFromFile Text information of task stored in the file.
      * @return Task object.
-     * @throws ArrayIndexOutOfBoundsException If task details are in the incorrect format.
+     * @throws FileHandlerException If task details are in the incorrect format.
      */
-    private Task getTaskFromFile(String taskFromFile) throws ArrayIndexOutOfBoundsException {
+    private Task getTaskFromFile(String taskFromFile) throws FileHandlerException {
         assert taskFromFile != null && !taskFromFile.isEmpty() : "Task from file must not be null or empty";
+
         Task task = null;
         try {
             //Solution adapted from https://www.perplexity.ai/search/split-string-by-in-java-U7_N33gYS4651R96jeoK8Q
@@ -187,11 +189,7 @@ public class FileHandler {
 
 
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new ArrayIndexOutOfBoundsException(
-                    "Failed to load the task ("
-                    + taskFromFile
-                    + ") due to invalid format."
-            );
+            throw new FileHandlerException(taskFromFile);
         }
 
         return task;

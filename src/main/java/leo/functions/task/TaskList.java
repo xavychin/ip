@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import leo.FileHandler;
+import leo.exceptions.FileHandlerException;
 
 /**
  * The TaskList class provides utility methods to manage list management operations
@@ -27,7 +28,7 @@ public class TaskList {
      * @throws FileNotFoundException If file is in the wrong format or cannot be accessed.
      * @throws ArrayIndexOutOfBoundsException If task details are in the incorrect format.
      */
-    public TaskList(FileHandler fileHandler) throws FileNotFoundException, ArrayIndexOutOfBoundsException {
+    public TaskList(FileHandler fileHandler) throws FileNotFoundException, FileHandlerException {
         this.fileHandler = fileHandler;
         assert fileHandler != null : "Objet to handle files is empty";
         this.listItems = fileHandler.retrieveTasksFromFile();
@@ -78,7 +79,7 @@ public class TaskList {
         assert index >= 0 && index < listItems.size() : "Index is out of bounds";
 
         this.listItems.remove(index);
-        fileHandler.deleteFromFile(this.listItems);
+        fileHandler.overwriteFile(this.listItems);
     }
 
     /**
@@ -88,8 +89,7 @@ public class TaskList {
      */
     public void markTask() throws IOException {
         assert listItems != null : "List of tasks should not be null";
-
-        fileHandler.deleteFromFile(this.listItems);
+        fileHandler.overwriteFile(this.listItems);
     }
 
     /**
@@ -99,7 +99,6 @@ public class TaskList {
      */
     public void unmarkTask() throws IOException {
         assert listItems != null : "List of tasks should not be null";
-
-        fileHandler.deleteFromFile(this.listItems);
+        fileHandler.overwriteFile(this.listItems);
     }
 }

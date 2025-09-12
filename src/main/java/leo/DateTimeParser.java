@@ -4,33 +4,33 @@ import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import leo.exceptions.DateTimeFormatException;
+
 /**
  * The DateTimeParser class formats the date and time.
  */
 public class DateTimeParser {
+    //Solution adapted from
+    // https://www.perplexity.ai/search/can-localdatetime-parse-days-o-Ub7ZJIDuRtifbzHjhcOC9Q
+    private DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+    private DateTimeFormatter fileFormat = DateTimeFormatter.ofPattern("MMM dd yyyy, HHmm");
+
     /**
      * Return a string containing the date and time formatted to an easier to read format.
      *
      * @param dateTimeToFormat The date and time to be formatted.
      * @return Readable date and time text.
-     * @throws DateTimeException If incorrect date and time format was given.
+     * @throws DateTimeFormatException If incorrect date and time format was given.
      */
-    public String formatDateTimeFromInput(String dateTimeToFormat) throws DateTimeException {
+    public String formatDateTimeFromInput(String dateTimeToFormat) throws DateTimeFormatException {
         assert dateTimeToFormat != null && !dateTimeToFormat.isEmpty()
                 : "Input dateTimeToFormat must not be null or empty";
-        try {
-            //Solution adapted from
-            // https://www.perplexity.ai/search/can-localdatetime-parse-days-o-Ub7ZJIDuRtifbzHjhcOC9Q
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
-            LocalDateTime dateTime = LocalDateTime.parse(dateTimeToFormat, formatter);
 
-            DateTimeFormatter newFormat = DateTimeFormatter.ofPattern("MMM dd yyyy, HHmm");
-            return dateTime.format(newFormat);
+        try {
+            LocalDateTime dateTime = LocalDateTime.parse(dateTimeToFormat, inputFormat);
+            return dateTime.format(fileFormat);
         } catch (DateTimeException e) {
-            throw new DateTimeException(
-                    "Incorrect date or time format for /from or /to..."
-                            + "\n\tIt should be <dd/MM/yyyy HHmm>"
-            );
+            throw new DateTimeFormatException("input");
         }
     }
 
@@ -39,24 +39,17 @@ public class DateTimeParser {
      *
      * @param dateTimeToFormat The date and time to be formatted.
      * @return Readable date and time text.
-     * @throws DateTimeException If incorrect date and time format was given.
+     * @throws DateTimeFormatException If incorrect date and time format was given.
      */
-    public String formatDateTimeFromFile(String dateTimeToFormat) throws DateTimeException {
+    public String formatDateTimeFromFile(String dateTimeToFormat) throws DateTimeFormatException {
         assert dateTimeToFormat != null && !dateTimeToFormat.isEmpty()
                 : "Input dateTimeToFormat must not be null or empty";
-        try {
-            //Solution adapted from
-            // https://www.perplexity.ai/search/can-localdatetime-parse-days-o-Ub7ZJIDuRtifbzHjhcOC9Q
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy, HHmm");
-            LocalDateTime dateTime = LocalDateTime.parse(dateTimeToFormat, formatter);
 
-            DateTimeFormatter newFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
-            return dateTime.format(newFormat);
+        try {
+            LocalDateTime dateTime = LocalDateTime.parse(dateTimeToFormat, fileFormat);
+            return dateTime.format(inputFormat);
         } catch (DateTimeException e) {
-            throw new DateTimeException(
-                    "Incorrect date or time format for /from or /to..."
-                            + "\n\tIt should be <dd/MM/yyyy HHmm>"
-            );
+            throw new DateTimeFormatException("file");
         }
     }
 }

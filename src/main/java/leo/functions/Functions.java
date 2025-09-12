@@ -1,10 +1,14 @@
 package leo.functions;
 
 import java.io.IOException;
-import java.time.DateTimeException;
 
-import leo.ZeroLengthException;
 import leo.display.Messages;
+import leo.exceptions.AddTaskException;
+import leo.exceptions.DateTimeFormatException;
+import leo.exceptions.DeleteTaskException;
+import leo.exceptions.FindCommandException;
+import leo.exceptions.MarkTaskCommandException;
+import leo.exceptions.ZeroLengthException;
 import leo.functions.commands.AddTaskCommand;
 import leo.functions.commands.DeleteTaskCommand;
 import leo.functions.commands.ListTaskCommand;
@@ -32,97 +36,25 @@ public class Functions {
      * The method calls the function based on the user input.
      *
      * @param userInput User input.
-     * @throws ZeroLengthException If the list is empty.
-     * @throws IndexOutOfBoundsException If index given is more than the list length.
-     * @throws IOException If the file storing data cannot be found.
-     * @throws DateTimeException If the date or time is given in the wrong format.
-     * @throws NumberFormatException If the input format is incorrect
-     */
-    //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
-    public void searchFunctions(String userInput)
-            throws NumberFormatException,
-            ZeroLengthException,
-            IndexOutOfBoundsException,
-            IOException,
-            DateTimeException {
-        assert userInput != null && !userInput.isEmpty() : "User input must not be null or empty";
-        String[] userInputList = userInput.split(" ");
-        switch(userInputList[0].trim()) {
-        case "list":
-            ListTaskCommand.list(listItems);
-            break;
-        case "bye":
-            Messages.goodbye();
-            break;
-        case "mark":
-            try {
-                MarkTaskCommand.markTask(Integer.parseInt(userInputList[1].trim()), listItems);
-            } catch (ArrayIndexOutOfBoundsException e) {
-                throw new ArrayIndexOutOfBoundsException("Missing list number of task to mark.");
-            } catch (NumberFormatException e) {
-                throw new NumberFormatException(
-                        "Incorrect format provided."
-                        + "\n\tMake sure it is in this format:"
-                        + "\n\t\tunmark <task index>"
-                );
-            }
-            break;
-        case "unmark":
-            try {
-                MarkTaskCommand.unmarkTask(Integer.parseInt(userInputList[1].trim()), listItems);
-            } catch (ArrayIndexOutOfBoundsException e) {
-                throw new ArrayIndexOutOfBoundsException("Missing list number of task to unmark.");
-            } catch (NumberFormatException e) {
-                throw new NumberFormatException(
-                        "Incorrect format provided."
-                        + "\n\tMake sure it is in this format:"
-                        + "\n\t\tunmark <task index>"
-                );
-            }
-            break;
-        case "todo":
-            AddTaskCommand.todo(userInput, listItems);
-            break;
-        case "deadline":
-            AddTaskCommand.deadline(userInput, listItems);
-            break;
-        case "event":
-            AddTaskCommand.event(userInput, listItems);
-            break;
-        case "delete":
-            try {
-                DeleteTaskCommand.deleteTask(Integer.parseInt(userInputList[1]), listItems);
-            } catch (ArrayIndexOutOfBoundsException e) {
-                throw new ArrayIndexOutOfBoundsException("Missing list number of task to delete.");
-            }
-            break;
-        case "find":
-            Find.find(userInput, listItems);
-            break;
-        default:
-            System.out.println("\tI don't know how to do this...");
-            break;
-        }
-    }
-
-    /**
-     * The method calls the function based on the user input.
-     *
-     * @param userInput User input.
      * @return String containing the output.
      * @throws ZeroLengthException If the list is empty.
-     * @throws IndexOutOfBoundsException If index given is more than the list length.
+     * @throws FindCommandException If index given is more than the list length.
+     * @throws MarkTaskCommandException If index given is more than the list length or the input format is incorrect.
+     * @throws DeleteTaskException If index given is more than the list length or the input format is incorrect.
+     * @throws AddTaskException If index given is more than the list length.
      * @throws IOException If the file storing data cannot be found.
-     * @throws DateTimeException If the date or time is given in the wrong format.
-     * @throws NumberFormatException If the input format is incorrect
+     * @throws DateTimeFormatException If the date or time is given in the wrong format.
      */
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
-    public String searchFunctionsReturnOutput(String userInput)
-            throws NumberFormatException,
+    public String searchFunctions(String userInput)
+            throws
             ZeroLengthException,
-            IndexOutOfBoundsException,
             IOException,
-            DateTimeException {
+            DateTimeFormatException,
+            FindCommandException,
+            MarkTaskCommandException,
+            DeleteTaskException,
+            AddTaskException {
         assert userInput != null && !userInput.isEmpty() : "User input must not be null or empty";
 
         String[] userInputList = userInput.split(" ");
@@ -130,63 +62,45 @@ public class Functions {
 
         switch(userInputList[0].trim()) {
         case "list":
-            returnString = ListTaskCommand.listReturnOutput(listItems);
+            returnString = ListTaskCommand.list(listItems);
             break;
         case "bye":
-            returnString = Messages.goodbyeReturnOutput();
+            returnString = Messages.goodbye();
             break;
         case "mark":
             try {
                 returnString =
-                        MarkTaskCommand.markTaskReturnOutput(Integer.parseInt(userInputList[1].trim()), listItems);
-            } catch (ArrayIndexOutOfBoundsException e) {
-                throw new ArrayIndexOutOfBoundsException("Missing list number of task to mark.");
+                        MarkTaskCommand.markTask(Integer.parseInt(userInputList[1].trim()), listItems);
             } catch (NumberFormatException e) {
-                throw new NumberFormatException(
-                        "Incorrect format provided."
-                                + "\n\tMake sure it is in this format:"
-                                + "\n\t\tunmark <task index>"
-                );
+                throw new MarkTaskCommandException("number", "mark");
             }
             break;
         case "unmark":
             try {
                 returnString =
-                        MarkTaskCommand.unmarkTaskReturnOutput(Integer.parseInt(userInputList[1].trim()), listItems);
-            } catch (ArrayIndexOutOfBoundsException e) {
-                throw new ArrayIndexOutOfBoundsException("Missing list number of task to unmark.");
+                        MarkTaskCommand.unmarkTask(Integer.parseInt(userInputList[1].trim()), listItems);
             } catch (NumberFormatException e) {
-                throw new NumberFormatException(
-                        "Incorrect format provided."
-                                + "\n\tMake sure it is in this format:"
-                                + "\n\t\tunmark <task index>"
-                );
+                throw new MarkTaskCommandException("number", "unmark");
             }
             break;
         case "todo":
-            returnString = AddTaskCommand.todoReturnOutput(userInput, listItems);
+            returnString = AddTaskCommand.todo(userInput, listItems);
             break;
         case "deadline":
-            returnString = AddTaskCommand.deadlineReturnOutput(userInput, listItems);
+            returnString = AddTaskCommand.deadline(userInput, listItems);
             break;
         case "event":
-            returnString = AddTaskCommand.eventReturnOutput(userInput, listItems);
+            returnString = AddTaskCommand.event(userInput, listItems);
             break;
         case "delete":
             try {
-                returnString = DeleteTaskCommand.deleteTaskReturnOutput(Integer.parseInt(userInputList[1]), listItems);
-            } catch (ArrayIndexOutOfBoundsException e) {
-                throw new ArrayIndexOutOfBoundsException("Missing list number of task to delete.");
+                returnString = DeleteTaskCommand.deleteTask(Integer.parseInt(userInputList[1]), listItems);
             } catch (NumberFormatException e) {
-                throw new NumberFormatException(
-                        "Incorrect format provided."
-                                + "\n\tMake sure it is in this format:"
-                                + "\n\t\tdelete <task index>"
-                );
+                throw new DeleteTaskException("number");
             }
             break;
         case "find":
-            returnString = Find.findReturnOutput(userInput, listItems);
+            returnString = Find.find(userInput, listItems);
             break;
         default:
             returnString = "I don't know how to do this...";

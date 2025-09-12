@@ -69,7 +69,7 @@ public class FileHandlerTest {
     }
 
     @Test
-    public void fileHandler_deleteFromFile_success() throws IOException {
+    public void fileHandler_overwriteFile_success() throws IOException {
         File tempFile = new File(testFilePath);
         ArrayList<Task> tempListItems = new ArrayList<>();
         tempListItems.add(new Task("borrow books"));
@@ -78,7 +78,7 @@ public class FileHandlerTest {
 
         FileHandler fhTemp = new FileHandler(testFilePath);
 
-        fhTemp.deleteFromFile(tempListItems);
+        fhTemp.overwriteFile(tempListItems);
 
         StringBuilder temp = new StringBuilder();
         Scanner scanner = new Scanner(tempFile);
@@ -100,7 +100,7 @@ public class FileHandlerTest {
     }
 
     @Test
-    public void fileHandler_deleteFromFileWrongFile_exceptionThrown() throws IOException {
+    public void fileHandler_overwriteFileWrongFile_exceptionThrown() throws IOException {
         ArrayList<Task> tempListItems = new ArrayList<>();
         tempListItems.add(new Task("borrow books"));
         tempListItems.add(new Task("return books"));
@@ -110,7 +110,7 @@ public class FileHandlerTest {
 
         //Solution adapted from https://www.perplexity.ai/search/how-to-assertequal-a-thrown-er-mtR92GBxS9OyDApnjrM04A#5
         Exception exception = assertThrows(IOException.class, () -> {
-            fhTemp.deleteFromFile(tempListItems);
+            fhTemp.overwriteFile(tempListItems);
         });
 
         assertEquals("Invalid file path given", exception.getMessage());
@@ -231,8 +231,7 @@ public class FileHandlerTest {
             cause = e.getCause();
         }
 
-        String error = "Failed to load the task ("
-                + ") due to invalid format.";
+        String error = "Task from file must not be null or empty";
 
         FileWriter cleanFile = new FileWriter(tempFile, false);
         cleanFile.write("");
@@ -290,8 +289,7 @@ public class FileHandlerTest {
 
         privateMethod.setAccessible(true);
 
-        String error = "Failed to load the task ("
-                + ") due to invalid format.";
+        String error = "Task from file must not be null or empty";
 
         Throwable cause = null;
         //Solution adpated from https://www.perplexity.ai/search/how-to-assert-equals-a-private-7_Vt5uKlTo6ZrIhZbrIY7A#3
