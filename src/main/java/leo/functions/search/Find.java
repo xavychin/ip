@@ -13,47 +13,10 @@ public class Find {
      *
      * @param userInput String containing the user input.
      * @param listItems List of tasks.
-     * @throws FindCommandException If the user input is in the wrong format.
-     */
-    public static void find(String userInput, TaskList listItems) throws FindCommandException {
-        String[] userInputList = userInput.split("find");
-        if (userInputList.length < 2) {
-            throw new FindCommandException();
-        }
-
-        String keyword = userInputList[1].trim();
-        if (keyword.isEmpty()) {
-            throw new FindCommandException();
-        }
-
-        int outputListIndex = 1;
-        for (int i = 0; i < listItems.getSize(); i++) {
-            String taskInfo = listItems.getItemAtIndex(i).toString();
-            if (taskInfo.contains(keyword)) {
-                System.out.println(
-                        "\t"
-                        + outputListIndex
-                        + ". "
-                        + taskInfo
-                );
-                outputListIndex++;
-            }
-        }
-
-        if (outputListIndex == 1) {
-            System.out.println("\tNo related task in the list.");
-        }
-    }
-
-    /**
-     * Searches for the tasks that contain the specified keyword.
-     *
-     * @param userInput String containing the user input.
-     * @param listItems List of tasks.
      * @return String containing the output.
      * @throws FindCommandException If the user input is in the wrong format.
      */
-    public static String findReturnOutput(String userInput, TaskList listItems) throws FindCommandException {
+    public static String find(String userInput, TaskList listItems) throws FindCommandException {
         StringBuilder returnString = new StringBuilder();
         String[] userInputList = userInput.split("find");
 

@@ -1,5 +1,7 @@
 package leo.display;
 
+import java.io.IOException;
+
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -39,9 +41,9 @@ public class MainWindow extends AnchorPane {
     }
 
     /** Injects the Leo instance */
-    public void setLeo(Leo leo) {
+    public void setLeo(Leo leo) throws IOException {
         this.leo = leo;
-        leoGreetings(Messages.greetingsReturnOutput());
+        leoGreetings(Messages.greetings());
     }
 
     /**

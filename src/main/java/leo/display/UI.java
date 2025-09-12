@@ -3,7 +3,12 @@ package leo.display;
 import java.io.IOException;
 import java.util.Scanner;
 
-import leo.exceptions.*;
+import leo.exceptions.AddTaskException;
+import leo.exceptions.DateTimeFormatException;
+import leo.exceptions.DeleteTaskException;
+import leo.exceptions.FindCommandException;
+import leo.exceptions.MarkTaskCommandException;
+import leo.exceptions.ZeroLengthException;
 import leo.functions.Functions;
 
 /**
@@ -62,7 +67,7 @@ public class UI {
         String returnString = "";
 
         try {
-            returnString = func.searchFunctionsReturnOutput(userInput);
+            returnString = func.searchFunctions(userInput);
         } catch (ZeroLengthException
                  | FindCommandException
                  | MarkTaskCommandException

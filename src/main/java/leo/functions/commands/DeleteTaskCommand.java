@@ -16,31 +16,11 @@ public class DeleteTaskCommand implements Command {
      *
      * @param indexToDel Index of task to be deleted.
      * @param listItems List of tasks.
-     * @throws DeleteTaskException If index given is more than the list length.
-     * @throws IOException If the file storing data cannot be found.
-     */
-    public static void deleteTask(int indexToDel, TaskList listItems) throws DeleteTaskException, IOException {
-        try {
-            Task taskToDel = listItems.getItemAtIndex(indexToDel - 1);
-            listItems.deleteItemAtIndex(indexToDel - 1);
-            System.out.println("Understood, I've removed the task:");
-            System.out.println("\t" + taskToDel.toString());
-            Messages.taskCount(listItems.getSize());
-        } catch (IndexOutOfBoundsException e) {
-            throw new DeleteTaskException("index");
-        }
-    }
-
-    /**
-     * Deletes a task from the list.
-     *
-     * @param indexToDel Index of task to be deleted.
-     * @param listItems List of tasks.
      * @return Formatted string of output.
      * @throws DeleteTaskException If index given is more than the list length.
      * @throws IOException If the file storing data cannot be found.
      */
-    public static String deleteTaskReturnOutput(int indexToDel, TaskList listItems)
+    public static String deleteTask(int indexToDel, TaskList listItems)
             throws DeleteTaskException, IOException {
         try {
             Task taskToDel = listItems.getItemAtIndex(indexToDel - 1);
@@ -50,7 +30,7 @@ public class DeleteTaskCommand implements Command {
                     + "\n\t"
                     + taskToDel.toString()
                     + "\n\t"
-                    + Messages.taskCountReturnOutput(listItems.getSize()));
+                    + Messages.taskCount(listItems.getSize()));
         } catch (IndexOutOfBoundsException e) {
             throw new DeleteTaskException("index");
         }

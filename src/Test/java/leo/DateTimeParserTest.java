@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import leo.exceptions.DateTimeFormatException;
 
-import java.time.DateTimeException;
-
 public class DateTimeParserTest {
     private DateTimeParser dateTimeParser = new DateTimeParser();
 
