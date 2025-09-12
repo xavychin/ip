@@ -12,7 +12,7 @@ public class DateTimeFormatException extends RuntimeException {
             "Incorrect date or time format stored in the file...";
 
     /**
-     * Instantiates a DateTimeFormatException with the location of the date and time.
+     * Instantiates a DateTimeFormatException with the location that provided the date and time.
      *
      * @param location The method which the date and time data is obtained.
      */

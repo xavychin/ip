@@ -3,7 +3,7 @@ package leo.exceptions;
 /**
  * The AddTaskException class provides a custom exceptions for the add command.
  */
-public class AddTaskException extends RuntimeException {
+public class AddTaskException extends IndexOutOfBoundsException {
     private static final String TODO_TASK_ARRAY_EXCEPTION =
             "The description of the task is missing!"
                     + "\n\tMake sure it is in this format:"
