@@ -1,4 +1,4 @@
-package leo;
+package leo.exceptions;
 
 /**
  * The ZeroLengthException class provides a custom exception
@@ -6,16 +6,10 @@ package leo;
  */
 //Solution adapted from https://www.perplexity.ai/search/how-to-create-a-custom-excepti-Y_RyDVATSjKGxzSDx1HUeg
 public class ZeroLengthException extends Exception {
-    public ZeroLengthException() {
-        super();
-    }
-
     /**
      * Instantiate a ZeroLengthException with a custom error message.
-     *
-     * @param errorMessage Custom error message.
      */
-    public ZeroLengthException(String errorMessage) {
-        super(errorMessage);
+    public ZeroLengthException() {
+        super("The list is empty.");
     }
 }

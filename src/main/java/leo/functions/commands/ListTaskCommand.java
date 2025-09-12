@@ -1,6 +1,6 @@
 package leo.functions.commands;
 
-import leo.ZeroLengthException;
+import leo.exceptions.ZeroLengthException;
 import leo.functions.task.TaskList;
 
 /**
@@ -17,7 +17,7 @@ public class ListTaskCommand implements Command {
     public static void list(TaskList listItems) throws ZeroLengthException {
         int listItemsLength = listItems.getSize();
         if (listItemsLength == 0) {
-            throw new ZeroLengthException("The list is empty.");
+            throw new ZeroLengthException();
         } else {
             System.out.println("Here are the tasks in your list:");
             for (int i = 0; i < listItemsLength; i++) {
@@ -44,7 +44,7 @@ public class ListTaskCommand implements Command {
         int listItemsLength = listItems.getSize();
 
         if (listItemsLength == 0) {
-            throw new ZeroLengthException("The list is empty.");
+            throw new ZeroLengthException();
         } else {
             sb.append("Here are the tasks in your list:");
 
