@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Test;
 
 import leo.FileHandler;
 import leo.exceptions.AddTaskException;
-import leo.exceptions.MarkTaskCommandException;
 import leo.exceptions.ZeroLengthException;
 import leo.functions.task.Deadline;
 import leo.functions.task.Event;
