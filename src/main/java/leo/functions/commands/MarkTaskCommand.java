@@ -19,6 +19,9 @@ public class MarkTaskCommand implements Command {
      */
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
     public static void markTask(int index, TaskList listItems) throws IndexOutOfBoundsException, IOException {
+        assert index > 0 : "Index must be greater than zero";
+        assert listItems != null : "TaskList must not be null";
+
         try {
             Task task = listItems.getItemAtIndex(index - 1);
             task.markTask();
@@ -42,6 +45,9 @@ public class MarkTaskCommand implements Command {
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
     public static String markTaskReturnOutput(int index, TaskList listItems)
             throws IndexOutOfBoundsException, IOException {
+        assert index > 0 : "Index must be greater than zero";
+        assert listItems != null : "TaskList must not be null";
+
         try {
             Task task = listItems.getItemAtIndex(index - 1);
             task.markTask();
@@ -65,6 +71,9 @@ public class MarkTaskCommand implements Command {
      */
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
     public static void unmarkTask(int index, TaskList listItems) throws IndexOutOfBoundsException, IOException {
+        assert index > 0 : "Index must be greater than zero";
+        assert listItems != null : "TaskList must not be null";
+
         try {
             Task task = listItems.getItemAtIndex(index - 1);
             task.unmarkTask();
@@ -88,6 +97,9 @@ public class MarkTaskCommand implements Command {
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
     public static String unmarkTaskReturnOutput(int index, TaskList listItems)
             throws IndexOutOfBoundsException, IOException {
+        assert index > 0 : "Index must be greater than zero";
+        assert listItems != null : "TaskList must not be null";
+
         try {
             Task task = listItems.getItemAtIndex(index - 1);
             task.unmarkTask();

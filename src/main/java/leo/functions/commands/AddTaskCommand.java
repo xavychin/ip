@@ -23,6 +23,9 @@ public class AddTaskCommand implements Command {
      */
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
     public static void todo(String userInput, TaskList listItems) throws ArrayIndexOutOfBoundsException, IOException {
+        assert userInput != null && !userInput.isEmpty() : "User input must not be null or empty";
+        assert listItems != null : "TaskList must not be null";
+
         String[] userInputList = userInput.split("todo");
         if (userInputList.length < 2) {
             throw new ArrayIndexOutOfBoundsException(
@@ -53,6 +56,9 @@ public class AddTaskCommand implements Command {
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
     public static String todoReturnOutput(String userInput, TaskList listItems)
             throws ArrayIndexOutOfBoundsException, IOException {
+        assert userInput != null && !userInput.isEmpty() : "User input must not be null or empty";
+        assert listItems != null : "TaskList must not be null";
+
         String[] userInputList = userInput.split("todo");
         if (userInputList.length < 2) {
             throw new ArrayIndexOutOfBoundsException(
@@ -84,6 +90,9 @@ public class AddTaskCommand implements Command {
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
     public static void deadline(String userInput, TaskList listItems)
             throws ArrayIndexOutOfBoundsException, IOException, DateTimeException {
+        assert userInput != null && !userInput.isEmpty() : "User input must not be null or empty";
+        assert listItems != null : "TaskList must not be null";
+
         String[] userInputList = userInput.split("deadline | /by");
         if (userInputList.length < 3) {
             throw new ArrayIndexOutOfBoundsException(
@@ -116,6 +125,9 @@ public class AddTaskCommand implements Command {
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
     public static String deadlineReturnOutput(String userInput, TaskList listItems)
             throws ArrayIndexOutOfBoundsException, IOException, DateTimeException {
+        assert userInput != null && !userInput.isEmpty() : "User input must not be null or empty";
+        assert listItems != null : "TaskList must not be null";
+
         String[] userInputList = userInput.split("deadline | /by");
         if (userInputList.length < 3) {
             throw new ArrayIndexOutOfBoundsException(
@@ -148,6 +160,9 @@ public class AddTaskCommand implements Command {
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
     public static void event(String userInput, TaskList listItems)
             throws ArrayIndexOutOfBoundsException, IOException, DateTimeException {
+        assert userInput != null && !userInput.isEmpty() : "User input must not be null or empty";
+        assert listItems != null : "TaskList must not be null";
+
         String[] userInputList = userInput.split("event | /from | /to");
         if (userInputList.length < 4) {
             throw new ArrayIndexOutOfBoundsException(
@@ -181,6 +196,9 @@ public class AddTaskCommand implements Command {
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
     public static String eventReturnOutput(String userInput, TaskList listItems)
             throws ArrayIndexOutOfBoundsException, IOException, DateTimeException {
+        assert userInput != null && !userInput.isEmpty() : "User input must not be null or empty";
+        assert listItems != null : "TaskList must not be null";
+
         String[] userInputList = userInput.split("event | /from | /to");
         if (userInputList.length < 4) {
             throw new ArrayIndexOutOfBoundsException(

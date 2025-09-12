@@ -16,6 +16,8 @@ public class DateTimeParser {
      * @throws DateTimeException If incorrect date and time format was given.
      */
     public String formatDateTimeFromInput(String dateTimeToFormat) throws DateTimeException {
+        assert dateTimeToFormat != null && !dateTimeToFormat.isEmpty()
+                : "Input dateTimeToFormat must not be null or empty";
         try {
             //Solution adapted from
             // https://www.perplexity.ai/search/can-localdatetime-parse-days-o-Ub7ZJIDuRtifbzHjhcOC9Q
@@ -40,6 +42,8 @@ public class DateTimeParser {
      * @throws DateTimeException If incorrect date and time format was given.
      */
     public String formatDateTimeFromFile(String dateTimeToFormat) throws DateTimeException {
+        assert dateTimeToFormat != null && !dateTimeToFormat.isEmpty()
+                : "Input dateTimeToFormat must not be null or empty";
         try {
             //Solution adapted from
             // https://www.perplexity.ai/search/can-localdatetime-parse-days-o-Ub7ZJIDuRtifbzHjhcOC9Q

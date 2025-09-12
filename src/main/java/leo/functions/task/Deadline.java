@@ -17,6 +17,9 @@ public class Deadline extends Task {
     public Deadline(String description, String deadline) {
         super(description);
 
+        assert description != null && !description.isEmpty() : "Description must not be null or empty";
+        assert deadline != null && !deadline.isEmpty() : "Deadline must not be null or empty";
+
         DateTimeParser dateTimeParser = new DateTimeParser();
         this.deadline = dateTimeParser.formatDateTimeFromInput(deadline);
     }
@@ -28,6 +31,9 @@ public class Deadline extends Task {
      */
     @Override
     public String appendToFile() {
+        assert description != null && !description.isEmpty() : "Description must not be null or empty";
+        assert deadline != null && !deadline.isEmpty() : "Deadline must not be null or empty";
+
         return String.format(
                 "Deadline | "
                 + this.getStatusIcon()
@@ -45,6 +51,9 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
+        assert description != null && !description.isEmpty() : "Description must not be null or empty";
+        assert deadline != null && !deadline.isEmpty() : "Deadline must not be null or empty";
+
         return String.format(
                 "[D]["
                 + this.getStatusIcon()

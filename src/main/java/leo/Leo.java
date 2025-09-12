@@ -24,12 +24,18 @@ public class Leo {
      *      due to input errors.
      */
     public Leo(String filePath) throws IOException {
+        assert filePath != null && !filePath.isEmpty() : "File path must not be null or empty";
+
         this.ui = new UI();
         this.fileHandler = new FileHandler(filePath);
+
+        assert this.fileHandler != null : "FileHandler must be initialized";
 
         try {
             Messages.greetings();
             this.tasks = new TaskList(fileHandler.loadFile());
+
+            assert this.tasks != null : "TaskList must be initialized";
         } catch (IOException e) {
             throw new IOException("File not found and failed to create.");
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -43,7 +49,11 @@ public class Leo {
      * Starts Leo to prompt user for input.
      */
     public void run() {
+        assert this.tasks != null : "TaskList must be initialized before running";
+
         this.functions = new Functions(this.tasks);
+        assert this.functions != null : "Functions must be initialized";
+
         this.ui.getUserInput(this.functions);
     }
 
@@ -54,6 +64,11 @@ public class Leo {
      * @return String containing the response from the chatbot.
      */
     public String getResponse(String userInput) {
+        assert userInput != null : "User input must not be null";
+
+        if (userInput.isEmpty()) {
+            return "Please enter a command for me to carry out.";
+        }
         this.functions = new Functions(this.tasks);
         return this.ui.getLeoResponse(this.functions, userInput);
     }

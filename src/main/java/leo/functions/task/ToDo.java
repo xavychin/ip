@@ -11,6 +11,8 @@ public class ToDo extends Task {
      */
     public ToDo(String description) {
         super(description);
+
+        assert description != null && !description.isEmpty() : "Description must not be null or empty";
     }
 
     /**
@@ -20,6 +22,7 @@ public class ToDo extends Task {
      */
     @Override
     public String appendToFile() {
+        assert this.description != null && !this.description.isEmpty() : "Description must not be null or empty";
         return String.format(
                 "ToDo | "
                 + this.getStatusIcon()
@@ -34,6 +37,7 @@ public class ToDo extends Task {
      */
     @Override
     public String toString() {
+        assert this.description != null && !this.description.isEmpty() : "Description must not be null or empty";
         return String.format(
                 "[T]["
                 + this.getStatusIcon()
