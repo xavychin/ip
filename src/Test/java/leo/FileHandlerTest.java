@@ -66,7 +66,7 @@ public class FileHandlerTest {
         Exception exception = assertThrows(IOException.class, () -> {
             fhTemp.appendToFile("Hello World!");
         });
-        assertEquals("Invalid file path given", exception.getMessage());
+        assertEquals("Invalid file path given.", exception.getMessage());
     }
 
     @Test
@@ -114,7 +114,7 @@ public class FileHandlerTest {
             fhTemp.overwriteFile(tempListItems);
         });
 
-        assertEquals("Invalid file path given", exception.getMessage());
+        assertEquals("Invalid file path given.", exception.getMessage());
     }
 
     @Test
@@ -344,6 +344,6 @@ public class FileHandlerTest {
         Exception exception = assertThrows(IOException.class, () -> {
             fhTemp.retrieveTasksFromFile();
         });
-        assertEquals("Invalid file path given", exception.getMessage());
+        assertEquals("Invalid file path given.", exception.getMessage());
     }
 }

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import leo.exceptions.FileHandlerException;
+import leo.exceptions.InputException;
 import leo.functions.task.Deadline;
 import leo.functions.task.Event;
 import leo.functions.task.Task;
@@ -38,9 +39,9 @@ public class FileHandler {
      * Loads the file used to carry out file operations.
      *
      * @return The FileHandler object.
-     * @throws IOException If file fails to create due to input errors.
+     * @throws InputException If file fails to create due to input errors.
      */
-    public FileHandler loadFile() throws IOException {
+    public FileHandler loadFile() throws InputException {
         //Solution adapted from https://www.perplexity.ai/search/jar-file-not-working-BkZmiAErSv6Q80JHsA1TMw#16
         File parentDirectory = file.getParentFile();
         boolean createDirectory = false;
@@ -51,7 +52,12 @@ public class FileHandler {
             createDirectory = true;
         }
         if (!this.file.exists()) {
-            createFile = this.file.createNewFile();
+            try {
+                createFile = this.file.createNewFile();
+            } catch (IOException e) {
+                throw new InputException("create");
+            }
+
         } else {
             createFile = true;
         }
@@ -66,9 +72,9 @@ public class FileHandler {
      * Writes data to the file.
      *
      * @param textToAdd Text to be written to the file.
-     * @throws IOException If file is in the wrong format or cannot be accessed.
+     * @throws InputException If file is in the wrong format or cannot be accessed.
      */
-    public void appendToFile(String textToAdd) throws IOException {
+    public void appendToFile(String textToAdd) throws InputException {
         assert textToAdd != null : "Text to add must not be null";
 
         try {
@@ -84,7 +90,7 @@ public class FileHandler {
 
             writer.close();
         } catch (IOException e) {
-            throw new IOException("Invalid file path given");
+            throw new InputException("path");
         }
     }
 
@@ -92,10 +98,10 @@ public class FileHandler {
      * Overwrite data in the file with an updated list of tasks.
      *
      * @param listItems Remaining list of tasks after update.
-     * @throws IOException If file is in the wrong format or cannot be accessed.
+     * @throws InputException If file is in the wrong format or cannot be accessed.
      */
     //Solution adapted from https://www.perplexity.ai/search/delete-text-from-file-in-java-8_mCJnSyQZmnkscaHNiuUw
-    public void overwriteFile(ArrayList<Task> listItems) throws IOException {
+    public void overwriteFile(ArrayList<Task> listItems) throws InputException {
         assert listItems != null : "List of tasks must not be null";
 
         try {
@@ -110,7 +116,7 @@ public class FileHandler {
             }
             writer.close();
         } catch (IOException e) {
-            throw new IOException("Invalid file path given");
+            throw new InputException("path");
         }
     }
 
@@ -118,10 +124,10 @@ public class FileHandler {
      * Retrieves and returns the list of tasks from the file.
      *
      * @return List of tasks.
-     * @throws FileNotFoundException If file is in the wrong format or cannot be accessed.
+     * @throws InputException If file is in the wrong format or cannot be accessed.
      * @throws FileHandlerException If task details are in the incorrect format.
      */
-    public ArrayList<Task> retrieveTasksFromFile() throws FileNotFoundException, FileHandlerException {
+    public ArrayList<Task> retrieveTasksFromFile() throws InputException, FileHandlerException {
         ArrayList<Task> listItems = new ArrayList<>();
         assert this.file != null : "File must not be null";
         try {
@@ -140,7 +146,7 @@ public class FileHandler {
 
             scanner.close();
         } catch (FileNotFoundException e) {
-            throw new FileNotFoundException("Invalid file path given");
+            throw new InputException("path");
         }
 
         return listItems;

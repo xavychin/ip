@@ -1,7 +1,5 @@
 package leo.display;
 
-import java.io.IOException;
-
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -13,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import leo.Leo;
+import leo.exceptions.InputException;
 
 /**
  * Controller for the main GUI.
@@ -41,7 +40,7 @@ public class MainWindow extends AnchorPane {
     }
 
     /** Injects the Leo instance */
-    public void setLeo(Leo leo) throws IOException {
+    public void setLeo(Leo leo) {
         assert leo != null : "Leo instance must not be null";
         this.leo = leo;
     }
@@ -51,7 +50,7 @@ public class MainWindow extends AnchorPane {
      * the dialog container. Clears the user input after processing.
      */
     @FXML
-    private void handleUserInput() throws InterruptedException {
+    private void handleUserInput() throws InputException {
         assert userInput.getText() != null : "User input text must not be null";
         assert leo != null : "Leo instance must be initialized";
 
@@ -77,7 +76,7 @@ public class MainWindow extends AnchorPane {
      * @param msg The message displayed to the user.
      */
     @FXML
-    public void leoMessage(String msg) {
+    public void leoMessage(String msg) throws InputException {
         assert msg != null : "Message must not be null";
         dialogContainer.getChildren().addAll(
                 DialogBox.getLeoDialog(msg, leoImage)

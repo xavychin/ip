@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import leo.exceptions.InputException;
 
 /**
  * Represents a dialog box consisting of an ImageView to represent the speaker's face
@@ -30,7 +31,7 @@ public class DialogBox extends HBox {
      * @param text Text to be displayed.
      * @param img Image of the speaker.
      */
-    private DialogBox(String text, Image img) {
+    private DialogBox(String text, Image img) throws InputException {
         assert text != null : "Text must not be null";
         assert img != null : "Image must not be null";
 
@@ -40,7 +41,7 @@ public class DialogBox extends HBox {
             fxmlLoader.setRoot(this);
             fxmlLoader.load();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new InputException("load");
         }
 
         dialog.setText(text);
@@ -64,7 +65,7 @@ public class DialogBox extends HBox {
      * @param img Image of the speaker.
      * @return The DialogBox object containing information to be displayed on the GUI.
      */
-    public static DialogBox getUserDialog(String text, Image img) {
+    public static DialogBox getUserDialog(String text, Image img) throws InputException {
         return new DialogBox(text, img);
     }
 
@@ -75,7 +76,7 @@ public class DialogBox extends HBox {
      * @param img Image of the speaker.
      * @return The DialogBox object containing information to be displayed on the GUI.
      */
-    public static DialogBox getLeoDialog(String text, Image img) {
+    public static DialogBox getLeoDialog(String text, Image img) throws InputException {
         var db = new DialogBox(text, img);
         db.flip();
         return db;

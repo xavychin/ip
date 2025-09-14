@@ -1,10 +1,9 @@
 package leo.functions.commands;
 
-import java.io.IOException;
-
 import leo.display.Messages;
 import leo.exceptions.AddTaskException;
 import leo.exceptions.DateTimeFormatException;
+import leo.exceptions.InputException;
 import leo.functions.task.Deadline;
 import leo.functions.task.Event;
 import leo.functions.task.TaskList;
@@ -21,11 +20,11 @@ public class AddTaskCommand implements Command {
      * @param listItems List of tasks.
      * @return Formatted string of the output.
      * @throws AddTaskException If the user input is in the wrong format.
-     * @throws IOException If the file storing data cannot be found.
+     * @throws InputException If the file storing data cannot be found.
      */
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
     public static String todo(String userInput, TaskList listItems)
-            throws AddTaskException, IOException {
+            throws AddTaskException, InputException {
         assert userInput != null && !userInput.isEmpty() : "User input must not be null or empty";
         assert listItems != null : "TaskList must not be null";
 
@@ -51,12 +50,12 @@ public class AddTaskCommand implements Command {
      * @param listItems List of tasks.
      * @return Formatted string of the output.
      * @throws AddTaskException If the user input is in the wrong format.
-     * @throws IOException If the file storing data cannot be found.
+     * @throws InputException If the file storing data cannot be found.
      * @throws DateTimeFormatException If the date or time is given in the wrong format.
      */
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
     public static String deadline(String userInput, TaskList listItems)
-            throws AddTaskException, IOException, DateTimeFormatException {
+            throws AddTaskException, InputException, DateTimeFormatException {
         assert userInput != null && !userInput.isEmpty() : "User input must not be null or empty";
         assert listItems != null : "TaskList must not be null";
         String[] userInputList = userInput.split("deadline | /by");
@@ -82,12 +81,12 @@ public class AddTaskCommand implements Command {
      * @param listItems List of tasks.
      * @return Formatted string of the output.
      * @throws AddTaskException If the user input is in the wrong format.
-     * @throws IOException If the file storing data cannot be found.
+     * @throws InputException If the file storing data cannot be found.
      * @throws DateTimeFormatException If the date or time is given in the wrong format.
      */
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
     public static String event(String userInput, TaskList listItems)
-            throws AddTaskException, IOException, DateTimeFormatException {
+            throws AddTaskException, InputException, DateTimeFormatException {
         assert userInput != null && !userInput.isEmpty() : "User input must not be null or empty";
         assert listItems != null : "TaskList must not be null";
 

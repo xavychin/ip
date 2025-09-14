@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import leo.display.MainWindow;
+import leo.exceptions.InputException;
 
 /**
  * The Main class extends the Application class in JavaFX.
@@ -23,7 +24,7 @@ public class Main extends Application {
      * @param stage Window where the GUI will be displayed in.
      */
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage) throws InputException {
         assert stage != null : "Stage parameter must not be null";
 
         try {
@@ -40,7 +41,7 @@ public class Main extends Application {
             controller.setLeo(leo);
             stage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new InputException("path");
         }
     }
 }

@@ -1,10 +1,9 @@
 package leo.functions.task;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import leo.exceptions.FileHandlerException;
+import leo.exceptions.InputException;
 import leo.util.FileHandler;
 
 /**
@@ -25,10 +24,10 @@ public class TaskList {
      * Instantiates a TaskList.
      *
      * @param fileHandler FileHandler to facilitate file operations.
-     * @throws FileNotFoundException If file is in the wrong format or cannot be accessed.
+     * @throws InputException If file is in the wrong format or cannot be accessed.
      * @throws ArrayIndexOutOfBoundsException If task details are in the incorrect format.
      */
-    public TaskList(FileHandler fileHandler) throws FileNotFoundException, FileHandlerException {
+    public TaskList(FileHandler fileHandler) throws InputException, FileHandlerException {
         this.fileHandler = fileHandler;
         assert fileHandler != null : "Objet to handle files is empty";
         this.listItems = fileHandler.retrieveTasksFromFile();
@@ -39,9 +38,9 @@ public class TaskList {
      * Adds a task to the list and the file.
      *
      * @param task Task to be added to the list and the file.
-     * @throws IOException If file is in the wrong format or cannot be accessed.
+     * @throws InputException If file is in the wrong format or cannot be accessed.
      */
-    public void addTask(Task task) throws IOException {
+    public void addTask(Task task) throws InputException {
         assert task != null : "Task to add must not be null";
 
         fileHandler.appendToFile(task.appendToFile());
@@ -82,9 +81,9 @@ public class TaskList {
      * Deletes the task at the specified index.
      *
      * @param index Index of the specified task.
-     * @throws IOException If file is in the wrong format or cannot be accessed.
+     * @throws InputException If file is in the wrong format or cannot be accessed.
      */
-    public void deleteItemAtIndex(int index) throws IOException {
+    public void deleteItemAtIndex(int index) throws InputException {
         assert index >= 0 && index < listItems.size() : "Index is out of bounds";
 
         this.listItems.remove(index);
@@ -94,9 +93,9 @@ public class TaskList {
     /**
      * Marks the task as completed.
      *
-     * @throws IOException If file is in the wrong format or cannot be accessed.
+     * @throws InputException If file is in the wrong format or cannot be accessed.
      */
-    public void markTask() throws IOException {
+    public void markTask() throws InputException {
         assert listItems != null : "List of tasks should not be null";
         fileHandler.overwriteFile(this.listItems);
     }
@@ -104,9 +103,9 @@ public class TaskList {
     /**
      * Marks the task as not completed.
      *
-     * @throws IOException If file is in the wrong format or cannot be accessed.
+     * @throws InputException If file is in the wrong format or cannot be accessed.
      */
-    public void unmarkTask() throws IOException {
+    public void unmarkTask() throws InputException {
         assert listItems != null : "List of tasks should not be null";
         fileHandler.overwriteFile(this.listItems);
     }

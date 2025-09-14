@@ -1,6 +1,6 @@
 package leo.display;
 
-import java.io.IOException;
+import leo.exceptions.InputException;
 
 /**
  * The Messages class contains generic messages to be used across the application.
@@ -18,7 +18,7 @@ public class Messages {
      *
      * @return The initial message to prompt for user input.
      */
-    public static String greetings() throws IOException {
+    public static String greetings() throws InputException {
         String greeting = "Hello! I'm "
                 + name
                 + "\n"
@@ -32,7 +32,7 @@ public class Messages {
      *
      * @return The final message.
      */
-    public static String goodbye() throws IOException {
+    public static String goodbye() {
         String goodbyeMessage = "\tBye. Hope to see you again soon!";
         System.out.println(goodbyeMessage);
         return goodbyeMessage;

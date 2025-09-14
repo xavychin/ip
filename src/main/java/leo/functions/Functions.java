@@ -1,12 +1,11 @@
 package leo.functions;
 
-import java.io.IOException;
-
 import leo.display.Messages;
 import leo.exceptions.AddTaskException;
 import leo.exceptions.DateTimeFormatException;
 import leo.exceptions.DeleteTaskException;
 import leo.exceptions.FindCommandException;
+import leo.exceptions.InputException;
 import leo.exceptions.MarkTaskCommandException;
 import leo.exceptions.ZeroLengthException;
 import leo.functions.commands.AddTaskCommand;
@@ -43,14 +42,14 @@ public class Functions {
      * @throws MarkTaskCommandException If index given is more than the list length or the input format is incorrect.
      * @throws DeleteTaskException If index given is more than the list length or the input format is incorrect.
      * @throws AddTaskException If index given is more than the list length.
-     * @throws IOException If the file storing data cannot be found.
+     * @throws InputException If the file storing data cannot be found.
      * @throws DateTimeFormatException If the date or time is given in the wrong format.
      */
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
     public String searchFunctions(String userInput)
             throws
             ZeroLengthException,
-            IOException,
+            InputException,
             DateTimeFormatException,
             FindCommandException,
             MarkTaskCommandException,

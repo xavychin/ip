@@ -1,12 +1,12 @@
 package leo.display;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 import leo.exceptions.AddTaskException;
 import leo.exceptions.DateTimeFormatException;
 import leo.exceptions.DeleteTaskException;
 import leo.exceptions.FindCommandException;
+import leo.exceptions.InputException;
 import leo.exceptions.MarkTaskCommandException;
 import leo.exceptions.ZeroLengthException;
 import leo.functions.Functions;
@@ -42,7 +42,7 @@ public class UI {
                      | MarkTaskCommandException
                      | DeleteTaskException
                      | AddTaskException
-                     | IOException
+                     | InputException
                      | DateTimeFormatException
                     e) {
                 System.out.println(
@@ -77,7 +77,7 @@ public class UI {
                  | MarkTaskCommandException
                  | DeleteTaskException
                  | AddTaskException
-                 | IOException
+                 | InputException
                  | DateTimeFormatException
                 e) {
             return e.getMessage();

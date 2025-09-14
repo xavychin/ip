@@ -1,9 +1,8 @@
 package leo.functions.commands;
 
-import java.io.IOException;
-
 import leo.display.Messages;
 import leo.exceptions.DeleteTaskException;
+import leo.exceptions.InputException;
 import leo.functions.task.Task;
 import leo.functions.task.TaskList;
 
@@ -18,10 +17,10 @@ public class DeleteTaskCommand implements Command {
      * @param listItems List of tasks.
      * @return Formatted string of output.
      * @throws DeleteTaskException If index given is more than the list length.
-     * @throws IOException If the file storing data cannot be found.
+     * @throws InputException If the file storing data cannot be found.
      */
     public static String deleteTask(int indexToDel, TaskList listItems)
-            throws DeleteTaskException, IOException {
+            throws DeleteTaskException, InputException {
         assert indexToDel > 0 : "Index to delete must be greater than zero";
         assert listItems != null : "TaskList must not be null";
 

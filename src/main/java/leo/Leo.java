@@ -5,6 +5,7 @@ import java.io.IOException;
 import leo.display.MainWindow;
 import leo.display.Messages;
 import leo.display.UI;
+import leo.exceptions.InputException;
 import leo.functions.Functions;
 import leo.functions.commands.ReminderCommand;
 import leo.functions.task.TaskList;
@@ -24,10 +25,10 @@ public class Leo {
      * Instantiates the chatbot Leo.
      *
      * @param filePath The file path where the data will be stored.
-     * @throws IOException If file path is incorrect and a new file cannot be created
+     * @throws InputException If file path is incorrect and a new file cannot be created
      *      due to input errors.
      */
-    public Leo(String filePath, MainWindow controller) throws IOException {
+    public Leo(String filePath, MainWindow controller) throws InputException {
         assert filePath != null && !filePath.isEmpty() : "File path must not be null or empty";
         this.ui = new UI();
         this.controller = controller;
@@ -43,11 +44,7 @@ public class Leo {
             controller.leoMessage(ReminderCommand.remindCommand("", this.tasks));
 
         } catch (IOException e) {
-            throw new IOException("File not found and failed to create.");
-        } catch (ArrayIndexOutOfBoundsException e) {
-            Messages.messageBreak();
-            System.out.println(e.getMessage());
-            Messages.messageBreak();
+            throw new InputException("create");
         }
     }
 
@@ -83,9 +80,9 @@ public class Leo {
      * The main entry point for the chatbot application.
      *
      * @param args Command line input
-     * @throws IOException If file fails to load
+     * @throws InputException If file fails to load
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws InputException {
         new Leo("data/Leo.txt", null).run();
     }
 }
