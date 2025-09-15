@@ -57,7 +57,8 @@ public class Functions {
             AddTaskException {
         assert userInput != null && !userInput.isEmpty() : "User input must not be null or empty";
 
-        String[] userInputList = userInput.split(" ");
+        //Solution adapted from https://www.perplexity.ai/search/delete-leading-whitespace-java-ffS3wQ_dRtO.DioPVlTSyg#1
+        String[] userInputList = userInput.trim().split("\\s+");
         String returnString = "";
 
         switch(userInputList[0].trim().toLowerCase()) {

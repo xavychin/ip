@@ -78,7 +78,7 @@ public class CommandTest {
             File tempFile = new File(testFilePath);
             FileHandler fhTemp = new FileHandler(testFilePath);
             TaskList taskList = new TaskList(fhTemp);
-            AddTaskCommand.deadline("deadline return book /by 12/01/2025 2000", taskList);
+            AddTaskCommand.deadline("deadline return book /by 12/01/2026 2000", taskList);
 
             Scanner scanner = new Scanner(tempFile);
             String task = scanner.nextLine();
@@ -88,7 +88,7 @@ public class CommandTest {
             cleanFile.write("");
             cleanFile.close();
 
-            assertEquals("Deadline |   | return book | Jan 12 2025, 2000", task);
+            assertEquals("Deadline |   | return book | Jan 12 2026, 2000", task);
         } catch (IOException e) {
             System.out.println("Testing failed");
         }
@@ -127,7 +127,7 @@ public class CommandTest {
             File tempFile = new File(testFilePath);
             FileHandler fhTemp = new FileHandler(testFilePath);
             TaskList taskList = new TaskList(fhTemp);
-            AddTaskCommand.event("event project meeting /from 02/03/2024 1000 /to 02/03/2024 1030", taskList);
+            AddTaskCommand.event("event project meeting /from 02/03/2026 1000 /to 02/03/2026 1030", taskList);
 
             Scanner scanner = new Scanner(tempFile);
             String task = scanner.nextLine();
@@ -137,7 +137,7 @@ public class CommandTest {
             cleanFile.write("");
             cleanFile.close();
 
-            assertEquals("Event |   | project meeting | Mar 02 2024, 1000-Mar 02 2024, 1030", task);
+            assertEquals("Event |   | project meeting | Mar 02 2026, 1000-Mar 02 2026, 1030", task);
         } catch (IOException e) {
             System.out.println("Testing failed");
         }
