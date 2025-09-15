@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import leo.exceptions.DateTimeFormatException;
+import leo.exceptions.DateTimeParserException;
 import leo.util.DateTimeParser;
 
 public class DateTimeParserTest {
@@ -27,7 +27,7 @@ public class DateTimeParserTest {
                 + "\n\tIt should be <dd/MM/yyyy HHmm>";
 
         //Solution adapted from https://www.perplexity.ai/search/how-to-assertequal-a-thrown-er-mtR92GBxS9OyDApnjrM04A#5
-        Exception exception = assertThrows(DateTimeFormatException.class, () -> {
+        Exception exception = assertThrows(DateTimeParserException.class, () -> {
             DateTimeParser.formatDateTimeFromInput("12-1-2025 1200");
 
         });
@@ -39,7 +39,7 @@ public class DateTimeParserTest {
         String error = "Incorrect date or time format stored in the file...";
 
         //Solution adapted from https://www.perplexity.ai/search/how-to-assertequal-a-thrown-er-mtR92GBxS9OyDApnjrM04A#5
-        Exception exception = assertThrows(DateTimeFormatException.class, () -> {
+        Exception exception = assertThrows(DateTimeParserException.class, () -> {
             DateTimeParser.formatDateTimeFromFile("DEC 12 2025, 1200");
         });
         assertEquals(error, exception.getMessage());
@@ -50,7 +50,7 @@ public class DateTimeParserTest {
         String error = "Incorrect date or time format stored in the file...";
 
         //Solution adapted from https://www.perplexity.ai/search/how-to-assertequal-a-thrown-er-mtR92GBxS9OyDApnjrM04A#5
-        Exception exception = assertThrows(DateTimeFormatException.class, () -> {
+        Exception exception = assertThrows(DateTimeParserException.class, () -> {
             DateTimeParser.formatDateTimeFromFile("Dec 12 2025 1200");
         });
         assertEquals(error, exception.getMessage());
@@ -63,7 +63,7 @@ public class DateTimeParserTest {
                 + "\n\tIt should be <dd/MM/yyyy HHmm>";
 
         //Solution adapted from https://www.perplexity.ai/search/how-to-assertequal-a-thrown-er-mtR92GBxS9OyDApnjrM04A#5
-        Exception exception = assertThrows(DateTimeFormatException.class, () -> {
+        Exception exception = assertThrows(DateTimeParserException.class, () -> {
             DateTimeParser.formatDateTimeFromInput("12-1-2025 12:00");
         });
         assertEquals(error, exception.getMessage());
@@ -74,7 +74,7 @@ public class DateTimeParserTest {
         String error = "Incorrect date or time format stored in the file...";
 
         //Solution adapted from https://www.perplexity.ai/search/how-to-assertequal-a-thrown-er-mtR92GBxS9OyDApnjrM04A#5
-        Exception exception = assertThrows(DateTimeFormatException.class, () -> {
+        Exception exception = assertThrows(DateTimeParserException.class, () -> {
             DateTimeParser.formatDateTimeFromFile("Dec 12 2025, 12");
         });
         assertEquals(error, exception.getMessage());

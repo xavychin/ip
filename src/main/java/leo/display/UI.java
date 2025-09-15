@@ -3,7 +3,7 @@ package leo.display;
 import java.util.Scanner;
 
 import leo.exceptions.AddTaskException;
-import leo.exceptions.DateTimeFormatException;
+import leo.exceptions.DateTimeParserException;
 import leo.exceptions.DeleteTaskException;
 import leo.exceptions.FindCommandException;
 import leo.exceptions.InputException;
@@ -43,7 +43,7 @@ public class UI {
                      | DeleteTaskException
                      | AddTaskException
                      | InputException
-                     | DateTimeFormatException
+                     | DateTimeParserException
                     e) {
                 System.out.println(
                         "\t"
@@ -78,7 +78,7 @@ public class UI {
                  | DeleteTaskException
                  | AddTaskException
                  | InputException
-                 | DateTimeFormatException
+                 | DateTimeParserException
                 e) {
             return e.getMessage();
         }

@@ -2,12 +2,13 @@ package leo.functions.commands;
 
 import leo.display.Messages;
 import leo.exceptions.AddTaskException;
-import leo.exceptions.DateTimeFormatException;
+import leo.exceptions.DateTimeParserException;
 import leo.exceptions.InputException;
 import leo.functions.task.Deadline;
 import leo.functions.task.Event;
 import leo.functions.task.TaskList;
 import leo.functions.task.ToDo;
+import leo.util.DateTimeParser;
 
 /**
  * Represents the function that is called when the user wants to add a task.
@@ -33,6 +34,11 @@ public class AddTaskCommand implements Command {
             throw new AddTaskException("todo");
         }
         String taskDesc = userInputList[1].trim();
+
+        if (listItems.checkDuplicate("T", taskDesc)) {
+            throw new AddTaskException("duplicate");
+        }
+
         ToDo toDoTask = new ToDo(taskDesc);
 
         listItems.addTask(toDoTask);
@@ -51,11 +57,11 @@ public class AddTaskCommand implements Command {
      * @return Formatted string of the output.
      * @throws AddTaskException If the user input is in the wrong format.
      * @throws InputException If the file storing data cannot be found.
-     * @throws DateTimeFormatException If the date or time is given in the wrong format.
+     * @throws DateTimeParserException If the date or time is given in the wrong format.
      */
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
     public static String deadline(String userInput, TaskList listItems)
-            throws AddTaskException, InputException, DateTimeFormatException {
+            throws AddTaskException, InputException, DateTimeParserException {
         assert userInput != null && !userInput.isEmpty() : "User input must not be null or empty";
         assert listItems != null : "TaskList must not be null";
         String[] userInputList = userInput.split("deadline | /by");
@@ -64,6 +70,15 @@ public class AddTaskCommand implements Command {
         }
         String taskDesc = userInputList[1].trim();
         String deadline = userInputList[2].trim();
+
+        if (DateTimeParser.deadlineBeforeCurrentDateTime(deadline)) {
+            throw new DateTimeParserException("before");
+        }
+
+        if (listItems.checkDuplicate("D", taskDesc, DateTimeParser.formatDateTimeFromInput(deadline))) {
+            throw new AddTaskException("duplicate");
+        }
+
         Deadline deadlineTask = new Deadline(taskDesc, deadline);
 
         listItems.addTask(deadlineTask);
@@ -82,11 +97,11 @@ public class AddTaskCommand implements Command {
      * @return Formatted string of the output.
      * @throws AddTaskException If the user input is in the wrong format.
      * @throws InputException If the file storing data cannot be found.
-     * @throws DateTimeFormatException If the date or time is given in the wrong format.
+     * @throws DateTimeParserException If the date or time is given in the wrong format.
      */
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
     public static String event(String userInput, TaskList listItems)
-            throws AddTaskException, InputException, DateTimeFormatException {
+            throws AddTaskException, InputException, DateTimeParserException {
         assert userInput != null && !userInput.isEmpty() : "User input must not be null or empty";
         assert listItems != null : "TaskList must not be null";
 
@@ -97,6 +112,20 @@ public class AddTaskCommand implements Command {
         String taskDesc = userInputList[1].trim();
         String startDate = userInputList[2].trim();
         String endDate = userInputList[3].trim();
+
+        if (DateTimeParser.deadlineBeforeCurrentDateTime(startDate)) {
+            throw new DateTimeParserException("start");
+        } else if (DateTimeParser.endDateBeforeStartDate(startDate, endDate)) {
+            throw new DateTimeParserException("startEnd");
+        }
+
+        if (listItems.checkDuplicate("E",
+                taskDesc,
+                DateTimeParser.formatDateTimeFromInput(startDate),
+                DateTimeParser.formatDateTimeFromInput(endDate))) {
+            throw new AddTaskException("duplicate");
+        }
+
         Event eventTask = new Event(taskDesc, startDate, endDate);
 
         listItems.addTask(eventTask);

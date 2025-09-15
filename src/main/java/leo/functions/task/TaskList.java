@@ -1,6 +1,7 @@
 package leo.functions.task;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import leo.exceptions.FileHandlerException;
 import leo.exceptions.InputException;
@@ -108,5 +109,24 @@ public class TaskList {
     public void unmarkTask() throws InputException {
         assert listItems != null : "List of tasks should not be null";
         fileHandler.overwriteFile(this.listItems);
+    }
+
+    /**
+     * Check if the list of tasks already contains the task being added.
+     *
+     * @param args Details of the task being added.
+     * @return True if the task is already in the list, else false.
+     */
+    //Solution adapted from https://www.perplexity.ai/search/public-boolean-checkduplicate-3Iy5_eQJTyO9Zdvedfhr9g#0
+    public boolean checkDuplicate(String... args) {
+        for (Task task : listItems) {
+            System.out.println(task.toString());
+            boolean hasDuplicate = Arrays.stream(args).allMatch(task.toString()::contains);
+            if (hasDuplicate) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

@@ -33,7 +33,7 @@ public class Messages {
      * @return The final message.
      */
     public static String goodbye() {
-        String goodbyeMessage = "\tBye. Hope to see you again soon!";
+        String goodbyeMessage = "Bye. Hope to see you again soon!";
         System.out.println(goodbyeMessage);
         return goodbyeMessage;
     }

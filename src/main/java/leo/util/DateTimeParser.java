@@ -3,8 +3,9 @@ package leo.util;
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 
-import leo.exceptions.DateTimeFormatException;
+import leo.exceptions.DateTimeParserException;
 
 /**
  * The DateTimeParser class formats the date and time.
@@ -12,18 +13,21 @@ import leo.exceptions.DateTimeFormatException;
 public class DateTimeParser {
     //Solution adapted from
     // https://www.perplexity.ai/search/can-localdatetime-parse-days-o-Ub7ZJIDuRtifbzHjhcOC9Q
-    private static DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
-    private static DateTimeFormatter fileFormat = DateTimeFormatter.ofPattern("MMM dd yyyy, HHmm");
+    // https://www.perplexity.ai/search/if-i-thrw-an-exception-des-the-7ZfBBYEkQsaTba5w0wkjgA#13
+    private static DateTimeFormatter inputFormat =
+            DateTimeFormatter.ofPattern("dd/MM/uuuu HHmm").withResolverStyle(ResolverStyle.STRICT);
+    private static DateTimeFormatter fileFormat =
+            DateTimeFormatter.ofPattern("MMM dd uuuu, HHmm").withResolverStyle(ResolverStyle.STRICT);
 
     /**
      * Return a string containing the date and time formatted to an easier to read format.
      *
      * @param dateTimeToFormat The date and time to be formatted.
      * @return Readable date and time text.
-     * @throws DateTimeFormatException If incorrect date and time format was given.
+     * @throws DateTimeParserException If incorrect date and time format was given.
      */
 
-    public static String formatDateTimeFromInput(String dateTimeToFormat) throws DateTimeFormatException {
+    public static String formatDateTimeFromInput(String dateTimeToFormat) throws DateTimeParserException {
         assert dateTimeToFormat != null && !dateTimeToFormat.isEmpty()
                 : "Input dateTimeToFormat must not be null or empty";
 
@@ -31,7 +35,7 @@ public class DateTimeParser {
             LocalDateTime dateTime = LocalDateTime.parse(dateTimeToFormat, inputFormat);
             return dateTime.format(fileFormat);
         } catch (DateTimeException e) {
-            throw new DateTimeFormatException("input");
+            throw new DateTimeParserException("input");
         }
     }
 
@@ -40,9 +44,9 @@ public class DateTimeParser {
      *
      * @param dateTimeToFormat The date and time to be formatted.
      * @return Readable date and time text.
-     * @throws DateTimeFormatException If incorrect date and time format was given.
+     * @throws DateTimeParserException If incorrect date and time format was given.
      */
-    public static String formatDateTimeFromFile(String dateTimeToFormat) throws DateTimeFormatException {
+    public static String formatDateTimeFromFile(String dateTimeToFormat) throws DateTimeParserException {
         assert dateTimeToFormat != null && !dateTimeToFormat.isEmpty()
                 : "Input dateTimeToFormat must not be null or empty";
 
@@ -50,7 +54,7 @@ public class DateTimeParser {
             LocalDateTime dateTime = LocalDateTime.parse(dateTimeToFormat, fileFormat);
             return dateTime.format(inputFormat);
         } catch (DateTimeException e) {
-            throw new DateTimeFormatException("file");
+            throw new DateTimeParserException("file");
         }
     }
 
@@ -71,12 +75,44 @@ public class DateTimeParser {
      */
     public static LocalDateTime stringToDateTime(String stringDateTime) {
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy, HHmm");
-            return LocalDateTime.parse(stringDateTime, formatter);
+            return LocalDateTime.parse(stringDateTime, fileFormat);
         } catch (DateTimeException e) {
-            throw new DateTimeException(
+            throw new DateTimeParserException(
                     "Incorrect date or time format in storage file."
             );
+        }
+    }
+
+    /**
+     * Check if the deadline given is before the current date and time.
+     *
+     * @param deadline DateTime to be checked.
+     * @return True if deadline is before current date and time, else false.
+     */
+    public static boolean deadlineBeforeCurrentDateTime(String deadline) {
+        try {
+            LocalDateTime currDateTime = DateTimeParser.getCurrentDateTime();
+            LocalDateTime dateTime = LocalDateTime.parse(deadline, inputFormat);
+            return dateTime.isBefore(currDateTime) || dateTime.isEqual(currDateTime);
+        } catch (DateTimeException e) {
+            throw new DateTimeParserException("invalid");
+        }
+    }
+
+    /**
+     * Check if the end date and time is before the start date and time.
+     *
+     * @param startDate The start date and time.
+     * @param endDate The end date and time.
+     * @return True if end date and time is before the start date, else false.
+     */
+    public static boolean endDateBeforeStartDate(String startDate, String endDate) {
+        try {
+            LocalDateTime startDateTime = LocalDateTime.parse(startDate, inputFormat);
+            LocalDateTime endDateTime = LocalDateTime.parse(endDate, inputFormat);
+            return endDateTime.isBefore(startDateTime) || endDateTime.isEqual(startDateTime);
+        } catch (DateTimeException e) {
+            throw new DateTimeParserException("invalid");
         }
     }
 }

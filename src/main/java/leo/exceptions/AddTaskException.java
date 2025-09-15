@@ -12,11 +12,12 @@ public class AddTaskException extends IndexOutOfBoundsException {
             "The description or deadline of the task is missing!"
                     + "\n\tMake sure it is in this format:"
                     + "\n\t\tdeadline <task description> /by <dd/MM/yyyy HHmm>";
-
     private static final String EVENT_TASK_ARRAY_EXCEPTION =
             "The description or timing of the task is missing!"
                     + "\n\tMake sure it is in this format:"
                     + "\n\t\tevent <task description> /from <dd/MM/yyyy HHmm> /to <dd/MM/yyyy HHmm>";
+    private static final String DUPLICATE_TASK =
+            "The task that you are adding is already in the list...";
 
     public AddTaskException(String taskType) {
         super(typeOfTask(taskType));
@@ -39,6 +40,9 @@ public class AddTaskException extends IndexOutOfBoundsException {
             break;
         case "event":
             returnString = EVENT_TASK_ARRAY_EXCEPTION;
+            break;
+        case "duplicate":
+            returnString = DUPLICATE_TASK;
             break;
         default:
             break;

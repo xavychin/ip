@@ -2,7 +2,7 @@ package leo.functions;
 
 import leo.display.Messages;
 import leo.exceptions.AddTaskException;
-import leo.exceptions.DateTimeFormatException;
+import leo.exceptions.DateTimeParserException;
 import leo.exceptions.DeleteTaskException;
 import leo.exceptions.FindCommandException;
 import leo.exceptions.InputException;
@@ -43,14 +43,14 @@ public class Functions {
      * @throws DeleteTaskException If index given is more than the list length or the input format is incorrect.
      * @throws AddTaskException If index given is more than the list length.
      * @throws InputException If the file storing data cannot be found.
-     * @throws DateTimeFormatException If the date or time is given in the wrong format.
+     * @throws DateTimeParserException If the date or time is given in the wrong format.
      */
     //Solution adapted from https://www.perplexity.ai/search/catch-a-function-but-handle-it-prjjRGnZRsu8igx_P1RE7A
     public String searchFunctions(String userInput)
             throws
             ZeroLengthException,
             InputException,
-            DateTimeFormatException,
+            DateTimeParserException,
             FindCommandException,
             MarkTaskCommandException,
             DeleteTaskException,
@@ -60,7 +60,7 @@ public class Functions {
         String[] userInputList = userInput.split(" ");
         String returnString = "";
 
-        switch(userInputList[0].trim()) {
+        switch(userInputList[0].trim().toLowerCase()) {
         case "list":
             returnString = ListTaskCommand.list(listItems);
             break;
