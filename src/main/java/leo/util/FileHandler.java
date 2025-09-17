@@ -44,26 +44,26 @@ public class FileHandler {
     public FileHandler loadFile() throws InputException {
         //Solution adapted from https://www.perplexity.ai/search/jar-file-not-working-BkZmiAErSv6Q80JHsA1TMw#16
         File parentDirectory = file.getParentFile();
-        boolean createDirectory = false;
-        boolean createFile = false;
+        boolean isCreatedDirectory = false;
+        boolean isCreatedFile = false;
         if (parentDirectory != null && !parentDirectory.exists()) {
-            createDirectory = parentDirectory.mkdirs();
+            isCreatedDirectory = parentDirectory.mkdirs();
         } else {
-            createDirectory = true;
+            isCreatedDirectory = true;
         }
         if (!this.file.exists()) {
             try {
-                createFile = this.file.createNewFile();
+                isCreatedFile = this.file.createNewFile();
             } catch (IOException e) {
                 throw new InputException("create");
             }
 
         } else {
-            createFile = true;
+            isCreatedFile = true;
         }
 
-        assert createDirectory : "Directory should be created";
-        assert createFile : "File should be created";
+        assert isCreatedDirectory : "Directory should be created";
+        assert isCreatedFile : "File should be created";
 
         return this;
     }
