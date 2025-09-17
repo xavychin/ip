@@ -33,6 +33,9 @@ public class Main extends Application {
             assert ap != null : "Loaded AnchorPane must not be null";
 
             Scene scene = new Scene(ap);
+            //Solution adapted from
+            // https://www.perplexity.ai/search/how-to-add-name-to-window-for-NYkH7xQcQ1O5vyd0g6T2Nw#0
+            stage.setTitle("Leo");
             stage.setScene(scene);
             MainWindow controller = fxmlLoader.getController();
 
