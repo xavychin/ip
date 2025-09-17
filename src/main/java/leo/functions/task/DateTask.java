@@ -20,7 +20,7 @@ public class DateTask extends Task {
     }
 
     /**
-     * Get the date and time of the task.
+     * Gets the date and time of the task.
      *
      * @return DateTime object of the task's deadline.
      */

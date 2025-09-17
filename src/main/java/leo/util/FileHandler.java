@@ -95,7 +95,7 @@ public class FileHandler {
     }
 
     /**
-     * Overwrite data in the file with an updated list of tasks.
+     * Overwrites data in the file with an updated list of tasks.
      *
      * @param listItems Remaining list of tasks after update.
      * @throws InputException If file is in the wrong format or cannot be accessed.

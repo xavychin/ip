@@ -47,7 +47,7 @@ public class ReminderCommand {
     }
 
     /**
-     * Get all tasks that have date that is less than or equal to one week away.
+     * Gets all tasks that have date that is less than or equal to one week away.
      *
      * @param listItems list of tasks.
      * @return The list of upcoming tasks.

@@ -16,7 +16,6 @@ public class FindCommand {
      * @return String containing the output.
      * @throws FindCommandException If the user input is in the wrong format.
      */
-
     public static String find(String userInput, TaskList listItems) throws FindCommandException {
         assert userInput != null && !userInput.isEmpty() : "User input must not be null or empty";
         assert listItems != null : "TaskList must not be null";

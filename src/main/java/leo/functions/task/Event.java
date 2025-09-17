@@ -30,7 +30,7 @@ public class Event extends DateTask {
     }
 
     /**
-     * Get the start date of the task.
+     * Gets the start date of the task.
      *
      * @return DateTime object of the task's start date.
      */

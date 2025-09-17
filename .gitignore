@@ -19,3 +19,6 @@ bin/
 
 #Class files
 *.class
+
+#Binary files
+*.jar

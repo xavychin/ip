@@ -20,7 +20,7 @@ public class DateTimeParser {
             DateTimeFormatter.ofPattern("MMM dd uuuu, HHmm").withResolverStyle(ResolverStyle.STRICT);
 
     /**
-     * Return a string containing the date and time formatted to an easier to read format.
+     * Returns a string containing the date and time formatted to an easier to read format.
      *
      * @param dateTimeToFormat The date and time to be formatted.
      * @return Readable date and time text.
@@ -40,7 +40,7 @@ public class DateTimeParser {
     }
 
     /**
-     * Return a string containing the date and time formatted for file storage.
+     * Returns a string containing the date and time formatted for file storage.
      *
      * @param dateTimeToFormat The date and time to be formatted.
      * @return Readable date and time text.
@@ -59,7 +59,7 @@ public class DateTimeParser {
     }
 
     /**
-     * Get the current date and time.
+     * Gets the current date and time.
      *
      * @return DateTime object of the current date and time
      */
@@ -68,7 +68,7 @@ public class DateTimeParser {
     }
 
     /**
-     * Convert the date and time from string to a DateTime object.
+     * Converts the date and time from string to a DateTime object.
      *
      * @param stringDateTime String containing the date and time.
      * @return DateTime object of the input string.
@@ -82,7 +82,7 @@ public class DateTimeParser {
     }
 
     /**
-     * Check if the deadline given is before the current date and time.
+     * Checks if the deadline given is before the current date and time.
      *
      * @param deadline DateTime to be checked.
      * @return True if deadline is before current date and time, else false.
@@ -98,7 +98,7 @@ public class DateTimeParser {
     }
 
     /**
-     * Check if the end date and time is before the start date and time.
+     * Checks if the end date and time is before the start date and time.
      *
      * @param startDate The start date and time.
      * @param endDate The end date and time.

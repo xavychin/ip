@@ -25,7 +25,7 @@ public class Deadline extends DateTask {
     }
 
     /**
-     * Get the deadline of the task.
+     * Gets the deadline of the task.
      *
      * @return DateTime object of the task's deadline.
      */

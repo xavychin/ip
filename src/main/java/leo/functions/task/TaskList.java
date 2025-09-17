@@ -49,7 +49,7 @@ public class TaskList {
     }
 
     /**
-     * Get the number of tasks in the list.
+     * Gets the number of tasks in the list.
      *
      * @return The number of tasks in the list.
      */
@@ -58,7 +58,7 @@ public class TaskList {
     }
 
     /**
-     * Get the task at the specified index.
+     * Gets the task at the specified index.
      *
      * @param index Index of the specified task.
      * @return The task at the specified index.
@@ -70,7 +70,7 @@ public class TaskList {
     }
 
     /**
-     * Get the list of tasks.
+     * Gets the list of tasks.
      *
      * @return List of tasks.
      */
@@ -112,7 +112,7 @@ public class TaskList {
     }
 
     /**
-     * Check if the list of tasks already contains the task being added.
+     * Checks if the list of tasks already contains the task being added.
      *
      * @param args Details of the task being added.
      * @return True if the task is already in the list, else false.
