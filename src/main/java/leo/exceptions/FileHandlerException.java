@@ -11,8 +11,8 @@ public class FileHandlerException extends RuntimeException {
      * @param task Task retrieved from the file
      */
     public FileHandlerException(String task) {
-        super("I don't recognise "
+        super("I don't recognise ("
                 + task
-                + " stored in the file...");
+                + ") stored in the file...");
     }
 }

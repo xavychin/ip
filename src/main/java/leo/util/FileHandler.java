@@ -127,7 +127,8 @@ public class FileHandler {
      * @throws InputException If file is in the wrong format or cannot be accessed.
      * @throws FileHandlerException If task details are in the incorrect format.
      */
-    public ArrayList<Task> retrieveTasksFromFile() throws InputException, FileHandlerException {
+    //Solution adapted from https://www.perplexity.ai/search/retrieves-and-returns-the-list-abAmOhH_QFC599ZDVGzXmA
+    public ArrayList<Task> retrieveTasksFromFile() throws InputException {
         ArrayList<Task> listItems = new ArrayList<>();
         assert this.file != null : "File must not be null";
         try {
@@ -136,10 +137,13 @@ public class FileHandler {
             while (scanner.hasNext()) {
                 String nextLine = scanner.nextLine();
                 if (!nextLine.isEmpty()) {
-                    Task task = getTaskFromFile(nextLine);
-
-                    if (task != null) {
-                        listItems.add(task);
+                    try {
+                        Task task = getTaskFromFile(nextLine);
+                        if (task != null) {
+                            listItems.add(task);
+                        }
+                    } catch (FileHandlerException e) {
+                        System.out.println(e.getMessage());
                     }
                 }
             }
