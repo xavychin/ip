@@ -66,7 +66,7 @@ public class FileHandlerTest {
         Exception exception = assertThrows(IOException.class, () -> {
             fhTemp.appendToFile("Hello World!");
         });
-        assertEquals("Invalid file path given.", exception.getMessage());
+        assertEquals("I can't find your past tasks...", exception.getMessage());
     }
 
     @Test
@@ -114,7 +114,7 @@ public class FileHandlerTest {
             fhTemp.overwriteFile(tempListItems);
         });
 
-        assertEquals("Invalid file path given.", exception.getMessage());
+        assertEquals("I can't find your past tasks...", exception.getMessage());
     }
 
     @Test
@@ -256,9 +256,9 @@ public class FileHandlerTest {
 
         privateMethod.setAccessible(true);
 
-        String error = "Failed to load the task ("
+        String error = "I don't recognise "
                 + "Event |   | project meeting"
-                + ") due to invalid format.";
+                + " stored in the file...";
 
         Throwable cause = null;
         //Solution adpated from https://www.perplexity.ai/search/how-to-assert-equals-a-private-7_Vt5uKlTo6ZrIhZbrIY7A#3
@@ -344,6 +344,6 @@ public class FileHandlerTest {
         Exception exception = assertThrows(IOException.class, () -> {
             fhTemp.retrieveTasksFromFile();
         });
-        assertEquals("Invalid file path given.", exception.getMessage());
+        assertEquals("I can't find your past tasks...", exception.getMessage());
     }
 }

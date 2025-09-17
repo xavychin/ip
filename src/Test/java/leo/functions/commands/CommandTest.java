@@ -64,7 +64,7 @@ public class CommandTest {
 
             String error = "The description of the task is missing!"
                     + "\n\tMake sure it is in this format:"
-                    + "\n\t\ttodo <task description>";
+                    + "\n\ttodo <task description>";
 
             assertEquals(error, exception.getMessage());
         } catch (IOException e) {
@@ -113,7 +113,7 @@ public class CommandTest {
 
             String error = "The description or deadline of the task is missing!"
                     + "\n\tMake sure it is in this format:"
-                    + "\n\t\tdeadline <task description> /by <dd/MM/yyyy HHmm>";
+                    + "\n\tdeadline <task description> /by <dd/MM/yyyy HHmm>";
 
             assertEquals(error, exception.getMessage());
         } catch (IOException e) {
@@ -162,7 +162,7 @@ public class CommandTest {
 
             String error = "The description or timing of the task is missing!"
                     + "\n\tMake sure it is in this format:"
-                    + "\n\t\tevent <task description> /from <dd/MM/yyyy HHmm> /to <dd/MM/yyyy HHmm>";
+                    + "\n\tevent <task description> /from <dd/MM/yyyy HHmm> /to <dd/MM/yyyy HHmm>";
 
             assertEquals(error, exception.getMessage());
         } catch (IOException e) {
@@ -292,7 +292,7 @@ public class CommandTest {
             cleanFile.write("");
             cleanFile.close();
 
-            String error = "The list is empty.";
+            String error = "The list is empty...";
 
             //Solution adapted from
             // https://www.perplexity.ai/search/how-to-assertequal-a-thrown-er-mtR92GBxS9OyDApnjrM04A#5

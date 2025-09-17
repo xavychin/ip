@@ -36,7 +36,7 @@ public class DateTimeParserTest {
 
     @Test
     public void dateTimeParser_wrongDateFormatFromFile_exceptionThrown() {
-        String error = "Incorrect date or time format stored in the file...";
+        String error = "I don't recognise the date or time format stored in the file...";
 
         //Solution adapted from https://www.perplexity.ai/search/how-to-assertequal-a-thrown-er-mtR92GBxS9OyDApnjrM04A#5
         Exception exception = assertThrows(DateTimeParserException.class, () -> {
@@ -47,7 +47,7 @@ public class DateTimeParserTest {
 
     @Test
     public void dateTimeParser_misingCommaInDateFormatFromFile_exceptionThrown() {
-        String error = "Incorrect date or time format stored in the file...";
+        String error = "I don't recognise the date or time format stored in the file...";
 
         //Solution adapted from https://www.perplexity.ai/search/how-to-assertequal-a-thrown-er-mtR92GBxS9OyDApnjrM04A#5
         Exception exception = assertThrows(DateTimeParserException.class, () -> {
@@ -71,7 +71,7 @@ public class DateTimeParserTest {
 
     @Test
     public void dateTimeParser_wrongTimeFormatFromFile_exceptionThrown() {
-        String error = "Incorrect date or time format stored in the file...";
+        String error = "I don't recognise the date or time format stored in the file...";
 
         //Solution adapted from https://www.perplexity.ai/search/how-to-assertequal-a-thrown-er-mtR92GBxS9OyDApnjrM04A#5
         Exception exception = assertThrows(DateTimeParserException.class, () -> {
