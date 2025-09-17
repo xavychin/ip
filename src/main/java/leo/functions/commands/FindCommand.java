@@ -28,7 +28,8 @@ public class FindCommand {
             throw new FindCommandException();
         }
 
-        String keyword = userInputList[1].trim();
+        //Solution adapted from https://www.perplexity.ai/search/how-to-modify-string-such-that-UGzl21BmRMOih7yw9UNaYQ
+        String keyword = userInputList[1].replaceAll("\\s+", " ").trim();
         if (keyword.isEmpty()) {
             throw new FindCommandException();
         }

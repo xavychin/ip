@@ -30,10 +30,7 @@ public class AddTaskCommand implements Command {
         assert listItems != null : "TaskList must not be null";
 
         String[] userInputList = userInput.split("todo");
-        if (userInputList.length < 2) {
-            throw new AddTaskException("todo");
-        }
-        String taskDesc = userInputList[1].trim();
+        String taskDesc = normalizeInputPart(userInputList, 1, "todo", 2);
 
         if (listItems.checkDuplicate("T", taskDesc)) {
             throw new AddTaskException("duplicate");
@@ -64,12 +61,10 @@ public class AddTaskCommand implements Command {
             throws AddTaskException, InputException, DateTimeParserException {
         assert userInput != null && !userInput.isEmpty() : "User input must not be null or empty";
         assert listItems != null : "TaskList must not be null";
+
         String[] userInputList = userInput.split("deadline | /by");
-        if (userInputList.length < 3) {
-            throw new AddTaskException("deadline");
-        }
-        String taskDesc = userInputList[1].trim();
-        String deadline = userInputList[2].trim();
+        String taskDesc = normalizeInputPart(userInputList, 1, "deadline", 3);
+        String deadline = normalizeInputPart(userInputList, 2, "deadline", 3);
 
         if (DateTimeParser.deadlineBeforeCurrentDateTime(deadline)) {
             throw new DateTimeParserException("before");
@@ -106,12 +101,9 @@ public class AddTaskCommand implements Command {
         assert listItems != null : "TaskList must not be null";
 
         String[] userInputList = userInput.split("event | /from | /to");
-        if (userInputList.length < 4) {
-            throw new AddTaskException("event");
-        }
-        String taskDesc = userInputList[1].trim();
-        String startDate = userInputList[2].trim();
-        String endDate = userInputList[3].trim();
+        String taskDesc = normalizeInputPart(userInputList, 1, "event", 4);
+        String startDate = normalizeInputPart(userInputList, 2, "event", 4);
+        String endDate = normalizeInputPart(userInputList, 3, "event", 4);
 
         if (DateTimeParser.deadlineBeforeCurrentDateTime(startDate)) {
             throw new DateTimeParserException("start");
@@ -134,5 +126,25 @@ public class AddTaskCommand implements Command {
                 + eventTask
                 + "\n\t"
                 + Messages.taskCount(listItems.getSize()));
+    }
+
+    /**
+     * Normalizes the user input and takes returns the details of the specified part of the task.
+     *
+     * @param userInputList List containing details of the task based on the user input.
+     * @param index Index of detail to extract from the list.
+     * @param typeOfTask The type of the task.
+     * @param expectedLength The expected length of the list.
+     * @return The formatted string of the specified detail of the task from the user input.
+     * @throws AddTaskException If the user input is in the wrong format.
+     */
+    //Solution taken from https://www.perplexity.ai/search/how-to-modify-string-such-that-UGzl21BmRMOih7yw9UNaYQ#1
+    private static String normalizeInputPart(String[] userInputList, int index, String typeOfTask, int expectedLength)
+            throws AddTaskException {
+        if (userInputList.length < expectedLength) {
+            throw new AddTaskException(typeOfTask);
+        }
+        //Solution adapted from https://www.perplexity.ai/search/delete-leading-whitespace-java-ffS3wQ_dRtO.DioPVlTSyg#1
+        return userInputList[index].replaceAll("\\s+", " ").trim();
     }
 }
