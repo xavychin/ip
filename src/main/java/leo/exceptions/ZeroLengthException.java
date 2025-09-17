@@ -10,6 +10,6 @@ public class ZeroLengthException extends Exception {
      * Instantiate a ZeroLengthException with a custom error message.
      */
     public ZeroLengthException() {
-        super("The list is empty.");
+        super("The list is empty...");
     }
 }

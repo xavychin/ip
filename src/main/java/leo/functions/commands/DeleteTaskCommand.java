@@ -28,7 +28,7 @@ public class DeleteTaskCommand implements Command {
             Task taskToDel = listItems.getItemAtIndex(indexToDel - 1);
             listItems.deleteItemAtIndex(indexToDel - 1);
 
-            return String.format("Understood, I've removed the task:"
+            return String.format("Alright, I've removed the task:"
                     + "\n\t"
                     + taskToDel.toString()
                     + "\n\t"

@@ -6,9 +6,9 @@ import java.io.IOException;
  * The InputException class provides a custom exceptions for inputs into the program.
  */
 public class InputException extends IOException {
-    private static final String FAILED_TO_LOAD_FILE_EXCEPTION = "Failed to load file.";
-    private static final String INVALID_FILE_PATH_EXCEPTION = "Invalid file path given.";
-    private static final String FILE_CREATION_EXCEPTION = "File not found and failed to create.";
+    private static final String FAILED_TO_LOAD_FILE_EXCEPTION = "I can't remember your past tasks...";
+    private static final String INVALID_FILE_PATH_EXCEPTION = "I can't find your past tasks...";
+    private static final String FILE_CREATION_EXCEPTION = "I can't find your past tasks or store your current tasks...";
 
     public InputException(String type) {
         super(typeOfError(type));

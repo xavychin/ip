@@ -22,7 +22,7 @@ public class Messages {
         String greeting = "Hello! I'm "
                 + name
                 + "\n"
-                + "What can I do for you?";
+                + "How can I help you?";
         System.out.println(greeting);
         return greeting;
     }

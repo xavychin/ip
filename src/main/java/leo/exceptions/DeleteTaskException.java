@@ -5,7 +5,7 @@ package leo.exceptions;
  */
 public class DeleteTaskException extends IndexOutOfBoundsException {
     private static final String DELETE_COMMAND_EXCEPTION =
-            "Task to delete is out of the list length.";
+            "Task number that you want to delete is not in the list...";
 
     public DeleteTaskException(String type) {
         super(typeOfError(type));

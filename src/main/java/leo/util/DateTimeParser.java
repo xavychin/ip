@@ -77,9 +77,7 @@ public class DateTimeParser {
         try {
             return LocalDateTime.parse(stringDateTime, fileFormat);
         } catch (DateTimeException e) {
-            throw new DateTimeParserException(
-                    "Incorrect date or time format in storage file."
-            );
+            throw new DateTimeParserException("file");
         }
     }
 

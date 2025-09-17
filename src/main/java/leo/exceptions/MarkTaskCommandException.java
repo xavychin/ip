@@ -18,11 +18,11 @@ public class MarkTaskCommandException extends RuntimeException {
     private static String typeOfError(String type, String task) {
         String returnString = "";
         if (type.equalsIgnoreCase("index")) {
-            returnString = "Task to " + task + " is out of the list length.";
+            returnString = "Task number that you want to " + task + " is not in the list...";
         } else if (type.equalsIgnoreCase("number")) {
             returnString = "Incorrect format provided."
                     + "\n\tMake sure it is in this format:"
-                    + "\n\t\t"
+                    + "\n\t"
                     + task
                     + "<task index>";
         }

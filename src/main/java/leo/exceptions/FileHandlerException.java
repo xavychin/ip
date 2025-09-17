@@ -11,8 +11,8 @@ public class FileHandlerException extends RuntimeException {
      * @param task Task retrieved from the file
      */
     public FileHandlerException(String task) {
-        super("Failed to load the task ("
+        super("I don't recognise "
                 + task
-                + ") due to invalid format.");
+                + " stored in the file...");
     }
 }

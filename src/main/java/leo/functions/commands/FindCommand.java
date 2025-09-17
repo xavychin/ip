@@ -46,7 +46,7 @@ public class FindCommand {
         }
 
         if (outputListIndex == 1) {
-            returnString.append("\tNo related task in the list.");
+            returnString.append("I can't find any related task in the list.");
         }
 
         return returnString.toString();

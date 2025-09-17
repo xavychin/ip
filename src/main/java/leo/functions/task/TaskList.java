@@ -120,7 +120,6 @@ public class TaskList {
     //Solution adapted from https://www.perplexity.ai/search/public-boolean-checkduplicate-3Iy5_eQJTyO9Zdvedfhr9g#0
     public boolean checkDuplicate(String... args) {
         for (Task task : listItems) {
-            System.out.println(task.toString());
             boolean hasDuplicate = Arrays.stream(args).allMatch(task.toString()::contains);
             if (hasDuplicate) {
                 return true;

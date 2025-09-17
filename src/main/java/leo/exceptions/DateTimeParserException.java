@@ -9,15 +9,15 @@ public class DateTimeParserException extends RuntimeException {
             "Incorrect date or time format for /from or /to..."
                     + "\n\tIt should be <dd/MM/yyyy HHmm>";
     private static final String DATE_FORMAT_FROM_FILE =
-            "Incorrect date or time format stored in the file...";
+            "I don't recognise the date or time format stored in the file...";
     private static final String DEADLINE_BEFORE_CURRENT_DATETIME =
-            "Deadline given is earlier or the same as the current date.";
+            "You cannot give a deadline that is before today or right now...";
     private static final String START_DATE_BEFORE_CURRENT_DATETIME =
-            "Start date or time given is earlier or the same as the current date.";
+            "You cannot give a start date or time that is before today or right now...";
     private static final String START_DATETIME_BEFORE_END_DATETIME =
-            "Start date or time given is earlier or the same as end date or time.";
+            "Your start date or time cannot be after your end date or time...";
     private static final String INVALID_DATE_TIME =
-            "The date or time given is invalid.";
+            "The date or time you gave only exists in an imaginary world...";
 
     /**
      * Instantiates a DateTimeFormatException with the location that provided the date and time.
