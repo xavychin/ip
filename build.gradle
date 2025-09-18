@@ -48,7 +48,7 @@ test {
 }
 
 application {
-    mainClass.set("leo.display.Launcher")
+    mainClass.set("leo.Launcher")
 }
 
 shadowJar {
