@@ -6,15 +6,15 @@ Leo is a lightweight, beginner-friendly task manager that makes productivity fee
 
 - [Quick Start](#quick-start)
 - [Features](#features)
-  - [Adding a Basic Task](#adding-a-basic-task-codetodocode)
-  - [Adding a Task with Deadline](#adding-a-task-with-deadline-codedeadlinecode)
-  - [Adding a Task with Start and End Date](#adding-a-task-with-start-and-end-date-codeeventcode)
-  - [Listing all tasks](#listing-all-tasks-codelistcode)
-  - [Finding tasks by keyword](#finding-tasks-by-keyword-codefindcode)
-  - [Checking for Upcoming Tasks](#checking-for-upcoming-tasks-coderemindcode)
-  - [Marking a Task as Completed](#marking-a-task-as-completed-codemarkcode)
-  - [Marking a Task as Incomplete](#marking-a-task-as-incomplete-codeunmarkcode)
-  - [Deleting a Task](#deleting-a-task-codedeletecode)
+  - [Adding a Basic Task](#adding-a-basic-task-todo)
+  - [Adding a Task with Deadline](#adding-a-task-with-deadline-deadline)
+  - [Adding a Task with Start and End Date](#adding-a-task-with-start-and-end-date-event)
+  - [Listing all tasks](#listing-all-tasks-list)
+  - [Finding tasks by keyword](#finding-tasks-by-keyword-find)
+  - [Checking for Upcoming Tasks](#checking-for-upcoming-tasks-remind)
+  - [Marking a Task as Completed](#marking-a-task-as-completed-mark)
+  - [Marking a Task as Incomplete](#marking-a-task-as-incomplete-unmark)
+  - [Deleting a Task](#deleting-a-task-delete)
 - [Command Summary](#command-summary)
 
 ## Quick Start
@@ -31,6 +31,7 @@ Leo is a lightweight, beginner-friendly task manager that makes productivity fee
 
 ## Features
 
+<a name="adding-a-basic-task-todo"></a>
 ### Adding a Basic Task: <code>todo</code>
 Adds a simple task with only a description to the list.
 
@@ -40,6 +41,7 @@ Examples:
 - `todo borrow book`
 - `todo join sports club`
 
+<a name="adding-a-task-with-deadline-deadline"></a>
 ### Adding a Task with Deadline: <code>deadline</code>
 Adds a task with a description and a deadline to the list.
 
@@ -49,6 +51,7 @@ Examples:
 - `deadline return book /by 20/06/2026 2100`
 - `deadline assignment /by 18/09/2025 2359`
 
+<a name="adding-a-task-with-start-and-end-date-event"></a>
 ### Adding a Task with Start and End Date: <code>event</code>
 Adds a task with a description and a duration (start and end date/time).
 
@@ -58,11 +61,13 @@ Examples:
 - `event team dinner /from 08/06/2026 1800 /to 08/06/2026 2000`
 - `event project meeting /from 02/03/2026 1000 /to 02/03/2026 1130`
 
+<a name="listing-all-tasks-list"></a>
 ### Listing all tasks: <code>list</code>
 Displays a list of all current tasks.
 
 Format: `list`
 
+<a name="finding-tasks-by-keyword-find"></a>
 ### Finding tasks by keyword: <code>find</code>
 Searches for tasks containing the keyword.
 
@@ -77,6 +82,7 @@ Examples:
 - `find book` returns all tasks with `book` or `Book`
 ![Screenshot of the output after using the find command](find_example.png)
 
+<a name="checking-for-upcoming-tasks-remind"></a>
 ### Checking for Upcoming Tasks: <code>remind</code>
 Displays a list of tasks due in the upcoming week.
 
@@ -84,6 +90,7 @@ Format: `remind`
 
 - Runs automatically at startup to alert you about upcoming deadlines
 
+<a name="marking-a-task-as-completed-mark"></a>
 ### Marking a Task as Completed: <code>mark</code>
 Marks a specified task in the list as completed.
 
@@ -92,6 +99,7 @@ Format: `mark <task index>`
 Examples:
 - `list` followed by `mark 2` marks the second task in the list as completed
 
+<a name="marking-a-task-as-incomplete-unmark"></a>
 ### Marking a Task as Incomplete: <code>unmark</code>
 Reverts a specified completed task in the list back to incomplete.
 
@@ -100,6 +108,7 @@ Format: `unmark <task index>`
 Examples:
 - `list` followed by `unmark 2` marks the second task in the list as incomplete
 
+<a name="deleting-a-task-delete"></a>
 ### Deleting a Task: <code>delete</code>
 Removes a specified task in the list.
 
