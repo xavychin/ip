@@ -80,6 +80,7 @@ Format: `find <keyword>`
 Examples:
 - `find meeting` returns all tasks with `meeting` or `Meeting`
 - `find book` returns all tasks with `book` or `Book`
+
 ![Screenshot of the output after using the find command](find_example.png)
 
 <a name="checking-for-upcoming-tasks-remind"></a>
