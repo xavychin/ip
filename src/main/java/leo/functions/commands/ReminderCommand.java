@@ -60,7 +60,7 @@ public class ReminderCommand {
                 .filter(task -> task instanceof DateTask)
                 .map(task -> (DateTask) task)
                 .filter(task -> task.getDateTime().isAfter(currentDateTime)
-                        && task.getDateTime().isBefore(currentDateTime.plusWeeks(1)))
+                        && !task.getDateTime().isAfter(currentDateTime.plusWeeks(1)))
                 .sorted(Comparator.comparing(DateTask::getDateTime))
                 .toList();
     }

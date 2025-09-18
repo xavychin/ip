@@ -21,7 +21,7 @@ public class FindCommand {
         assert listItems != null : "TaskList must not be null";
 
         StringBuilder returnString = new StringBuilder();
-        String[] userInputList = userInput.split("find");
+        String[] userInputList = userInput.toLowerCase().split("find");
 
         if (userInputList.length < 2) {
             throw new FindCommandException();
@@ -38,7 +38,7 @@ public class FindCommand {
             String taskInfo = listItems.getItemAtIndex(i).toString();
             if (taskInfo.toLowerCase().contains(keyword.toLowerCase())) {
                 if (outputListIndex == 1) {
-                    returnString.append("Here's the tasks with the word '").append(keyword).append("':");
+                    returnString.append("Here are the tasks with the word '").append(keyword).append("':");
                 }
                 returnString.append("\n\t").append(outputListIndex).append(". ").append(taskInfo);
                 outputListIndex++;

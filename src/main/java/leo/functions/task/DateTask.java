@@ -26,5 +26,5 @@ public class DateTask extends Task {
      */
     public LocalDateTime getDateTime() {
         return DateTimeParser.stringToDateTime(this.date);
-    };
+    }
 }

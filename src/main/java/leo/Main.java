@@ -13,7 +13,7 @@ import leo.exceptions.InputException;
 /**
  * The Main class extends the Application class in JavaFX.
  * This class is used to set up the nodes that are required to
- * render the GUI foe the application.
+ * render the GUI for the application.
  */
 public class Main extends Application {
     private Leo leo;

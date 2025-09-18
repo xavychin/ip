@@ -14,7 +14,7 @@ public class Event extends DateTask {
     /**
      * Instantiates an Event task.
      *
-     * @param description The description of the deadline task.
+     * @param description The description of the event task.
      * @param startDate The start date and time of the task.
      * @param endDate The end date and time of the task.
      */

@@ -60,8 +60,9 @@ public class Functions {
         //Solution adapted from https://www.perplexity.ai/search/delete-leading-whitespace-java-ffS3wQ_dRtO.DioPVlTSyg#1
         String[] userInputList = userInput.trim().split("\\s+");
         String returnString = "";
+        String command = userInputList[0].trim().toLowerCase();
 
-        switch(userInputList[0].trim().toLowerCase()) {
+        switch(command) {
         case "list":
             returnString = ListTaskCommand.list(listItems);
             break;

@@ -25,6 +25,7 @@ public class Leo {
      * Instantiates the chatbot Leo.
      *
      * @param filePath The file path where the data will be stored.
+     * @param controller The main window of the UI.
      * @throws InputException If file path is incorrect and a new file cannot be created
      *      due to input errors.
      */
@@ -32,6 +33,32 @@ public class Leo {
         assert filePath != null && !filePath.isEmpty() : "File path must not be null or empty";
         this.ui = new UI();
         this.controller = controller;
+        this.fileHandler = new FileHandler(filePath);
+
+        assert this.fileHandler != null : "FileHandler must be initialized";
+
+        try {
+            this.tasks = new TaskList(fileHandler.loadFile());
+            assert this.tasks != null : "TaskList must be initialized";
+
+            controller.leoMessage(Messages.greetings());
+            controller.leoMessage(ReminderCommand.remindCommand("", this.tasks));
+
+        } catch (IOException e) {
+            throw new InputException("create");
+        }
+    }
+
+    /**
+     * Instantiates the chatbot Leo.
+     *
+     * @param filePath The file path where the data will be stored.
+     * @throws InputException If file path is incorrect and a new file cannot be created
+     *      due to input errors.
+     */
+    public Leo(String filePath) throws InputException {
+        assert filePath != null && !filePath.isEmpty() : "File path must not be null or empty";
+        this.ui = new UI();
         this.fileHandler = new FileHandler(filePath);
 
         assert this.fileHandler != null : "FileHandler must be initialized";
@@ -83,6 +110,6 @@ public class Leo {
      * @throws InputException If file fails to load
      */
     public static void main(String[] args) throws InputException {
-        new Leo("data/Leo.txt", null).run();
+        new Leo("data/Leo.txt").run();
     }
 }

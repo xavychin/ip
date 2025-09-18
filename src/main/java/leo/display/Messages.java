@@ -1,24 +1,17 @@
 package leo.display;
 
-import leo.exceptions.InputException;
-
 /**
  * The Messages class contains generic messages to be used across the application.
  */
 public class Messages {
     private static String name = "Leo";
-    private static String logo = " __\n"
-            + "|  |     _____   _____\n"
-            + "|  |    /  __ \\ /  _  \\\n"
-            + "|  |___ |  ___/ | |_| |\n"
-            + "|______|\\_____| \\_____/\n";
 
     /**
      * Outputs the initial message to the GUI to prompt for user input.
      *
      * @return The initial message to prompt for user input.
      */
-    public static String greetings() throws InputException {
+    public static String greetings() {
         String greeting = "Hello! I'm "
                 + name
                 + "\n"

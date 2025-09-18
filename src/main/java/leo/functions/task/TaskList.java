@@ -3,7 +3,6 @@ package leo.functions.task;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import leo.exceptions.FileHandlerException;
 import leo.exceptions.InputException;
 import leo.util.FileHandler;
 
@@ -26,11 +25,10 @@ public class TaskList {
      *
      * @param fileHandler FileHandler to facilitate file operations.
      * @throws InputException If file is in the wrong format or cannot be accessed.
-     * @throws ArrayIndexOutOfBoundsException If task details are in the incorrect format.
      */
-    public TaskList(FileHandler fileHandler) throws InputException, FileHandlerException {
+    public TaskList(FileHandler fileHandler) throws InputException {
         this.fileHandler = fileHandler;
-        assert fileHandler != null : "Objet to handle files is empty";
+        assert fileHandler != null : "Object to handle files is empty";
         this.listItems = fileHandler.retrieveTasksFromFile();
         assert listItems != null : "List of tasks should not be null after retrieval";
     }

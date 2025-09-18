@@ -8,15 +8,16 @@ import java.time.format.ResolverStyle;
 import leo.exceptions.DateTimeParserException;
 
 /**
- * The DateTimeParser class formats the date and time.
+ * The DateTimeParser class formats the date and time between user input format and file storage format,
+ * and provides utility methods for date-time related checks.
  */
 public class DateTimeParser {
     //Solution adapted from
     // https://www.perplexity.ai/search/can-localdatetime-parse-days-o-Ub7ZJIDuRtifbzHjhcOC9Q
     // https://www.perplexity.ai/search/if-i-thrw-an-exception-des-the-7ZfBBYEkQsaTba5w0wkjgA#13
-    private static DateTimeFormatter inputFormat =
+    private static final DateTimeFormatter INPUT_FORMAT =
             DateTimeFormatter.ofPattern("dd/MM/uuuu HHmm").withResolverStyle(ResolverStyle.STRICT);
-    private static DateTimeFormatter fileFormat =
+    private static final DateTimeFormatter FILE_FORMAT =
             DateTimeFormatter.ofPattern("MMM dd uuuu, HHmm").withResolverStyle(ResolverStyle.STRICT);
 
     /**
@@ -32,8 +33,8 @@ public class DateTimeParser {
                 : "Input dateTimeToFormat must not be null or empty";
 
         try {
-            LocalDateTime dateTime = LocalDateTime.parse(dateTimeToFormat, inputFormat);
-            return dateTime.format(fileFormat);
+            LocalDateTime dateTime = LocalDateTime.parse(dateTimeToFormat, INPUT_FORMAT);
+            return dateTime.format(FILE_FORMAT);
         } catch (DateTimeException e) {
             throw new DateTimeParserException("input");
         }
@@ -51,8 +52,8 @@ public class DateTimeParser {
                 : "Input dateTimeToFormat must not be null or empty";
 
         try {
-            LocalDateTime dateTime = LocalDateTime.parse(dateTimeToFormat, fileFormat);
-            return dateTime.format(inputFormat);
+            LocalDateTime dateTime = LocalDateTime.parse(dateTimeToFormat, FILE_FORMAT);
+            return dateTime.format(INPUT_FORMAT);
         } catch (DateTimeException e) {
             throw new DateTimeParserException("file");
         }
@@ -75,7 +76,7 @@ public class DateTimeParser {
      */
     public static LocalDateTime stringToDateTime(String stringDateTime) {
         try {
-            return LocalDateTime.parse(stringDateTime, fileFormat);
+            return LocalDateTime.parse(stringDateTime, FILE_FORMAT);
         } catch (DateTimeException e) {
             throw new DateTimeParserException("file");
         }
@@ -90,7 +91,7 @@ public class DateTimeParser {
     public static boolean deadlineBeforeCurrentDateTime(String deadline) {
         try {
             LocalDateTime currDateTime = DateTimeParser.getCurrentDateTime();
-            LocalDateTime dateTime = LocalDateTime.parse(deadline, inputFormat);
+            LocalDateTime dateTime = LocalDateTime.parse(deadline, INPUT_FORMAT);
             return dateTime.isBefore(currDateTime) || dateTime.isEqual(currDateTime);
         } catch (DateTimeException e) {
             throw new DateTimeParserException("invalid");
@@ -106,9 +107,9 @@ public class DateTimeParser {
      */
     public static boolean endDateBeforeStartDate(String startDate, String endDate) {
         try {
-            LocalDateTime startDateTime = LocalDateTime.parse(startDate, inputFormat);
-            LocalDateTime endDateTime = LocalDateTime.parse(endDate, inputFormat);
-            return endDateTime.isBefore(startDateTime) || endDateTime.isEqual(startDateTime);
+            LocalDateTime startDateTime = LocalDateTime.parse(startDate, INPUT_FORMAT);
+            LocalDateTime endDateTime = LocalDateTime.parse(endDate, INPUT_FORMAT);
+            return !endDateTime.isAfter(startDateTime);
         } catch (DateTimeException e) {
             throw new DateTimeParserException("invalid");
         }

@@ -23,6 +23,10 @@ import leo.functions.task.ToDo;
  * - retrieving data from files
  */
 public class FileHandler {
+    private static final String TODO_TASK_NAME = "ToDo";
+    private static final String DEADLINE_TASK_NAME = "Deadline";
+    private static final String EVENT_TASK_NAME = "Event";
+    private static final String COMPLETED_SYMBOL = "X";
     private File file;
 
     /**
@@ -77,9 +81,7 @@ public class FileHandler {
     public void appendToFile(String textToAdd) throws InputException {
         assert textToAdd != null : "Text to add must not be null";
 
-        try {
-            FileWriter writer = new FileWriter(this.file, true);
-
+        try (FileWriter writer = new FileWriter(this.file, true)) {
             if (this.file.length() > 0) {
                 //Solution adapted from
                 // https://www.perplexity.ai/search/add-new-line-infront-of-text-i-zPpF4r0fTCSRDpGFnPRUxg
@@ -87,8 +89,6 @@ public class FileHandler {
             } else {
                 writer.write(textToAdd);
             }
-
-            writer.close();
         } catch (IOException e) {
             throw new InputException("path");
         }
@@ -131,9 +131,7 @@ public class FileHandler {
     public ArrayList<Task> retrieveTasksFromFile() throws InputException {
         ArrayList<Task> listItems = new ArrayList<>();
         assert this.file != null : "File must not be null";
-        try {
-            Scanner scanner = new Scanner(this.file);
-
+        try (Scanner scanner = new Scanner(this.file)) {
             while (scanner.hasNext()) {
                 String nextLine = scanner.nextLine();
                 if (!nextLine.isEmpty()) {
@@ -147,8 +145,6 @@ public class FileHandler {
                     }
                 }
             }
-
-            scanner.close();
         } catch (FileNotFoundException e) {
             throw new InputException("path");
         }
@@ -173,16 +169,16 @@ public class FileHandler {
             String taskDescription = taskDescriptionList[2].trim();
 
             switch(taskDescriptionList[0].trim()) {
-            case "ToDo":
+            case TODO_TASK_NAME:
                 task = new ToDo(taskDescription);
                 break;
-            case "Event":
+            case EVENT_TASK_NAME:
                 String[] eventDates = taskDescriptionList[3].split("-");
                 String startDateTime = DateTimeParser.formatDateTimeFromFile(eventDates[0].trim());
                 String endDateTime = DateTimeParser.formatDateTimeFromFile(eventDates[1].trim());
                 task = new Event(taskDescription, startDateTime, endDateTime);
                 break;
-            case "Deadline":
+            case DEADLINE_TASK_NAME:
                 //Solution adapted from
                 // https://www.perplexity.ai/search/can-localdatetime-parse-days-o-Ub7ZJIDuRtifbzHjhcOC9Q
                 String dateTime = DateTimeParser.formatDateTimeFromFile(taskDescriptionList[3].trim());
@@ -192,7 +188,7 @@ public class FileHandler {
                 break;
             }
 
-            if (task != null && taskDescriptionList[1].trim().equals("X")) {
+            if (task != null && taskDescriptionList[1].trim().equals(COMPLETED_SYMBOL)) {
                 task.markTask();
             }
 
