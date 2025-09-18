@@ -78,9 +78,11 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void leoMessage(String msg) throws InputException {
         assert msg != null : "Message must not be null";
-        dialogContainer.getChildren().addAll(
-                DialogBox.getLeoDialog(msg, leoImage)
-        );
+        if (!msg.isEmpty()) {
+            dialogContainer.getChildren().addAll(
+                    DialogBox.getLeoDialog(msg, leoImage)
+            );
+        }
     }
 }
 
