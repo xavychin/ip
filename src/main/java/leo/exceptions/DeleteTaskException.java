@@ -24,7 +24,7 @@ public class DeleteTaskException extends IndexOutOfBoundsException {
         } else if (type.equalsIgnoreCase("number")) {
             returnString = "Incorrect format provided."
                     + "\n\tMake sure it is in this format:"
-                    + "\n\t\tdelete <task index>";
+                    + "\n\tdelete <task index>";
         }
         return returnString;
     }

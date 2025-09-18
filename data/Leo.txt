@@ -1,7 +1,0 @@
-ToDo | X | read book
-Deadline |   | return book | Jun 20 2026, 2100
-Deadline |   | submit assignment | Sep 20 2025, 2000
-Event |   | team dinner | Jun 08 2026, 1800-Jun 08 2026, 2000
-Event |   | project meeting | Mar 02 2026, 1000-Mar 02 2026, 1030
-Deadline |   | return book | Feb 29 2028, 2100
-ToDo |   | buy car

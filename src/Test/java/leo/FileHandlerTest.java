@@ -256,9 +256,9 @@ public class FileHandlerTest {
 
         privateMethod.setAccessible(true);
 
-        String error = "I don't recognise "
+        String error = "I don't recognise ("
                 + "Event |   | project meeting"
-                + " stored in the file...";
+                + ") stored in the file...";
 
         Throwable cause = null;
         //Solution adpated from https://www.perplexity.ai/search/how-to-assert-equals-a-private-7_Vt5uKlTo6ZrIhZbrIY7A#3
